@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:flowable="http://flowable.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.flowable.org/processdef">
+  <process id="ca.mgis.tms2flow.processes.helloworld" name="Hello World!" isExecutable="true">
+    <startEvent id="_1" name="StartProcess">
+      <documentation>Start Process</documentation>
+    </startEvent>
+    <endEvent id="_3" name="EndProcess"/>
+    <sequenceFlow id="_1-_2" sourceRef="_1" targetRef="hello-world-service"/>
+    <sequenceFlow id="_2-_3" sourceRef="hello-world-service" targetRef="_3"/>
+    <serviceTask id="hello-world-service" name="Flowable Hello World TaskService" flowable:exclusive="true" flowable:class="ca.mgis.tms2flow.service.HelloFlowableService"/>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_hello-world">
+    <bpmndi:BPMNPlane bpmnElement="ca.mgis.tms2flow.processes" id="BPMNPlane_hello-world">
+      <bpmndi:BPMNShape id="shape-ff75bd7c-b7cd-445b-bebc-a430b80225e8" bpmnElement="_1">
+        <omgdc:Bounds x="223.64963" y="-21.864" width="30.0" height="30.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape-aad37e60-fa18-46b5-b404-4298318f8479" bpmnElement="_3">
+        <omgdc:Bounds x="223.64961" y="262.53882" width="30.0" height="30.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge-c6204ec2-3875-42bf-b9f8-4316cfe7c246" bpmnElement="_1-_2">
+        <omgdi:waypoint x="231.14963" y="8.136"/>
+        <omgdi:waypoint x="219.99997" y="90.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge-30041a1f-e45d-4843-ae4f-488cfcccaca4" bpmnElement="_2-_3">
+        <omgdi:waypoint x="220.0" y="170.00002"/>
+        <omgdi:waypoint x="231.14958" y="262.53882"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape-72a4342f-3e9c-47ab-bd81-af4d1cde7c77" bpmnElement="hello-world-service">
+        <omgdc:Bounds x="170.0" y="90.0" width="100.0" height="80.0"/>
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
