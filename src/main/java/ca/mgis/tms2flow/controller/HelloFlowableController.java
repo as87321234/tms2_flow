@@ -11,6 +11,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/flow-api")
 
@@ -27,14 +30,19 @@ public class HelloFlowableController {
     @Autowired
     private HelloFlowableService service;
 
-    @RequestMapping(value="/hello-world", method = RequestMethod.GET)
+    @RequestMapping(value="/hello-world", method = RequestMethod.POST)
     public  @ResponseBody
     void helloWorld(HttpServletResponse response,  @RequestParam("test") String testParam ) {
 
         log.info(String.format("Hello World Service: %s",testParam));
 
+        Map<String, Object> map = new HashMap<>();
+        map.put("action","my action");
 
-        ProcessInstance instance = runtimeService.startProcessInstanceByKey("ca.mgis.tms2flow.processes.helloworld",testParam);
+        ProcessInstance instance = runtimeService.startProcessInstanceByKey("ca.mgis.tms2flow.processes.helloworld",testParam, map);
+
+    }
+
     @RequestMapping(value="/wait-user-response", method = RequestMethod.POST)
     public  @ResponseBody
     void waitUserResponse(HttpServletResponse response) {
@@ -55,7 +63,7 @@ public class HelloFlowableController {
 //        return service.getTasks(assignee);
 //    }
 
-//    @PostMapping("/review")
+    //    @PostMapping("/review")
 //    public void review(@RequestBody Approval approval) {
 //        service.submitReview(approval);
 //    }
