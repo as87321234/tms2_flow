@@ -35,6 +35,14 @@ public class HelloFlowableController {
 
 
         ProcessInstance instance = runtimeService.startProcessInstanceByKey("ca.mgis.tms2flow.processes.helloworld",testParam);
+    @RequestMapping(value="/wait-user-response", method = RequestMethod.POST)
+    public  @ResponseBody
+    void waitUserResponse(HttpServletResponse response) {
+
+        log.info(String.format("Hello World Wait for user response"));
+
+        ProcessInstance instance = runtimeService.startProcessInstanceByKey("ca.mgis.tms2flow.processes.helloworld");
+
     }
 
 //    @PostMapping("/submit")
