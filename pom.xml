@@ -38,18 +38,18 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<scope>runtime</scope>
-			<version>42.7.3</version>
-		</dependency>
-
 <!--		<dependency>-->
-<!--			<groupId>com.h2database</groupId>-->
-<!--			<artifactId>h2</artifactId>-->
-<!--			<version>2.2.220</version>-->
+<!--			<groupId>org.postgresql</groupId>-->
+<!--			<artifactId>postgresql</artifactId>-->
+<!--			<scope>runtime</scope>-->
+<!--			<version>42.7.3</version>-->
 <!--		</dependency>-->
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>2.2.220</version>
+		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.flowable/flowable-spring-boot-starter-process-rest -->
 		<dependency>
@@ -79,8 +79,13 @@
 			<version>3.3.1</version>
 			<scope>test</scope>
 		</dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<plugins>
