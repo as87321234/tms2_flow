@@ -1,11 +1,11 @@
 package ca.mgis.tms2flow.controller;
 
+import ca.mgis.tms2flow.controller.pojo.BiometricEnrolment;
 import ca.mgis.tms2flow.service.HelloFlowableService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.flowable.engine.RuntimeService;
 import org.flowable.engine.TaskService;
 import org.flowable.engine.runtime.ProcessInstance;
-import org.flowable.task.api.Task;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +17,9 @@ import java.util.Map;
 @RestController
 @RequestMapping("/flow-api")
 
-public class HelloFlowableController {
+public class BiometricCollectionController {
 
-    Logger log = LoggerFactory.getLogger(HelloFlowableController.class);
+    Logger log = LoggerFactory.getLogger(BiometricCollectionController.class);
 
     @Autowired
     RuntimeService runtimeService;
@@ -30,16 +30,18 @@ public class HelloFlowableController {
     @Autowired
     private HelloFlowableService service;
 
-    @RequestMapping(value="/hello-world", method = RequestMethod.POST)
+    @RequestMapping(value="/send-biometric-collection", method = RequestMethod.POST)
     public  @ResponseBody
-    void helloWorld(HttpServletResponse response,  @RequestParam("test") String testParam ) {
+    void sendBiometricCollection(HttpServletResponse response, @RequestBody BiometricEnrolment biometricEnrolment ) {
 
-        log.info(String.format("Hello World Service: %s",testParam));
+        log.info(String.format("Biometric Enrolment received: %s", biometricEnrolment ));
+        log.debug(biometricEnrolment.toString());
 
-        Map<String, Object> map = new HashMap<>();
-        map.put("action","my action");
+        Map<String, Object> map = new HashMap<String, Object>();
 
-        ProcessInstance instance = runtimeService.startProcessInstanceByKey("ca.mgis.tms2flow.processes.helloworld",testParam, map);
+        map.put(BiometricEnrolment.class.getName(), biometricEnrolment);
+
+        ProcessInstance instance = runtimeService.startProcessInstanceByKey("id-enrolment-process-tre", map);
 
     }
 
