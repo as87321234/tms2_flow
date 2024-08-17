@@ -39,7 +39,7 @@ public class EnrolmentProcessingErrtService implements TriggerableActivityBehavi
     @Override
     public void execute(DelegateExecution execution) {
 
-        log.info(fpHelper.logFormatter(execution, "Received ERRT"));
+        log.info(fpHelper.logFormatter(execution, "wait for ERRT from RCMP"));
 
     }
 

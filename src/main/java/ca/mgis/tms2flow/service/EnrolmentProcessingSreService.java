@@ -28,7 +28,7 @@ public class EnrolmentProcessingSreService implements TriggerableActivityBehavio
     @Override
     public void execute(DelegateExecution execution) {
 
-        log.info(fpHelper.logFormatter(execution, "Received SRE"));
+        log.info(fpHelper.logFormatter(execution, "wait for SRE from RCMP"));
 
     }
 

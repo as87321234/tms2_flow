@@ -30,7 +30,7 @@ public class EnrolmentProcessingAcktService implements TriggerableActivityBehavi
     @Override
     public void execute(DelegateExecution execution) {
 
-        log.info(fpHelper.logFormatter(execution, "Received ACKT"));
+        log.info(fpHelper.logFormatter(execution, "wait for ACKT from RCMP"));
 
     }
 
