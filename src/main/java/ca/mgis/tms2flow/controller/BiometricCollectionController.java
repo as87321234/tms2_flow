@@ -1,7 +1,6 @@
 package ca.mgis.tms2flow.controller;
 
 import ca.mgis.tms2flow.controller.pojo.BiometricEnrolment;
-import ca.mgis.tms2flow.service.HelloFlowableService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.flowable.engine.RuntimeService;
 import org.flowable.engine.TaskService;
@@ -27,9 +26,6 @@ public class BiometricCollectionController {
     @Autowired
     TaskService taskService;
 
-    @Autowired
-    private HelloFlowableService service;
-
     @RequestMapping(value="/send-biometric-collection", method = RequestMethod.POST)
     public  @ResponseBody
     void sendBiometricCollection(HttpServletResponse response, @RequestBody BiometricEnrolment biometricEnrolment ) {
@@ -42,16 +38,6 @@ public class BiometricCollectionController {
         map.put(BiometricEnrolment.class.getName(), biometricEnrolment);
 
         ProcessInstance instance = runtimeService.startProcessInstanceByKey("id-enrolment-process-tre", map);
-
-    }
-
-    @RequestMapping(value="/wait-user-response", method = RequestMethod.POST)
-    public  @ResponseBody
-    void waitUserResponse(HttpServletResponse response) {
-
-        log.info(String.format("Hello World Wait for user response"));
-
-        ProcessInstance instance = runtimeService.startProcessInstanceByKey("ca.mgis.tms2flow.processes.helloworld");
 
     }
 
