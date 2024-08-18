@@ -9,6 +9,7 @@
       </extensionElements>
     </startEvent>
     <serviceTask id="id-enrolment-processing-received-service-task" flowable:exclusive="true" name="id-enrolment-processing-received-service-task" flowable:delegateExpression="${enrolmentProcessingTreService}">
+      <documentation>Enrolment Processing Received from Collection Point.</documentation>
       <extensionElements>
         <flowable:executionListener class="ca.mgis.tms2flow.listener.GenericFlowableListener" event="start"/>
         <flowable:executionListener class="ca.mgis.tms2flow.listener.GenericFlowableListener" event="end"/>
