@@ -12,7 +12,7 @@ public class GenericFlowableListener implements ExecutionListener {
 
     private final Logger log = LoggerFactory.getLogger(GenericFlowableListener.class);
 
-    FlowableProcessHelper fpHelper = new FlowableProcessHelper();
+    final FlowableProcessHelper fpHelper = new FlowableProcessHelper();
 
     @Override
     public void notify(DelegateExecution execution) {
