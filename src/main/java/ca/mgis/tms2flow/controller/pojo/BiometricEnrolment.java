@@ -8,8 +8,8 @@ import java.io.Serializable;
 @Getter
 @ToString
 public class BiometricEnrolment implements Serializable {
-
-    String biometricId;
-    String enrolmentBase64;
-
+	
+	String biometricId;
+	String enrolmentBase64;
+	
 }

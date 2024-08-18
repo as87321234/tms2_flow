@@ -13,35 +13,35 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class EnrolmentProcessingSreService implements TriggerableActivityBehavior {
-
-    private final Logger log = LoggerFactory.getLogger(EnrolmentProcessingTreService.class);
-    @Autowired
-    ProcessEngine pe;
-    @Autowired
-    RuntimeService rt;
-    @Autowired
-    FlowableProcessHelper fpHelper;
-
-    @Override
-    public void execute(DelegateExecution execution) {
-
-        log.info(fpHelper.logFormatter(execution, "wait for SRE from RCMP"));
-
-    }
-
-    @Override
-    public void trigger(DelegateExecution execution, String signalEvent, Object signalData) {
-
-        // Trigger ACKT is not already received
-        fpHelper.triggerExecution(execution.getRootProcessInstanceId(),
-                MgisFlowConstant.ID_ENROLMENT_PROCESSING_ACKT_RECEIVE_SERVICE_TASK);
-
-        // Trigger ERRT it will never be received
-        fpHelper.triggerExecution(execution.getRootProcessInstanceId(),
-                MgisFlowConstant.ID_ENROLMENT_PROCESSING_ERRT_RECEIVE_SERVICE_TASK);
-
-        log.info(fpHelper.logFormatter(execution, "Received SRE Trigger"));
-
-    }
-
+	
+	private final Logger log = LoggerFactory.getLogger(EnrolmentProcessingTreService.class);
+	@Autowired
+	ProcessEngine pe;
+	@Autowired
+	RuntimeService rt;
+	@Autowired
+	FlowableProcessHelper fpHelper;
+	
+	@Override
+	public void execute(DelegateExecution execution) {
+		
+		log.info(fpHelper.logFormatter(execution, "wait for SRE from RCMP"));
+		
+	}
+	
+	@Override
+	public void trigger(DelegateExecution execution, String signalEvent, Object signalData) {
+		
+		// Trigger ACKT is not already received
+		fpHelper.triggerExecution(execution.getRootProcessInstanceId(),
+				MgisFlowConstant.ID_ENROLMENT_PROCESSING_ACKT_RECEIVE_SERVICE_TASK);
+		
+		// Trigger ERRT it will never be received
+		fpHelper.triggerExecution(execution.getRootProcessInstanceId(),
+				MgisFlowConstant.ID_ENROLMENT_PROCESSING_ERRT_RECEIVE_SERVICE_TASK);
+		
+		log.info(fpHelper.logFormatter(execution, "Received SRE Trigger"));
+		
+	}
+	
 }

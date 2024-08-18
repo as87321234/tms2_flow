@@ -11,17 +11,17 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class EnrolmentProcessingFinalizeService implements JavaDelegate {
-
-    private final Logger log = LoggerFactory.getLogger(EnrolmentProcessingFinalizeService.class);
-    @Autowired
-    ProcessEngine processEngine;
-    @Autowired
-    FlowableProcessHelper fpHelper;
-
-    @Override
-    public void execute(DelegateExecution execution) {
-
-        log.info(fpHelper.logFormatter(execution, "Finalized TRE Service"));
-
-    }
+	
+	private final Logger log = LoggerFactory.getLogger(EnrolmentProcessingFinalizeService.class);
+	@Autowired
+	ProcessEngine processEngine;
+	@Autowired
+	FlowableProcessHelper fpHelper;
+	
+	@Override
+	public void execute(DelegateExecution execution) {
+		
+		log.info(fpHelper.logFormatter(execution, "Finalized TRE Service"));
+		
+	}
 }

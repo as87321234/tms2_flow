@@ -11,25 +11,25 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class EnrolmentProcessingAcktService implements TriggerableActivityBehavior {
-
-    private final Logger log = LoggerFactory.getLogger(EnrolmentProcessingAcktService.class);
-    @Autowired
-    ProcessEngine processEngine;
-    @Autowired
-    FlowableProcessHelper fpHelper;
-
-    @Override
-    public void execute(DelegateExecution execution) {
-
-        log.info(fpHelper.logFormatter(execution, "wait for ACKT from RCMP"));
-
-    }
-
-    @Override
-    public void trigger(DelegateExecution execution, String signalEvent, Object signalData) {
-
-        log.info(fpHelper.logFormatter(execution, "Received ACKT Trigger"));
-
-    }
-
+	
+	private final Logger log = LoggerFactory.getLogger(EnrolmentProcessingAcktService.class);
+	@Autowired
+	ProcessEngine processEngine;
+	@Autowired
+	FlowableProcessHelper fpHelper;
+	
+	@Override
+	public void execute(DelegateExecution execution) {
+		
+		log.info(fpHelper.logFormatter(execution, "wait for ACKT from RCMP"));
+		
+	}
+	
+	@Override
+	public void trigger(DelegateExecution execution, String signalEvent, Object signalData) {
+		
+		log.info(fpHelper.logFormatter(execution, "Received ACKT Trigger"));
+		
+	}
+	
 }

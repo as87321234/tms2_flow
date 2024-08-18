@@ -12,22 +12,22 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class EnrolmentProcessingTreService implements JavaDelegate {
-
-    private final Logger log = LoggerFactory.getLogger(EnrolmentProcessingTreService.class);
-    @Autowired
-    ProcessEngine processEngine;
-    @Autowired
-    FlowableProcessHelper fpHelper;
-
-    @Override
-    public void execute(DelegateExecution execution) {
-
-        BiometricEnrolment biometricEnrolment =
-                (BiometricEnrolment) execution.getVariableInstance(BiometricEnrolment.class
-                        .getName()).getCachedValue();
-
-        log.info(fpHelper.logFormatter(execution, String.format("Received TRE Id: %s",
-                biometricEnrolment.getBiometricId())));
-
-    }
+	
+	private final Logger log = LoggerFactory.getLogger(EnrolmentProcessingTreService.class);
+	@Autowired
+	ProcessEngine processEngine;
+	@Autowired
+	FlowableProcessHelper fpHelper;
+	
+	@Override
+	public void execute(DelegateExecution execution) {
+		
+		BiometricEnrolment biometricEnrolment =
+				(BiometricEnrolment) execution.getVariableInstance(BiometricEnrolment.class
+						.getName()).getCachedValue();
+		
+		log.info(fpHelper.logFormatter(execution, String.format("Received TRE Id: %s",
+				biometricEnrolment.getBiometricId())));
+		
+	}
 }

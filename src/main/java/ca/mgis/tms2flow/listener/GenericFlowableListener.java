@@ -9,14 +9,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class GenericFlowableListener implements ExecutionListener {
-
-    private final FlowableProcessHelper fpHelper = new FlowableProcessHelper();
-    private final Logger log = LoggerFactory.getLogger(GenericFlowableListener.class);
-
-    @Override
-    public void notify(DelegateExecution execution) {
-
-        log.info(fpHelper.logFormatter(execution, ""));
-
-    }
+	
+	private final FlowableProcessHelper fpHelper = new FlowableProcessHelper();
+	private final Logger log = LoggerFactory.getLogger(GenericFlowableListener.class);
+	
+	@Override
+	public void notify(DelegateExecution execution) {
+		
+		log.info(fpHelper.logFormatter(execution, ""));
+		
+	}
 }

@@ -12,34 +12,33 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class EnrolmentProcessingErrtService implements TriggerableActivityBehavior {
-
-    private final Logger log = LoggerFactory.getLogger(EnrolmentProcessingErrtService.class);
-    @Autowired
-    ProcessEngine processEngine;
-    @Autowired
-    FlowableProcessHelper fpHelper;
-
-    @Override
-    public void execute(DelegateExecution execution) {
-
-        log.info(fpHelper.logFormatter(execution, "wait for ERRT from RCMP"));
-
-    }
-
-    @Override
-    public void trigger(DelegateExecution execution, String signalEvent, Object signalData) {
-
-        // Trigger ACKT is not already received
-        fpHelper.triggerExecution(execution.getRootProcessInstanceId(),
-                MgisFlowConstant.ID_ENROLMENT_PROCESSING_ACKT_RECEIVE_SERVICE_TASK);
-
-        // Trigger ERRT it will never be received
-        fpHelper.triggerExecution(execution.getRootProcessInstanceId(),
-                MgisFlowConstant.ID_ENROLMENT_PROCESSING_SRE_RECEIVE_SERVICE_TASK);
-
-        log.info(fpHelper.logFormatter(execution, "Received ERRT Trigger"));
-
-
-    }
-
+	
+	private final Logger log = LoggerFactory.getLogger(EnrolmentProcessingErrtService.class);
+	@Autowired
+	ProcessEngine processEngine;
+	@Autowired
+	FlowableProcessHelper fpHelper;
+	
+	@Override
+	public void execute(DelegateExecution execution) {
+		
+		log.info(fpHelper.logFormatter(execution, "wait for ERRT from RCMP"));
+		
+	}
+	
+	@Override
+	public void trigger(DelegateExecution execution, String signalEvent, Object signalData) {
+		
+		// Trigger ACKT is not already received
+		fpHelper.triggerExecution(execution.getRootProcessInstanceId(),
+				MgisFlowConstant.ID_ENROLMENT_PROCESSING_ACKT_RECEIVE_SERVICE_TASK);
+		
+		// Trigger ERRT it will never be received
+		fpHelper.triggerExecution(execution.getRootProcessInstanceId(),
+				MgisFlowConstant.ID_ENROLMENT_PROCESSING_SRE_RECEIVE_SERVICE_TASK);
+		
+		log.info(fpHelper.logFormatter(execution, "Received ERRT Trigger"));
+		
+	}
+	
 }
