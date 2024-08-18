@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class BiometricCollectionController {
 
-    Logger log = LoggerFactory.getLogger(BiometricCollectionController.class);
+    private final Logger log = LoggerFactory.getLogger(BiometricCollectionController.class);
 
     @Autowired
     RuntimeService runtimeService;

@@ -24,7 +24,7 @@ public class EnrolmentProcessingFinalizeService implements JavaDelegate {
     FlowableProcessHelper fpHelper;
 
 
-    Logger log = LoggerFactory.getLogger(EnrolmentProcessingFinalizeService.class);
+    private final Logger log = LoggerFactory.getLogger(EnrolmentProcessingFinalizeService.class);
 
     @Override
     public void execute(DelegateExecution execution) {

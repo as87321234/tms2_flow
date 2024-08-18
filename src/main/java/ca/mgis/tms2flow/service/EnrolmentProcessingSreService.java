@@ -22,7 +22,7 @@ public class EnrolmentProcessingSreService implements TriggerableActivityBehavio
     @Autowired
     FlowableProcessHelper fpHelper;
 
-    Logger log = LoggerFactory.getLogger(EnrolmentProcessingTreService.class);
+    private final Logger log = LoggerFactory.getLogger(EnrolmentProcessingTreService.class);
 
 
     @Override

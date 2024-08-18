@@ -25,7 +25,7 @@ public class EnrolmentProcessingAcktService implements TriggerableActivityBehavi
     @Autowired
     FlowableProcessHelper fpHelper;
 
-    Logger log = LoggerFactory.getLogger(EnrolmentProcessingAcktService.class);
+    private final Logger log = LoggerFactory.getLogger(EnrolmentProcessingAcktService.class);
 
     @Override
     public void execute(DelegateExecution execution) {

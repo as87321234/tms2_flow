@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class FlowableProcessHelper {
 
-    Logger log = LoggerFactory.getLogger(FlowableProcessHelper.class);
+    private final Logger log = LoggerFactory.getLogger(FlowableProcessHelper.class);
 
     @Autowired
     ProcessEngine processEngine;

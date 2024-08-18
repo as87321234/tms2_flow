@@ -33,7 +33,7 @@ public class EnrolmentProcessingErrtService implements TriggerableActivityBehavi
 
 
 
-    Logger log = LoggerFactory.getLogger(EnrolmentProcessingErrtService.class);
+    private final Logger log = LoggerFactory.getLogger(EnrolmentProcessingErrtService.class);
 
 
     @Override

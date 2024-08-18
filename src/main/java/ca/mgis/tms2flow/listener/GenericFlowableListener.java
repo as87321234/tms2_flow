@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class GenericFlowableListener implements ExecutionListener {
 
-    Logger log = LoggerFactory.getLogger(GenericFlowableListener.class);
+    private final Logger log = LoggerFactory.getLogger(GenericFlowableListener.class);
 
     FlowableProcessHelper fpHelper = new FlowableProcessHelper();
 
