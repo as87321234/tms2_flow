@@ -14,16 +14,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class EnrolmentProcessingSreService implements TriggerableActivityBehavior {
 
+    private final Logger log = LoggerFactory.getLogger(EnrolmentProcessingTreService.class);
     @Autowired
     ProcessEngine pe;
     @Autowired
     RuntimeService rt;
-
     @Autowired
     FlowableProcessHelper fpHelper;
-
-    private final Logger log = LoggerFactory.getLogger(EnrolmentProcessingTreService.class);
-
 
     @Override
     public void execute(DelegateExecution execution) {

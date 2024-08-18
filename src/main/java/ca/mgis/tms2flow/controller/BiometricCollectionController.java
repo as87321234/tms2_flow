@@ -26,11 +26,11 @@ public class BiometricCollectionController {
     @Autowired
     TaskService taskService;
 
-    @RequestMapping(value="/send-biometric-collection", method = RequestMethod.POST)
-    public  @ResponseBody
-    void sendBiometricCollection(HttpServletResponse response, @RequestBody BiometricEnrolment biometricEnrolment ) {
+    @RequestMapping(value = "/send-biometric-collection", method = RequestMethod.POST)
+    public @ResponseBody
+    void sendBiometricCollection(HttpServletResponse response, @RequestBody BiometricEnrolment biometricEnrolment) {
 
-        log.info(String.format("Biometric Enrolment received: %s", biometricEnrolment ));
+        log.info(String.format("Biometric Enrolment received: %s", biometricEnrolment));
         log.debug(biometricEnrolment.toString());
 
         Map<String, Object> map = new HashMap<String, Object>();

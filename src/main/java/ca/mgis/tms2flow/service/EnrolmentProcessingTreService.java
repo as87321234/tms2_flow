@@ -13,14 +13,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class EnrolmentProcessingTreService implements JavaDelegate {
 
+    private final Logger log = LoggerFactory.getLogger(EnrolmentProcessingTreService.class);
     @Autowired
     ProcessEngine processEngine;
-
     @Autowired
     FlowableProcessHelper fpHelper;
-
-
-    private final Logger log = LoggerFactory.getLogger(EnrolmentProcessingTreService.class);
 
     @Override
     public void execute(DelegateExecution execution) {

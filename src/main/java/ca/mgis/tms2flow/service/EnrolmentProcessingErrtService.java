@@ -13,16 +13,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class EnrolmentProcessingErrtService implements TriggerableActivityBehavior {
 
+    private final Logger log = LoggerFactory.getLogger(EnrolmentProcessingErrtService.class);
     @Autowired
     ProcessEngine processEngine;
-
     @Autowired
     FlowableProcessHelper fpHelper;
-
-
-
-    private final Logger log = LoggerFactory.getLogger(EnrolmentProcessingErrtService.class);
-
 
     @Override
     public void execute(DelegateExecution execution) {
@@ -43,7 +38,6 @@ public class EnrolmentProcessingErrtService implements TriggerableActivityBehavi
                 MgisFlowConstant.ID_ENROLMENT_PROCESSING_SRE_RECEIVE_SERVICE_TASK);
 
         log.info(fpHelper.logFormatter(execution, "Received ERRT Trigger"));
-
 
 
     }

@@ -10,9 +10,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class GenericFlowableListener implements ExecutionListener {
 
+    private final FlowableProcessHelper fpHelper = new FlowableProcessHelper();
     private final Logger log = LoggerFactory.getLogger(GenericFlowableListener.class);
-
-    final FlowableProcessHelper fpHelper = new FlowableProcessHelper();
 
     @Override
     public void notify(DelegateExecution execution) {

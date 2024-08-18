@@ -42,13 +42,13 @@ public class FlowableProcessHelper {
                 log.info(String.format("%s, %s - " + fe.getMessage(), activityId, processInstanceId));
             }
         } else {
-            log.info(String.format("%s, %s  - Task already completed:  ",  processInstanceId, activityId));
+            log.info(String.format("%s, %s  - Task already completed:  ", processInstanceId, activityId));
         }
     }
 
     public String logFormatter(DelegateExecution execution, String message) {
 
         ExecutionEntityImpl ei = (ExecutionEntityImpl) execution;
-        return String.format("%s %s, %s, %s - %s",ei.getRootProcessInstanceId(), ei.getId(),ei.getActivityName() ,ei.getEventName(), message);
+        return String.format("%s %s, %s, %s - %s", ei.getRootProcessInstanceId(), ei.getId(), ei.getActivityName(), ei.getEventName(), message);
     }
 }
