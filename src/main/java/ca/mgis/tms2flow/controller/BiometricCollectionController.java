@@ -4,7 +4,6 @@ import ca.mgis.tms2flow.controller.pojo.BiometricEnrolment;
 import jakarta.servlet.http.HttpServletResponse;
 import org.flowable.engine.RuntimeService;
 import org.flowable.engine.TaskService;
-import org.flowable.engine.runtime.ProcessInstance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.Map;
 
+@SuppressWarnings("ALL")
 @RestController
 @RequestMapping("/flow-api")
 
@@ -37,7 +37,7 @@ public class BiometricCollectionController {
 
         map.put(BiometricEnrolment.class.getName(), biometricEnrolment);
 
-        ProcessInstance instance = runtimeService.startProcessInstanceByKey("id-enrolment-process-tre", map);
+        runtimeService.startProcessInstanceByKey("id-enrolment-process-tre", map);
 
     }
 }

@@ -35,8 +35,6 @@ public class EnrolmentProcessingSreService implements TriggerableActivityBehavio
     @Override
     public void trigger(DelegateExecution execution, String signalEvent, Object signalData) {
 
-        String parentId = execution.getParentId();
-
         // Trigger ACKT is not already received
         fpHelper.triggerExecution(execution.getRootProcessInstanceId(),
                 MgisFlowConstant.ID_ENROLMENT_PROCESSING_ACKT_RECEIVE_SERVICE_TASK);
