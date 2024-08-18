@@ -40,19 +40,4 @@ public class BiometricCollectionController {
         ProcessInstance instance = runtimeService.startProcessInstanceByKey("id-enrolment-process-tre", map);
 
     }
-
-//    @PostMapping("/submit")
-//    public void submit(@RequestBody Article article) {
-//        service.startProcess(article);
-//    }
-//
-//    @GetMapping("/tasks")
-//    public List<Article> getTasks(@RequestParam String assignee) {
-//        return service.getTasks(assignee);
-//    }
-
-    //    @PostMapping("/review")
-//    public void review(@RequestBody Approval approval) {
-//        service.submitReview(approval);
-//    }
 }
