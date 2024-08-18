@@ -40,7 +40,7 @@
     <sequenceFlow id="id-receive-enrolment" sourceRef="id-enrolment-processing-start" targetRef="id-enrolment-processing-received-service-task" name="id-receive-enrolment"/>
     <parallelGateway id="id-wait-rcmp-responses" name="id-wait-rcmp-responses"/>
     <parallelGateway id="id-sync-rcmp-responses" name="id-sync-rcmp-responses"/>
-    <sequenceFlow id="id-rcmp-ackt-recceived-action" sourceRef="id-enrolment-processing-ackt-receive-service-task" targetRef="id-sync-rcmp-responses" name="id-rcmp-ackt-recceived-action"/>
+    <sequenceFlow id="id-rcmp-ackt-received-action" sourceRef="id-enrolment-processing-ackt-receive-service-task" targetRef="id-sync-rcmp-responses" name="id-rcmp-ackt-received-action"/>
     <sequenceFlow id="id-rcmp-sre-received-action" sourceRef="id-enrolment-processing-sre-receive-service-task" targetRef="id-sync-rcmp-responses" name="id-rcmp-sre-received-action"/>
     <sequenceFlow id="id-rcmp-errt-received-action" sourceRef="id-enrolment-processing-errt-receive-service-task" targetRef="id-sync-rcmp-responses" name="id-rcmp-errt-received-action"/>
     <endEvent id="id-enrolment-processing-end" name="id-enrolment-processing-end"/>
@@ -97,7 +97,7 @@
       <bpmndi:BPMNShape id="shape-7732cb3c-3cc4-4a52-b57a-100c0ad7d1ae" bpmnElement="id-sync-rcmp-responses">
         <omgdc:Bounds x="60.0" y="390.0" width="40.0" height="40.0"/>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="edge-32ff76a4-3217-4591-b584-434ee5e8cb5d" bpmnElement="id-rcmp-ackt-recceived-action">
+      <bpmndi:BPMNEdge id="edge-32ff76a4-3217-4591-b584-434ee5e8cb5d" bpmnElement="id-rcmp-ackt-received-action">
         <omgdi:waypoint x="-105.0" y="310.0"/>
         <omgdi:waypoint x="60.0" y="410.0"/>
       </bpmndi:BPMNEdge>
