@@ -7,6 +7,7 @@ import org.flowable.engine.TaskService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -38,6 +39,28 @@ public class BiometricCollectionController {
 		
 		runtimeService.startProcessInstanceByKey("id-enrolment-process-tre",
 				biometricEnrolment.getBiometricId(), map);
-
+		
 	}
+	
+	@RequestMapping(value = "/get-process-instances-variables/{id}/{name}",
+			produces = MediaType.APPLICATION_JSON_VALUE,
+			method = RequestMethod.GET)
+	
+	public @ResponseBody
+	BiometricEnrolment getProcessInstanceVariables(HttpServletResponse response,
+									 @PathVariable(value="id") final String id,
+									 @PathVariable(value="name") final String name
+									 ) {
+		
+		log.info(String.format("Get variable for Process id: %s and Variable name: %s",
+				id, name));
+		
+		Map<String,Object>  runtimeVariable = runtimeService.getVariables(id);
+
+		
+		return (BiometricEnrolment) runtimeVariable.get(name);
+		
+	}
+	
 }
+
