@@ -9,5 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DcnRepository extends JpaRepository<Dcn, Long> {
 	
-	Dcn findByDcn(String dcn);
+	void getNewDcn();
+	
 }

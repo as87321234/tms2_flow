@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TcnRepository extends JpaRepository<Tcn, Long> {
 	
-	Tcn findByTcn(String tcn);
+	Tcn getNewTcn();
 }
