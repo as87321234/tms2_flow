@@ -12,6 +12,6 @@ import java.math.BigDecimal;
 @Repository
 public interface DcnRepository extends JpaRepository<Dcn, Long> {
 	
-	@Query(value = "SELECT SCHEMA.SEQUENCE_DCN.nextval FROM dual", nativeQuery = true)
-	public BigDecimal getNextValDcn();
+	@Query(value = "SELECT NEXTVAL('SEQUENCE_DCN')", nativeQuery = true)
+	public Long getNextVal();
 }

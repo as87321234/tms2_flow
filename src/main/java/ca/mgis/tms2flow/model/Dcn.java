@@ -5,16 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Collection;
-
 @Entity
-@Table(name = "users")
-@Getter
-@Setter
-@NoArgsConstructor
 
-public class Dcn extends BaseEntity {
+public class Dcn {
 	
-	private String dcn;
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceDcn")
+	@SequenceGenerator(name = "sequenceDcn", sequenceName = "sequence-dcn", allocationSize = 1)
+	private Long id;
+	
 }

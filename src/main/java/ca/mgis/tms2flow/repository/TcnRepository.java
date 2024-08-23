@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @Repository
 public interface TcnRepository extends JpaRepository<Tcn, Long> {
 	
-	@Query(value = "SELECT SCHEMA.SEQUENCE_TCN.nextval FROM dual", nativeQuery = true)
-	public BigDecimal getNextValTcn();
+	@Query(value = "SELECT NEXTVAL('SEQUENCE_TCN')", nativeQuery = true)
+	public Long getNextVal();
 	
 }
