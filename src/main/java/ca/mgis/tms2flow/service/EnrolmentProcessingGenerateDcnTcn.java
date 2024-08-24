@@ -35,8 +35,8 @@ public class EnrolmentProcessingGenerateDcnTcn implements JavaDelegate {
 		
 		log.info(fpHelper.logFormatter(execution, "Generating DCN and TCN"));
 		
-		dcnRepository.getNewDcn();
-		
+		log.info(fpHelper.logFormatter(execution,
+				String.format("Generating DCN:%03d and TCN:%07d",dcnRepository.getNextVal(), tcnRepository.getNextVal())));
 		
 	}
 	
