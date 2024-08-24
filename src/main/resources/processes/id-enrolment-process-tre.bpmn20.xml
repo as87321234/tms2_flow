@@ -8,20 +8,20 @@
         <flowable:executionListener class="ca.mgis.tms2flow.listener.GenericFlowableListener" event="end"/>
       </extensionElements>
     </startEvent>
-    <serviceTask id="id-enrolment-processing-received-service-task" flowable:exclusive="true" name="id-enrolment-processing-received-service-task" flowable:delegateExpression="${enrolmentProcessingTreService}">
+    <serviceTask id="id-enrolment-processing-received-service-task" flowable:exclusive="true" name="enrolment processing received service task" flowable:delegateExpression="${enrolmentProcessingTreService}">
       <documentation>Enrolment Processing Received from Collection Point.</documentation>
       <extensionElements>
         <flowable:executionListener class="ca.mgis.tms2flow.listener.GenericFlowableListener" event="start"/>
         <flowable:executionListener class="ca.mgis.tms2flow.listener.GenericFlowableListener" event="end"/>
       </extensionElements>
     </serviceTask>
-    <serviceTask id="id-enrolment-processing-ackt-receive-service-task" flowable:exclusive="false" name="id-enrolment-processing-ackt-receive-service-task" flowable:triggerable="true" flowable:delegateExpression="${enrolmentProcessingAcktService}">
+    <serviceTask id="id-enrolment-processing-ackt-receive-service-task" flowable:exclusive="false" name="enrolment processing ackt receive service task" flowable:triggerable="true" flowable:delegateExpression="${enrolmentProcessingAcktService}">
       <extensionElements>
         <flowable:executionListener class="ca.mgis.tms2flow.listener.GenericFlowableListener" event="start"/>
         <flowable:executionListener class="ca.mgis.tms2flow.listener.GenericFlowableListener" event="end"/>
       </extensionElements>
     </serviceTask>
-    <serviceTask id="id-enrolment-processing-errt-receive-service-task" flowable:exclusive="false" name="id-enrolment-processing-errt-receive-service-task" flowable:triggerable="true" flowable:delegateExpression="${enrolmentProcessingErrtService}">
+    <serviceTask id="id-enrolment-processing-errt-receive-service-task" flowable:exclusive="false" name="id enrolment processing errt receive service task" flowable:triggerable="true" flowable:delegateExpression="${enrolmentProcessingErrtService}">
       <extensionElements>
         <flowable:executionListener class="ca.mgis.tms2flow.listener.GenericFlowableListener" event="start"/>
         <flowable:executionListener class="ca.mgis.tms2flow.listener.GenericFlowableListener" event="end"/>
@@ -37,14 +37,14 @@
     <sequenceFlow id="id-rcmp-errt-received-action" sourceRef="id-enrolment-processing-errt-receive-service-task" targetRef="id-enrolment-processing-errt-receive-service-task" name="id-rcmp-errt-received-action"/>
     <endEvent id="id-enrolment-processing-end" name="id-enrolment-processing-end"/>
     <sequenceFlow id="id-enrolment-processing-action" sourceRef="id-sync-rcmp-responses" targetRef="id-enrolment-processing-finalize-service-task" name="id-enrolment-processing-action"/>
-    <serviceTask id="id-enrolment-processing-finalize-service-task" flowable:exclusive="true" name="id-enrolment-processing-finalize-service-task" flowable:delegateExpression="${enrolmentProcessingFinalizeService}">
+    <serviceTask id="id-enrolment-processing-finalize-service-task" flowable:exclusive="true" name="enrolment processing finalize service task" flowable:delegateExpression="${enrolmentProcessingFinalizeService}">
       <extensionElements>
         <flowable:executionListener class="ca.mgis.tms2flow.listener.GenericFlowableListener" event="start"/>
         <flowable:executionListener class="ca.mgis.tms2flow.listener.GenericFlowableListener" event="end"/>
       </extensionElements>
     </serviceTask>
     <sequenceFlow id="id-enrolment-processing-end-action" sourceRef="id-enrolment-processing-finalize-service-task" targetRef="id-enrolment-processing-end" name="id-enrolment-processing-end-action"/>
-    <serviceTask id="id-enrolment-processing-generate_dcn_tcn" flowable:exclusive="true" name="id-enrolment-processing-generate_dcn_tcn" flowable:delegateExpression="${enrolmentProcessingGenerateDcnTcn}">
+    <serviceTask id="id-enrolment-processing-generate_dcn_tcn" flowable:exclusive="true" name="enrolment processing generate dcn tcn" flowable:delegateExpression="${enrolmentProcessingGenerateDcnTcn}">
       <extensionElements>
         <flowable:executionListener class="ca.mgis.tms2flow.listener.GenericFlowableListener" event="start"/>
         <flowable:executionListener class="ca.mgis.tms2flow.listener.GenericFlowableListener" event="end"/>
@@ -58,26 +58,26 @@
         <omgdc:Bounds x="65.0" y="-90.0" width="30.0" height="30.0"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape-24f5f45c-c1de-4f1a-9214-901b01ff233e" bpmnElement="id-enrolment-processing-received-service-task">
-        <omgdc:Bounds x="30.0" y="5.0" width="100.0" height="45.0"/>
+        <omgdc:Bounds x="-10.0" y="5.0" width="180.0" height="90.0"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape-c651602e-5dec-4c3a-a18a-3503e7894ca6" bpmnElement="id-enrolment-processing-ackt-receive-service-task">
-        <omgdc:Bounds x="-155.0" y="455.0" width="100.0" height="55.0"/>
+        <omgdc:Bounds x="-190.0" y="447.50003" width="170.0" height="104.99997"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape-01b3193e-6fb8-4f45-9541-3c88a4702eab" bpmnElement="id-enrolment-processing-errt-receive-service-task">
-        <omgdc:Bounds x="195.0" y="465.0" width="100.0" height="45.0"/>
+        <omgdc:Bounds x="150.0" y="450.0" width="185.0" height="100.0"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="edge-913b18e8-b7e6-4ad7-8e97-44920b187d91" bpmnElement="id-processing-wait-ackt-action">
         <omgdi:waypoint x="59.999996" y="395.0"/>
         <omgdi:waypoint x="-105.00001" y="395.0"/>
-        <omgdi:waypoint x="-105.0" y="455.0"/>
+        <omgdi:waypoint x="-105.0" y="447.50003"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge-d2af51ac-e6a4-4c08-ab58-90d17143593a" bpmnElement="id-processing-wait-errt-action">
         <omgdi:waypoint x="99.99999" y="395.0"/>
         <omgdi:waypoint x="245.00002" y="395.0"/>
-        <omgdi:waypoint x="245.0" y="465.0"/>
+        <omgdi:waypoint x="242.5" y="450.0"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge-eebb3f81-de8a-476d-ad92-4d3dce47932b" bpmnElement="id-processing-rcmp-response-wait-action">
-        <omgdi:waypoint x="80.00001" y="200.0"/>
+        <omgdi:waypoint x="80.00001" y="245.0"/>
         <omgdi:waypoint x="80.0" y="255.0"/>
         <omgdi:waypoint x="80.0" y="255.00003"/>
         <omgdi:waypoint x="79.99999" y="375.0"/>
@@ -93,37 +93,37 @@
         <omgdc:Bounds x="59.999985" y="535.0" width="40.0" height="40.0"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="edge-32ff76a4-3217-4591-b584-434ee5e8cb5d" bpmnElement="id-rcmp-ackt-received-action">
-        <omgdi:waypoint x="-55.0" y="482.49997"/>
-        <omgdi:waypoint x="79.999985" y="482.49997"/>
+        <omgdi:waypoint x="-20.0" y="500.0"/>
+        <omgdi:waypoint x="79.99998" y="500.00003"/>
         <omgdi:waypoint x="79.999985" y="535.0"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge-b3d98df2-271a-4b36-8fe8-2e1fd82e4c37" bpmnElement="id-rcmp-errt-received-action">
-        <omgdi:waypoint x="219.99998" y="510.0"/>
+        <omgdi:waypoint x="196.24997" y="550.0"/>
         <omgdi:waypoint x="220.0" y="620.0"/>
-        <omgdi:waypoint x="270.0" y="620.0"/>
+        <omgdi:waypoint x="270.00003" y="620.00006"/>
         <omgdi:waypoint x="270.0" y="620.00006"/>
-        <omgdi:waypoint x="270.0" y="510.0"/>
+        <omgdi:waypoint x="288.75" y="550.0"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="shape-e581149e-e604-475e-8266-f3790686503c" bpmnElement="id-enrolment-processing-end">
         <omgdc:Bounds x="64.999985" y="795.0" width="30.0" height="30.0"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="edge-87c5b8ca-6e15-4211-8f02-b1aafa64f8f9" bpmnElement="id-enrolment-processing-action">
         <omgdi:waypoint x="79.999985" y="575.0"/>
-        <omgdi:waypoint x="79.999985" y="620.0"/>
+        <omgdi:waypoint x="79.99999" y="620.0"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="shape-7472d02b-3de2-4fc4-8ae1-a968937192f1" bpmnElement="id-enrolment-processing-finalize-service-task">
-        <omgdc:Bounds x="29.999985" y="620.0" width="100.0" height="40.0"/>
+        <omgdc:Bounds x="-15.000015" y="620.0" width="190.00002" height="100.0"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="edge-d64967d2-debb-4dfc-9a10-03705c58eef5" bpmnElement="id-enrolment-processing-end-action">
-        <omgdi:waypoint x="79.999985" y="660.0"/>
+        <omgdi:waypoint x="79.99999" y="720.0"/>
         <omgdi:waypoint x="79.999985" y="795.0"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="shape-82b46087-d406-4d91-9977-d65e9ee1a20e" bpmnElement="id-enrolment-processing-generate_dcn_tcn">
-        <omgdc:Bounds x="30.000008" y="150.0" width="99.99999" height="50.0"/>
+        <omgdc:Bounds x="-10.0" y="150.0" width="180.0" height="95.0"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="edge-308a6bf3-6d5a-4599-885e-67cb07f4c3bb" bpmnElement="sid-262cd4d1-6efb-496b-b2d1-d168f86f4ba0">
-        <omgdi:waypoint x="80.0" y="50.0"/>
-        <omgdi:waypoint x="80.0" y="85.0"/>
+        <omgdi:waypoint x="80.0" y="95.0"/>
+        <omgdi:waypoint x="79.99999" y="95.0"/>
         <omgdi:waypoint x="80.00001" y="150.0"/>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
