@@ -56,7 +56,6 @@ public class BiometricCollectionController {
 				id, name));
 		
 		Map<String,Object>  runtimeVariable = runtimeService.getVariables(id);
-
 		
 		return (BiometricEnrolment) runtimeVariable.get(name);
 		
