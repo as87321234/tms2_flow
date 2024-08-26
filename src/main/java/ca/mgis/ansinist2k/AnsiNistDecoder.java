@@ -1,5 +1,6 @@
 package ca.mgis.ansinist2k;
 
+import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,17 +31,14 @@ public class AnsiNistDecoder {
 	int subFieldPosition = 0;
 	int itemPosition = 0;
 	
-	public AnsiNistPacket getAnsiNistPacket() {
-		return ansiNistPacket;
-	}
-	
+	@Getter
 	AnsiNistPacket ansiNistPacket;
 
-	public AnsiNistDecoder(byte[] processingBuffer, AnsiNistPacket ansiNistPacket) throws Exception {
+	public AnsiNistDecoder(byte[] processingBuffer, AnsiNistValidator ansiNistValidator) throws Exception {
 
 		this.buffer = new String (processingBuffer, StandardCharsets.US_ASCII);
-		this.ansiNistPacket = ansiNistPacket;
-
+		this.ansiNistPacket = new AnsiNistPacket();
+		this.ansiNistPacket.setValidator(ansiNistValidator);
 		this.decode();
 	}
 	

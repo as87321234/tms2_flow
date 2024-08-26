@@ -12,7 +12,7 @@ public class ValidationDeserializer {
 	
 	private static Logger log = LoggerFactory.getLogger(ValidationDeserializer.class);
 	
-	public static Validator177f deserialize() throws IOException {
+	public static Validator177f deserialize177f() throws IOException {
 		
 		ObjectMapper mapper = new ObjectMapper();
 		File f = new File("/Users/stlouisa/IdeaProjects/tms2_flow/src/main/resources/validation/validation-1_7_7F.json");

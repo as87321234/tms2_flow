@@ -1,7 +1,8 @@
 package ca.mgis.tms2flow.controller;
 
 import ca.mgis.ansinist2k.AnsiNistDecoder;
-import ca.mgis.ansinist2k.AnsiNistPacket;
+import ca.mgis.ansinist2k.AnsiNistValidator;
+import ca.mgis.ansinist2k.Validator177f;
 import ca.mgis.tms2flow.controller.pojo.BiometricEnrolment;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.commons.codec.binary.Base64;
@@ -13,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -67,7 +67,7 @@ public class BiometricCollectionController {
 		
 		String decodedPacket = new String (Base64.decodeBase64(nistPackBase64));
 		
-		AnsiNistDecoder nist =  new AnsiNistDecoder(decodedPacket.getBytes(), new AnsiNistPacket());
+		AnsiNistDecoder nist =  new AnsiNistDecoder(decodedPacket.getBytes(),  new Validator177f() );
 		
 		return (BiometricEnrolment) runtimeVariable.get(name);
 		

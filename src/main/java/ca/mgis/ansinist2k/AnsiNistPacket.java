@@ -1,5 +1,7 @@
 package ca.mgis.ansinist2k;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,22 +24,9 @@ public class AnsiNistPacket {
 	
 	private AnsiNistDecoder ansiNistDecoder;
 	
-	public AnsiNistValidator getValidator() {
-		return validator;
-	}
-	
-	public void setValidator(AnsiNistValidator validator) {
-		this.validator = validator;
-	}
-	
+	@Setter
+	@Getter
 	private AnsiNistValidator validator;
-	
-	
-	public AnsiNistPacket() {
-		
-		super();
-		
-	}
 	
 	/**
 	 * Construct a NIST packet from an input stream
@@ -46,11 +35,16 @@ public class AnsiNistPacket {
 	 * @throws Exception
 	 */
 	
-	public AnsiNistPacket(String filePath) throws Exception {
+	public AnsiNistPacket() {
+	
+	}
+	
+	
+	public AnsiNistPacket(String filePath, AnsiNistValidator ansiNistValidator) throws Exception {
 		
 		byte[] bFile = Files.readAllBytes(Paths.get(filePath));
 		
-		loadNistPackFromInputStream(bFile);
+		loadNistPackFromInputStream(bFile,  ansiNistValidator );
 	}
 	
 	/**
@@ -59,28 +53,28 @@ public class AnsiNistPacket {
 	 * @param ins
 	 * @throws Exception
 	 */
-	public AnsiNistPacket(InputStream ins) throws Exception {
+	public AnsiNistPacket(InputStream ins, AnsiNistValidator ansiNistValidator) throws Exception {
 		
-		loadNistPackFromInputStream(ins);
+		loadNistPackFromInputStream(ins,  ansiNistValidator);
 		
 	}
 	
-	public void loadNistPackFromInputStream(InputStream ins) throws Exception {
+	public void loadNistPackFromInputStream(InputStream ins, AnsiNistValidator ansiNistValidator) throws Exception {
 		
 		ByteArrayOutputStream bous = new ByteArrayOutputStream();
 		
 		IOUtils.copy(ins, bous);
 		
-		loadNistPackFromInputStream(bous.toByteArray());
+		loadNistPackFromInputStream(bous.toByteArray(),  ansiNistValidator);
 		
 	}
 	
-	public void loadNistPackFromInputStream(byte[] bFile) throws Exception {
+	public void loadNistPackFromInputStream(byte[] bFile ,AnsiNistValidator ansiNistValidator ) throws Exception {
 		
 		buffer = new String(bFile, StandardCharsets.ISO_8859_1);
 		
 		// Instantiate a NIST Pack decoder and load byte array in memory
-		ansiNistDecoder = new AnsiNistDecoder(buffer.getBytes(), this);
+		ansiNistDecoder = new AnsiNistDecoder(buffer.getBytes(), ansiNistValidator );
 		
 	}
 	
@@ -329,8 +323,20 @@ public class AnsiNistPacket {
 		return ansiNistDecoder.serialize();
 	}
 	
+	public void traverse() {
+		
+		for (Integer rectype : getRectypeList()) {
+			
+			log.info(String.format("Rectype: %s", rectype));
+		
+		}
+		
+	}
 	public void validate() {
-		this.validator.validate();
+		
+		traverse();
+		
+//		this.validator.validate();
 	}
 	
 }

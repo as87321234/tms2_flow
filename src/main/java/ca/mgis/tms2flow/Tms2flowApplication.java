@@ -1,9 +1,7 @@
 package ca.mgis.tms2flow;
 
-import ca.mgis.ansinist2k.AnsiNistDecoder;
-import ca.mgis.ansinist2k.AnsiNistPacket;
-import ca.mgis.ansinist2k.ValidationDeserializer;
-import ca.mgis.ansinist2k.Validator177f;
+import ca.mgis.ansinist2k.*;
+import ca.mgis.ansinist2k.validation.Validator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -22,16 +20,15 @@ public class Tms2flowApplication {
 		
 		log.info("Application {} started.", Tms2flowApplication.class.getSimpleName());
 		
-		Validator177f validator177f = ValidationDeserializer.deserialize();
+		Validator177f validator177f = ValidationDeserializer.deserialize177f();
 
 		File file = new File("src/main/resources/test1.eft");
 		FileInputStream fis = new FileInputStream(file);
 		
-		AnsiNistDecoder decoder = new AnsiNistDecoder(fis.readAllBytes(), new AnsiNistPacket());
+		AnsiNistDecoder decoder = new AnsiNistDecoder(fis.readAllBytes(), validator177f);
+
 		AnsiNistPacket packet = decoder.getAnsiNistPacket();
-		packet.setValidator(validator177f);
 		packet.validate();
-		
 		
 		log.info(String.format("Nist packet %s successfully decoded", file.getCanonicalFile().toString()));
 		
