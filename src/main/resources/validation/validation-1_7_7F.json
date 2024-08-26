@@ -1,0 +1,323 @@
+{
+  "alpha_regx": "^[A-Z]*$",
+  "numeric_regx": "^[A-Z]*$",
+  "special_regx" : "^[#$&’()*,.]*$",
+  "crlf_regx" : "\r\n",
+  "period_regx" : ".",
+  "record_type": [
+    {
+      "id": 1,
+      "mnemonic": "HI",
+      "name": "HEADER INFORMATION",
+      "record_tag": [
+        {
+          "id": "1.001",
+          "identifier": "LEN",
+          "occurrence": [
+            {
+              "condition": "M",
+              "occurrence_tag_name": "Logical Record Length",
+              "character_set": [
+                "numeric"
+              ],
+              "field_size_min": 2,
+              "field_size_max": 3,
+              "occurrence_min": 1,
+              "occurrence_max": 1
+            }
+          ]
+        },
+        {
+          "id": "1.002",
+          "identifier": "VER",
+          "occurrence": [
+            {
+              "condition": "M",
+              "occurrence_tag_name": "ANSI/NIST Version Number",
+              "character_set": [
+                "numeric"
+              ],
+              "field_size_min": 4,
+              "field_size_max": 4,
+              "occurrence_min": 1,
+              "occurrence_max": 1
+            }
+          ]
+        },
+        {
+          "id": "1.003",
+          "identifier": "CNT",
+          "tag_name" : "File Content",
+          "note" : "1st occurrence (mandatory):\n- Information item #1: a single character indicating this is a\nType-1 record consisting of header information\n- Information Item #2: the sum of the Type-2 to Type-15\nlogical records in this file.\nSubsequent occurrence(s):\n- information item #1: type of record\n- information item #2: the record's IDC",
+          "tag_min_occurrence": 2,
+          "tag_max_occurrence": 50,
+          "occurrence": [
+            {
+              "condition": "M",
+              "occurrence_tag_name": "Information Item 1",
+              "character_set": [
+                "numeric"
+              ],
+              "field_size_min": 1,
+              "field_size_max": 2,
+              "occurrence_min": 1,
+              "occurrence_max": 1
+            },
+            {
+              "condition": "M",
+              "occurrence_tag_name": "Information Item 2",
+              "character_set": [
+                "numeric"
+              ],
+              "field_size_min": 1,
+              "field_size_max": 5,
+              "occurrence_min": 1,
+              "occurrence_max": 1
+            }
+          ]
+        },
+        {
+          "id": "1.004",
+          "identifier": "TOT",
+          "occurrence": [
+            {
+              "condition": "M",
+              "occurrence_tag_name": "Type of Transaction",
+              "character_set": [
+                "alpha"
+              ],
+              "field_size_min": 3,
+              "field_size_max": 5,
+              "occurrence_min": 1,
+              "occurrence_max": 1
+            }
+          ]
+        },
+        {
+          "id": "1.005",
+          "identifier": "DAT",
+          "occurrence": [
+            {
+              "condition": "M",
+              "occurrence_tag_name": "Date",
+              "character_set": [
+                "numeric"
+              ],
+              "field_size_min": 8,
+              "field_size_max": 8,
+              "occurrence_min": 1,
+              "occurrence_max": 1
+            }
+          ]
+        },
+        {
+          "id": "1.006",
+          "identifier": "PRY",
+          "note" : "Valid values are 1 to 9. 1 is the highest and 9 the lowest.",
+          "occurrence": [
+            {
+              "condition": "M",
+              "occurrence_tag_name": "Priority",
+              "character_set": [
+                "numeric"
+              ],
+              "field_size_min": 1,
+              "field_size_max": 1,
+              "occurrence_min": 1,
+              "occurrence_max": 1
+            }
+          ]
+        },
+        {
+          "id": "1.007",
+          "identifier": "DAI",
+          "occurrence": [
+            {
+              "condition": "M",
+              "occurrence_tag_name": "Destination Agency Identifier",
+              "character_set": [
+                "numeric",
+                "alpha"
+              ],
+              "field_size_min": 7,
+              "field_size_max": 7,
+              "occurrence_min": 1,
+              "occurrence_max": 1
+            }
+          ]
+        },
+        {
+          "id": "1.008",
+          "identifier": "OAI",
+          "occurrence": [
+            {
+              "condition": "M",
+              "occurrence_tag_name": "Originating Agency Identifier",
+              "character_set": [
+                "numeric",
+                "alpha"
+              ],
+              "field_size_min": 7,
+              "field_size_max": 7,
+              "occurrence_min": 1,
+              "occurrence_max": 1
+            }
+          ]
+        },
+        {
+          "id": "1.009",
+          "identifier": "TCN",
+          "occurrence": [
+            {
+              "condition": "M",
+              "occurrence_tag_name": "Transaction Control Number",
+              "character_set": [
+                "numeric"
+              ],
+              "field_size_min": 13,
+              "field_size_max": 13,
+              "occurrence_min": 1,
+              "occurrence_max": 1
+            }
+          ]
+        },
+        {
+          "id": "1.010",
+          "identifier": "TCR",
+          "occurrence": [
+            {
+              "condition": "O",
+              "occurrence_tag_name": "Transaction Control Reference Number",
+              "character_set": [
+                "numeric"
+              ],
+              "field_size_min": 13,
+              "field_size_max": 13,
+              "occurrence_min": 0,
+              "occurrence_max": 1
+            }
+          ]
+        },
+        {
+          "id": "1.011",
+          "identifier": "NSR",
+          "note" : "For transactions that do not contain fingerprint images then this tag is not applicable and should be set to “00.00”",
+          "occurrence": [
+            {
+              "condition": "M",
+              "occurrence_tag_name": "Native Scanning Resolution",
+              "character_set": [
+                "numeric",
+                "period"
+              ],
+              "field_size_min": 5,
+              "field_size_max": 5,
+              "occurrence_min": 1,
+              "occurrence_max": 1
+            }
+          ]
+        },
+        {
+          "id": "1.012",
+          "identifier": "NTR",
+          "note" : "For transactions that do not contain fingerprint images then this tag is not applicable and should be set to “00.00”",
+          "occurrence": [
+            {
+              "condition": "M",
+              "occurrence_tag_name": "Nominal Transmitting Resolution",
+              "character_set": [
+                "numeric",
+                "period"
+              ],
+              "field_size_min": 5,
+              "field_size_max": 5,
+              "occurrence_min": 1,
+              "occurrence_max": 1
+            }
+          ]
+        },
+        {
+          "id": "1.014",
+          "identifier": "GMT",
+          "occurrence": [
+            {
+              "condition": "O",
+              "occurrence_tag_name": "Greenwich Mean Time",
+              "character_set": [
+                "numeric",
+                "alpha"
+              ],
+              "field_size_min": 15,
+              "field_size_max": 15,
+              "occurrence_min": 0,
+              "occurrence_max": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "mnemonic": "MAP",
+      "name": "MISCELLANEOUS APPLICANT CIVIL SUBMISSION (MAP)",
+      "record_tag": [
+        {
+          "id": "2.001",
+          "identifier": "LEN",
+          "occurrence": [
+            {
+              "condition": "M",
+              "occurrence_tag_name": "Logical Record Length",
+              "character_set": [
+                "numeric"
+              ],
+              "field_size_min": 2,
+              "field_size_max": 3,
+              "occurrence_min": 1,
+              "occurrence_max": 1
+            }
+          ]
+        },
+        {
+          "id": "2.002",
+          "identifier": "IDC",
+          "occurrence": [
+            {
+              "condition": "M",
+              "occurrence_tag_name": "Image Designation Character",
+              "character_set": [
+                "numeric"
+              ],
+              "field_size_min": 2,
+              "field_size_max": 7,
+              "occurrence_min": 1,
+              "occurrence_max": 1
+            }
+          ]
+        },
+        {
+          "id": "2.067",
+          "identifier": "IDC",
+          "tag_name"  : "Image Capture Equipment",
+          "note" : "This tag becomes mandatory if the images on the submission are ID Flats (Value in tag 14.200 is 2).",
+          "occurrence": [
+            {
+              "condition": "C",
+              "check_condition" : "if 14.002 is 2 then condition=M",
+              "occurrence_tag_name": "Image Capture Equipment",
+              "character_set": [
+                "numeric"
+              ],
+              "field_size_min": 2,
+              "field_size_max": 7,
+              "occurrence_min": 1,
+              "occurrence_max": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+

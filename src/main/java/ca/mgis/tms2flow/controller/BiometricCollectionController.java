@@ -1,7 +1,10 @@
 package ca.mgis.tms2flow.controller;
 
+import ca.mgis.ansinist2k.AnsiNistDecoder;
+import ca.mgis.ansinist2k.AnsiNistPacket;
 import ca.mgis.tms2flow.controller.pojo.BiometricEnrolment;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.commons.codec.binary.Base64;
 import org.flowable.engine.RuntimeService;
 import org.flowable.engine.TaskService;
 import org.slf4j.Logger;
@@ -10,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,11 +31,13 @@ public class BiometricCollectionController {
 	@Autowired
 	TaskService taskService;
 	
-	@RequestMapping(value = "/post-biometric-collection", method = RequestMethod.POST)
+	@RequestMapping(value = "/post-biometric-collection",
+			consumes = MediaType.APPLICATION_JSON_VALUE,
+			method = RequestMethod.POST)
 	public @ResponseBody
 	void sendBiometricCollection(HttpServletResponse response, @RequestBody BiometricEnrolment biometricEnrolment) {
 		
-		log.info(String.format("Biometric Enrolment received: %s", biometricEnrolment));
+		log.info(String.format("Biometric Enrolment received: %s", biometricEnrolment.getBiometricId()));
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
@@ -50,12 +56,18 @@ public class BiometricCollectionController {
 	BiometricEnrolment getProcessInstanceVariables(HttpServletResponse response,
 									 @PathVariable(value="id") final String id,
 									 @PathVariable(value="name") final String name
-									 ) {
+									 ) throws Exception {
 		
 		log.info(String.format("Get variable for Process id: %s and Variable name: %s",
 				id, name));
 		
 		Map<String,Object>  runtimeVariable = runtimeService.getVariables(id);
+		
+		String nistPackBase64 = ((BiometricEnrolment) runtimeVariable.get(name)).getEnrolmentBase64();
+		
+		String decodedPacket = new String (Base64.decodeBase64(nistPackBase64));
+		
+		AnsiNistDecoder nist =  new AnsiNistDecoder(decodedPacket.getBytes(), new AnsiNistPacket());
 		
 		return (BiometricEnrolment) runtimeVariable.get(name);
 		
