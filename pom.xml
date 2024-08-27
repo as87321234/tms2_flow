@@ -84,6 +84,10 @@
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
         </dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.zalando/logbook-spring-boot-starter -->
 		<dependency>
