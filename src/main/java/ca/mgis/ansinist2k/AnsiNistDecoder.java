@@ -123,7 +123,7 @@ public class AnsiNistDecoder {
 				ansiNistPacket.createItem(cleanSeperator(value), rectype[0], recindx[0], fieldId[0], subFieldId[0],
 						itemId[0]);
 
-				log.debug(String.format("field %d.%d.%d.%d.%d=%s", rectype[0], recindx[0], fieldId[0], subFieldId[0],
+				log.info(String.format("field %d.%d.%d.%d.%d=%s", rectype[0], recindx[0], fieldId[0], subFieldId[0],
 						itemId[0], value));
 
 			} else {

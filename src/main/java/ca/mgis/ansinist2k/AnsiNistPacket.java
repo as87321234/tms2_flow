@@ -18,6 +18,7 @@ public class AnsiNistPacket {
 	
 	Logger log = LoggerFactory.getLogger(AnsiNistPacket.class);
 	
+	@Getter
 	private SortedMap<Integer, Object> recordTypeMap = new TreeMap<Integer, Object>();
 	
 	private String buffer;
@@ -325,13 +326,58 @@ public class AnsiNistPacket {
 	
 	public void traverse() {
 		
-		for (Integer rectype : getRectypeList()) {
-			
-			log.info(String.format("Rectype: %s", rectype));
+		//Integer rectype, Integer recindx, Integer fieldId, Integer subFieldId,Integer itemId
 		
+		for (Map.Entry<Integer, Object> rectypeEntry : getRecordTypeMap().entrySet()) {
+			Integer rectypeValue = rectypeEntry.getKey();
+			TreeMap<Integer, Object> rectypeMap = (TreeMap<Integer, Object>) rectypeEntry.getValue();
+			
+			log.debug(String.format("rectype: %s - %s", rectypeValue, rectypeMap.toString()));
+			
+			for (Map.Entry<Integer, Object> recindxEntry : rectypeMap.entrySet()) {
+				Integer recindxValue = recindxEntry.getKey();
+				TreeMap<Integer, Object> fieldIdMap = (TreeMap<Integer, Object>) recindxEntry.getValue();
+				
+				log.debug(String.format("recindx: %s - %s", recindxValue, recindxEntry.toString()));
+				
+				for (Map.Entry<Integer, Object> fieldIdEntry : fieldIdMap.entrySet()) {
+					Integer fieldIdValue = fieldIdEntry.getKey();
+					TreeMap<Integer, Object> subfieldIdMap = (TreeMap<Integer, Object>) fieldIdEntry.getValue();
+					
+					log.debug(String.format("fieldId: %s - %s", fieldIdValue, fieldIdEntry.toString()));
+					
+					for (Map.Entry<Integer, Object> subFieldIdEntry : subfieldIdMap.entrySet()) {
+						Integer subFieldIdValue = subFieldIdEntry.getKey();
+						TreeMap<Integer, Object> itemIdMap = (TreeMap<Integer, Object>) subFieldIdEntry.getValue();
+						
+						log.debug(String.format("subFieldId: %s - %s", subFieldIdValue, subFieldIdEntry.toString()));
+						
+						for (Map.Entry<Integer, Object> itemIdEntry : subfieldIdMap.entrySet()) {
+							Integer itemIdValue = subFieldIdEntry.getKey();
+							TreeMap<Integer, Object> valuedMap = (TreeMap<Integer, Object>) itemIdEntry.getValue();
+							
+							log.debug(String.format("itemId: %s - %s", itemIdValue, itemIdEntry.toString()));
+							
+							if (fieldIdValue == 999) {
+								log.info(String.format("{%s,%s,%s,%s,%s} value: %s",
+										rectypeValue, recindxValue, fieldIdValue,
+										subFieldIdValue, itemIdValue, "Image"));
+							} else {
+								log.info(String.format("{%s,%s,%s,%s,%s} value: %s",
+										rectypeValue, recindxValue, fieldIdValue,
+										subFieldIdValue, itemIdValue, valuedMap.get(itemIdValue)));
+							}
+						}
+					}
+					
+				}
+			}
+			
 		}
 		
 	}
+	
+	
 	public void validate() {
 		
 		traverse();
