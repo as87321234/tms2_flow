@@ -21,6 +21,7 @@ public class AnsiNistPacket {
 	@Getter
 	private SortedMap<Integer, Object> recordTypeMap = new TreeMap<Integer, Object>();
 	
+	@Getter
 	private String buffer;
 	
 	private AnsiNistDecoder ansiNistDecoder;
@@ -40,13 +41,11 @@ public class AnsiNistPacket {
 	
 	}
 	
-	
 	public AnsiNistPacket(String filePath, AnsiNistValidator ansiNistValidator) throws Exception {
 		
 		byte[] bFile = Files.readAllBytes(Paths.get(filePath));
 		
 		log.info(String.format("Nist packet %s successfully decoded", filePath));
-		
 		
 		loadNistPackFromInputStream(bFile,  ansiNistValidator );
 	}
@@ -63,9 +62,9 @@ public class AnsiNistPacket {
 		
 	}
 	
-	public AnsiNistPacket( AnsiNistDecoder ansiNistDecoder, AnsiNistValidator ansiNistValidator) throws Exception {
+	public AnsiNistPacket(  AnsiNistValidator ansiNistValidator) throws Exception {
 
-		this.ansiNistDecoder = ansiNistDecoder;
+		this.ansiNistDecoder = new AnsiNistDecoder(this);
 		this.ansiNistValidator = ansiNistValidator;
 		
 	}
@@ -99,7 +98,8 @@ public class AnsiNistPacket {
 		buffer = new String(bFile, StandardCharsets.ISO_8859_1);
 		
 		// Instantiate a NIST Pack decoder and load byte array in memory
-		ansiNistDecoder = new AnsiNistDecoder(buffer.getBytes(), ansiNistValidator );
+		ansiNistDecoder = new AnsiNistDecoder(this);
+		ansiNistDecoder.decode();
 		
 	}
 	
@@ -185,6 +185,8 @@ public class AnsiNistPacket {
 		List<Integer> keyLevel = parseKey(key);
 		
 		SortedMap<Integer, Object> nextLevel = recordTypeMap;
+		
+		if (keyLevel.get(2) == 1) {}
 		
 		for (int i = 0; i < keyLevel.size(); i++) {
 			

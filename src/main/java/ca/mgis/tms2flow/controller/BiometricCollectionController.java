@@ -65,9 +65,9 @@ public class BiometricCollectionController {
 		
 		String nistPackBase64 = ((BiometricEnrolment) runtimeVariable.get(name)).getEnrolmentBase64();
 		
-		String decodedPacket = new String (Base64.decodeBase64(nistPackBase64));
-		
-		AnsiNistDecoder nist =  new AnsiNistDecoder(decodedPacket.getBytes(),  new Validator177f() );
+//		String decodedPacket = new String (Base64.decodeBase64(nistPackBase64));
+//
+//		AnsiNistDecoder nist =  new AnsiNistDecoder();
 		
 		return (BiometricEnrolment) runtimeVariable.get(name);
 		
