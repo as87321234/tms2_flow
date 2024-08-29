@@ -377,7 +377,7 @@ public class AnsiNistPacket {
 						
 						log.debug(String.format("subFieldId: %s - %s", subFieldIdValue, subFieldIdEntry.toString()));
 						
-						for (Map.Entry<Integer, Object> itemIdEntry : subfieldIdMap.entrySet()) {
+						for (Map.Entry<Integer, Object> itemIdEntry : itemIdMap.entrySet()) {
 							Integer itemIdValue = subFieldIdEntry.getKey();
 							TreeMap<Integer, Object> valuedMap = (TreeMap<Integer, Object>) itemIdEntry.getValue();
 							
