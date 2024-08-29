@@ -27,7 +27,7 @@ public class AnsiNistPacket {
 	
 	@Setter
 	@Getter
-	private AnsiNistValidator validator;
+	private AnsiNistValidator ansiNistValidator;
 	
 	/**
 	 * Construct a NIST packet from an input stream
@@ -45,6 +45,9 @@ public class AnsiNistPacket {
 		
 		byte[] bFile = Files.readAllBytes(Paths.get(filePath));
 		
+		log.info(String.format("Nist packet %s successfully decoded", filePath));
+		
+		
 		loadNistPackFromInputStream(bFile,  ansiNistValidator );
 	}
 	
@@ -59,6 +62,27 @@ public class AnsiNistPacket {
 		loadNistPackFromInputStream(ins,  ansiNistValidator);
 		
 	}
+	
+	public AnsiNistPacket( AnsiNistDecoder ansiNistDecoder, AnsiNistValidator ansiNistValidator) throws Exception {
+
+		this.ansiNistDecoder = ansiNistDecoder;
+		this.ansiNistValidator = ansiNistValidator;
+		
+	}
+	
+	public AnsiNistPacket(byte[] bytes, Validator177f validator177f) {
+	}
+
+//	public AnsiNistPacket(AnsiNistDecoder decoder) {
+//
+//		this.ansiNistDecoder = decoder;
+//	}
+//
+//	public AnsiNistPacket(AnsiNistValidator validator) {
+//
+//		this.validator = validator;
+//
+//	}
 	
 	public void loadNistPackFromInputStream(InputStream ins, AnsiNistValidator ansiNistValidator) throws Exception {
 		
@@ -321,12 +345,11 @@ public class AnsiNistPacket {
 	// Serialize NIST Pack to a Byte Array
 	public byte[] serialize() {
 		
-		return ansiNistDecoder.serialize();
+		return ansiNistDecoder.serialize(this);
+		
 	}
 	
 	public void traverse() {
-		
-		//Integer rectype, Integer recindx, Integer fieldId, Integer subFieldId,Integer itemId
 		
 		for (Map.Entry<Integer, Object> rectypeEntry : getRecordTypeMap().entrySet()) {
 			Integer rectypeValue = rectypeEntry.getKey();

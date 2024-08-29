@@ -1,11 +1,12 @@
 package ca.mgis.ansinist2k;
 
-import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
 import java.util.StringTokenizer;
+import java.util.TreeMap;
 
 public class AnsiNistDecoder {
 
@@ -30,21 +31,24 @@ public class AnsiNistDecoder {
 	int fieldPosition = 0;
 	int subFieldPosition = 0;
 	int itemPosition = 0;
-	
-	@Getter
-	AnsiNistPacket ansiNistPacket;
+
+//	@Getter
+//	AnsiNistPacket ansiNistPacket;
 
 	public AnsiNistDecoder(byte[] processingBuffer, AnsiNistValidator ansiNistValidator) throws Exception {
 
 		this.buffer = new String (processingBuffer, StandardCharsets.US_ASCII);
-		this.ansiNistPacket = new AnsiNistPacket();
-		this.ansiNistPacket.setValidator(ansiNistValidator);
-		this.decode();
+//		this.ansiNistPacket = new AnsiNistPacket();
+//		this.ansiNistPacket.setValidator(ansiNistValidator);
+//		this.decode();
+	}
+	
+	public AnsiNistDecoder() {
+	
 	}
 	
 	
-
-	private void decode() throws Exception {
+	private void decode(AnsiNistPacket ansiNistPacket) throws Exception {
 
 		int prevRectype = 0;
 		Integer[] recindx = new Integer[] { 0 };
@@ -64,14 +68,14 @@ public class AnsiNistDecoder {
 			}
 
 			prevRectype = rectype[0];
-
-			decodeFields(rectype, recindx, fieldId, rawRecord);
+			
+			decodeFields(ansiNistPacket, rectype, recindx, fieldId, rawRecord);
 			log.info(String.format("Finish decoding record type: %s", prevRectype));
 		}
 
 	}
-
-	private void decodeFields(Integer[] rectype, Integer[] recindx, Integer[] fieldId, String rawRecord)
+	
+	private void decodeFields(AnsiNistPacket ansiNistPacket, Integer[] rectype, Integer[] recindx, Integer[] fieldId, String rawRecord)
 			throws Exception {
 
 		fieldPosition = 0;
@@ -81,14 +85,14 @@ public class AnsiNistDecoder {
 			Integer[] subfieldId = { 0 };
 
 			String rawField = nextField(rectype, recindx, fieldId, rawRecord);
-
-			decodeSubFields(rectype, recindx, fieldId, subfieldId, rawField);
+			
+			decodeSubFields(ansiNistPacket, rectype, recindx, fieldId, subfieldId, rawField);
 
 		}
 
 	}
-
-	private void decodeSubFields(Integer[] rectype, Integer[] recindx, Integer[] fieldId, Integer[] subFieldId,
+	
+	private void decodeSubFields(AnsiNistPacket ansiNistPacket, Integer[] rectype, Integer[] recindx, Integer[] fieldId, Integer[] subFieldId,
 			String rawField) throws Exception {
 
 		subFieldPosition = 0;
@@ -99,15 +103,15 @@ public class AnsiNistDecoder {
 		while (subFieldPosition < rawField.length()) {
 
 			String rawSubfield = nextSubfield(rectype, recindx, fieldId, subFieldId, rawField);
-
-			decodeItem(rectype, recindx, fieldId, subFieldId, itemId, rawSubfield);
+			
+			decodeItem(ansiNistPacket, rectype, recindx, fieldId, subFieldId, itemId, rawSubfield);
 
 			subFieldId[0]++;
 		}
 
 	}
-
-	private void decodeItem(Integer[] rectype, Integer[] recindx, Integer[] fieldId, Integer[] subFieldId,
+	
+	private void decodeItem(AnsiNistPacket ansiNistPacket, Integer[] rectype, Integer[] recindx, Integer[] fieldId, Integer[] subFieldId,
 			Integer[] itemId, String rawSubfield) throws Exception {
 
 		itemPosition = 0;
@@ -237,7 +241,7 @@ public class AnsiNistDecoder {
 		record = tokens.nextToken(); // Skip
 
 		int recordType = Integer.parseInt((new StringTokenizer(record, ".")).nextToken());
-		recType[0] = new Integer(recordType);
+		recType[0] = recordType;
 
 		record = tokens.nextToken(); // Skip
 		tokens = new StringTokenizer(record, SEP_GS_STR, true);
@@ -281,8 +285,8 @@ public class AnsiNistDecoder {
 		return str.replaceAll(SEP_US_STR + "+$", "").replaceAll(SEP_GS_STR + "+$", "").replaceAll(SEP_RS_STR + "+$", "")
 				.replaceAll(SEP_FS_STR + "+$", "");
 	}
-
-	public byte[] serialize() {
+	
+	public byte[] serialize(AnsiNistPacket ansiNistPacket) {
 
 		StringBuffer fileBuffer = new StringBuffer(1000);
 
