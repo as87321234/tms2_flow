@@ -20,17 +20,9 @@ public class Tms2flowApplication {
 		
 		log.info("Application {} started.", Tms2flowApplication.class.getSimpleName());
 		
-		Validator177f validator177f = ValidationDeserializer.deserialize177f();
-
-		File file = new File("src/main/resources/test1.eft");
-		FileInputStream fis = new FileInputStream(file);
+		AnsiNistPacket packet = new AnsiNistPacket("src/main/resources/test1.eft", new Validator177f()  );
 		
-		AnsiNistDecoder decoder = new AnsiNistDecoder(fis.readAllBytes(), validator177f);
-
-		AnsiNistPacket packet = decoder.getAnsiNistPacket();
 		packet.validate();
-		
-		log.info(String.format("Nist packet %s successfully decoded", file.getCanonicalFile().toString()));
 		
 	}
 
