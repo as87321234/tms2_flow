@@ -33,10 +33,20 @@ public class AnsiNistDecoder {
 	
 	AnsiNistPacket ansiNistPacket;
 	
+	/**
+	 * Inject a Decoder
+	 *
+	 * @param ansiNistPacket
+	 */
 	public AnsiNistDecoder(AnsiNistPacket ansiNistPacket) {
 		this.ansiNistPacket = ansiNistPacket;
 	}
 	
+	/**
+	 * Deserialize file
+	 *
+	 * @throws Exception
+	 */
 	
 	public void decode() throws Exception {
 		
@@ -65,6 +75,15 @@ public class AnsiNistDecoder {
 		
 	}
 	
+	/**
+	 * Decode fields
+	 *
+	 * @param rectype
+	 * @param recindx
+	 * @param fieldId
+	 * @param rawRecord
+	 * @throws Exception
+	 */
 	private void decodeFields(Integer[] rectype, Integer[] recindx, Integer[] fieldId, String rawRecord)
 			throws Exception {
 		
@@ -82,6 +101,16 @@ public class AnsiNistDecoder {
 		
 	}
 	
+	/**
+	 * Decode subfields
+	 *
+	 * @param rectype
+	 * @param recindx
+	 * @param fieldId
+	 * @param subFieldId
+	 * @param rawField
+	 * @throws Exception
+	 */
 	private void decodeSubFields(Integer[] rectype, Integer[] recindx, Integer[] fieldId, Integer[] subFieldId,
 								 String rawField) throws Exception {
 		
@@ -101,6 +130,17 @@ public class AnsiNistDecoder {
 		
 	}
 	
+	/**
+	 * Decode Item
+	 *
+	 * @param rectype
+	 * @param recindx
+	 * @param fieldId
+	 * @param subFieldId
+	 * @param itemId
+	 * @param rawSubfield
+	 * @throws Exception
+	 */
 	private void decodeItem(Integer[] rectype, Integer[] recindx, Integer[] fieldId, Integer[] subFieldId,
 							Integer[] itemId, String rawSubfield) throws Exception {
 		
@@ -137,9 +177,15 @@ public class AnsiNistDecoder {
 		
 	}
 	
+	/**
+	 * Move record pointer to next record
+	 *
+	 * @param recType
+	 * @return
+	 */
 	private String nextRecord(Integer[] recType) {
 		
-		int length = nextRecordLenght(recType);
+		int length = nextRecordLength(recType);
 		
 		String record = ansiNistPacket.getBuffer().substring(recordPosition, recordPosition + length);
 		
@@ -149,6 +195,15 @@ public class AnsiNistDecoder {
 		
 	}
 	
+	/**
+	 * Extract nextField
+	 *
+	 * @param rectype
+	 * @param recindx
+	 * @param fieldId
+	 * @param rawRecord
+	 * @return
+	 */
 	private String nextField(Integer[] rectype, Integer[] recindx, Integer[] fieldId, String rawRecord) {
 		
 		int length = nextFieldLength(rawRecord);
@@ -179,6 +234,16 @@ public class AnsiNistDecoder {
 		
 	}
 	
+	/**
+	 * Extract nextSubfield
+	 *
+	 * @param rectype
+	 * @param recindx
+	 * @param fieldId
+	 * @param subFieldId
+	 * @param rawField
+	 * @return
+	 */
 	private String nextSubfield(Integer[] rectype, Integer[] recindx, Integer[] fieldId, Integer[] subFieldId,
 								String rawField) {
 		
@@ -201,6 +266,17 @@ public class AnsiNistDecoder {
 		
 	}
 	
+	/**
+	 * Extract next item
+	 *
+	 * @param rectype
+	 * @param recindx
+	 * @param fieldId
+	 * @param subFieldId
+	 * @param itemId
+	 * @param rawSubfield
+	 * @return
+	 */
 	private String nextItem(Integer[] rectype, Integer[] recindx, Integer[] fieldId, Integer[] subFieldId,
 							Integer[] itemId, String rawSubfield) {
 		
@@ -223,7 +299,13 @@ public class AnsiNistDecoder {
 		
 	}
 	
-	private int nextRecordLenght(Integer[] recType) {
+	/**
+	 * Calculate nextRecordLength
+	 *
+	 * @param recType
+	 * @return
+	 */
+	private int nextRecordLength(Integer[] recType) {
 		
 		String record = ansiNistPacket.getBuffer().substring(recordPosition, recordPosition + 20);
 		
@@ -241,6 +323,12 @@ public class AnsiNistDecoder {
 		
 	}
 	
+	/**
+	 * Calculate nextField length
+	 *
+	 * @param rawRecord
+	 * @return
+	 */
 	private int nextFieldLength(String rawRecord) {
 		
 		StringTokenizer tokens = new StringTokenizer(rawRecord.substring(fieldPosition), SEP_GS_STR, true);
@@ -250,6 +338,13 @@ public class AnsiNistDecoder {
 		
 	}
 	
+	/**
+	 * Calculate next subfield Length
+	 *
+	 * @param subFieldId
+	 * @param rawField
+	 * @return
+	 */
 	private int nextSubfieldLength(Integer[] subFieldId, String rawField) {
 		
 		StringTokenizer tokens = new StringTokenizer(rawField.substring(subFieldPosition), SEP_RS_STR, true);
@@ -259,6 +354,13 @@ public class AnsiNistDecoder {
 		
 	}
 	
+	/**
+	 * Calculate next item length
+	 *
+	 * @param itemId
+	 * @param rawField
+	 * @return
+	 */
 	private int nextItemLength(Integer[] itemId, String rawField) {
 		
 		StringTokenizer tokens = new StringTokenizer(rawField.substring(itemPosition), SEP_US_STR, true);
@@ -270,136 +372,25 @@ public class AnsiNistDecoder {
 		
 	}
 	
+	/**
+	 * Clean up separator from decode field
+	 *
+	 * @param str
+	 * @return
+	 */
 	private String cleanSeperator(String str) {
 		
 		return str.replaceAll(SEP_US_STR + "+$", "").replaceAll(SEP_GS_STR + "+$", "").replaceAll(SEP_RS_STR + "+$", "")
 				.replaceAll(SEP_FS_STR + "+$", "");
 	}
 	
-	public byte[] serialize1(AnsiNistPacket ansiNistPacket) throws Exception {
-		
-		List<List<Integer>> keyList = null;
-		
-		StringBuffer recordBuffer = new StringBuffer(1000);
-		StringBuffer recordLenBuf = new StringBuffer(100);
-		
-		StringBuilder deserializeString = new StringBuilder();
-		
-		String calculatedLengthField = null;
-		
-		for (int i = 1; i < keyList.size(); i++) {
-			
-			String delimeter = "??";
-			
-			// Next Key
-			List<Integer> currentKey = keyList.get(i - 1);
-			int cRectypeKey = currentKey.get(0);
-			int cRecindxKey = currentKey.get(1);
-			int cFieldIdkey = currentKey.get(2);
-			int cSubfieldIdkey = currentKey.get(3);
-			int cItemIdKey = currentKey.get(4);
-			
-			// Next Key
-			List<Integer> nextKey = keyList.get(i);
-			int nRectypeKey = nextKey.get(0);
-			int nRecindxKey = nextKey.get(1);
-			int nFieldIdkey = nextKey.get(2);
-			int nSubfieldIdkey = nextKey.get(3);
-			int nItemIdKey = nextKey.get(4);
-			
-			if (cFieldIdkey > nFieldIdkey || cSubfieldIdkey > nSubfieldIdkey || cItemIdKey != nItemIdKey) {
-				delimeter = AnsiNistDecoder.SEP_GS_STR;
-			}
-			
-			if (cRectypeKey == nRectypeKey
-					&& cRecindxKey == nRecindxKey
-					&& cFieldIdkey == nFieldIdkey
-					&& cSubfieldIdkey == nSubfieldIdkey) {
-				
-				delimeter = AnsiNistDecoder.SEP_US_STR;
-			}
-			
-			if (cRectypeKey == nRectypeKey
-					&& cRecindxKey == nRecindxKey
-					&& cFieldIdkey == nFieldIdkey
-					&& cSubfieldIdkey != nSubfieldIdkey) {
-				
-				delimeter = AnsiNistDecoder.SEP_RS_STR;
-			}
-			
-			if (cRectypeKey == nRectypeKey
-					&& cRecindxKey == nRecindxKey
-					&& cFieldIdkey != nFieldIdkey) {
-				
-				delimeter = AnsiNistDecoder.SEP_GS_STR;
-				// Serialize fields
-				recordBuffer.append(String.format("%d.%03d:", cRectypeKey, cFieldIdkey));
-				
-			}
-			
-			if (cRectypeKey == nRectypeKey
-					&& cRecindxKey != nRecindxKey) {
-				delimeter = AnsiNistDecoder.SEP_US_STR;
-			}
-			
-			if (cRectypeKey != nRectypeKey) {
-				delimeter = AnsiNistDecoder.SEP_FS_STR;
-			}
-			
-			if (cFieldIdkey == 999) {
-				delimeter = AnsiNistDecoder.SEP_FS_STR;
-			}
-			
-			if (cFieldIdkey == 1) {
-				
-				// Prepare calculate record lenght
-				recordLenBuf = new StringBuffer(100);
-				recordLenBuf.append(String.format("%d.%03d:%s%s", cRectypeKey, 1, "%s", delimeter));
-				
-			} else {
-				
-				recordBuffer.append(String.format("%s%s", ansiNistPacket.findItem(cRectypeKey, cRecindxKey, cFieldIdkey, cSubfieldIdkey, cItemIdKey)
-						, delimeter));
-				
-			}
-			
-			if (cFieldIdkey != 999) {
-				log.info(String.format("%s tag: %d.%03d value = %s %s",
-						currentKey,
-						cRectypeKey,
-						cFieldIdkey,
-						ansiNistPacket.findItem(cRectypeKey, cRecindxKey, cFieldIdkey, cSubfieldIdkey, cItemIdKey),
-						delimeter));
-			} else {
-				log.info(String.format("%s value = %s %s",
-						currentKey,
-						"Image",
-						delimeter));
-			}
-			
-			if (delimeter.equals(AnsiNistDecoder.SEP_FS_STR)) {
-				int length = recordBuffer.length() + recordLenBuf.length() - 2;
-				int calculateLength = (new String(length + "")).length();
-				
-				length = calculateLength + length;
-				int totalCaclulatedLenght = (new String(length + "")).length();
-				
-				length = length + totalCaclulatedLenght - calculateLength;
-				
-				calculatedLengthField = recordLenBuf.toString().
-						replaceAll("%s", length + "");
-				
-				// concatenate calculated field
-				deserializeString.append(calculatedLengthField).append(recordBuffer.toString());
-				
-				recordLenBuf.append(String.format("%d.%03d:%s%s", cRecindxKey, 1, "%s", AnsiNistDecoder.SEP_GS_STR));
-				
-			}
-		}
-		
-		return null;
-	}
-	
+	/**
+	 * Calculate current delimiter based on next record.
+	 *
+	 * @param prevKeyList
+	 * @param currKeyList
+	 * @return
+	 */
 	private String getDelimiter(List<Integer> prevKeyList, List<Integer> currKeyList) {
 		
 		String delimeter = "";
@@ -462,6 +453,12 @@ public class AnsiNistDecoder {
 		
 	}
 	
+	/**
+	 * Calculate record length
+	 *
+	 * @param recordBuffer
+	 * @return
+	 */
 	private int calculateRecordLength(StringBuffer recordBuffer) {
 		
 		int length = recordBuffer.length() - 2;
@@ -470,6 +467,11 @@ public class AnsiNistDecoder {
 		return length + strLength;
 	}
 	
+	/**
+	 * Get a list of all decode keys
+	 *
+	 * @return
+	 */
 	private List<List<Integer>> getKeyList() {
 		
 		List<List<Integer>> keyList = new ArrayList<List<Integer>>();
@@ -512,11 +514,15 @@ public class AnsiNistDecoder {
 		
 	}
 	
-	public byte[] serialize3() {
+	/**
+	 * Serialize AnsiNistPacket
+	 *
+	 * @return
+	 */
 	public byte[] serialize() {
 		
 		byte[] empty = new byte[0];
-		String serialized = new String(empty,StandardCharsets.ISO_8859_1);
+		String serialized = new String(empty, StandardCharsets.ISO_8859_1);
 		List<List<Integer>> keyList = getKeyList();
 		int keycnt = 0;
 		for (Map.Entry<Integer, Object> rectypeEntry : ansiNistPacket.getRecordTypeMap().entrySet()) {
@@ -556,10 +562,10 @@ public class AnsiNistDecoder {
 								delimiter = getDelimiter(currKeyList, nextKeyList);
 								
 							} else {
-								delimiter = AnsiNistDecoder.SEP_FS_STR ;
+								delimiter = AnsiNistDecoder.SEP_FS_STR;
 							}
 							
-							if ( fieldIdKey != 1) {
+							if (fieldIdKey != 1) {
 								recordBuffer.append(String.format("%s%s", itemIdEntry.getValue(), delimiter));
 							} else {
 								recordBuffer.append(String.format("%s%s", "%s", delimiter));
@@ -595,7 +601,7 @@ public class AnsiNistDecoder {
 		log.info(String.format("Serialize object length: %s", serialized.length()));
 		
 		return serialized.getBytes(StandardCharsets.ISO_8859_1);
-
+		
 	}
 	
 }
