@@ -33,7 +33,6 @@ public class AnsiNistPacket {
 	/**
 	 * Construct a NIST packet from an input stream
 	 *
-	 * @param ins
 	 * @throws Exception
 	 */
 	
