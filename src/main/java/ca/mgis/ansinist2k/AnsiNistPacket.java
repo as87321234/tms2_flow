@@ -344,12 +344,12 @@ public class AnsiNistPacket {
 		return rectypeSet;
 	}
 	
-	// Serialize NIST Pack to a Byte Array
-	public byte[] serialize() {
+	public byte[] serialize2() throws Exception {
 		
-		return ansiNistDecoder.serialize(this);
+		return ansiNistDecoder.serialize3();
 		
 	}
+	
 	
 	public void traverse() {
 		
