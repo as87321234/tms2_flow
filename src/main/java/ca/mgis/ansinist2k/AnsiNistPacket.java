@@ -345,7 +345,7 @@ public class AnsiNistPacket {
 	
 	public byte[] serialize2() throws Exception {
 		
-		return ansiNistDecoder.serialize3();
+		return ansiNistDecoder.serialize();
 		
 	}
 	

@@ -513,6 +513,7 @@ public class AnsiNistDecoder {
 	}
 	
 	public byte[] serialize3() {
+	public byte[] serialize() {
 		
 		byte[] empty = new byte[0];
 		String serialized = new String(empty,StandardCharsets.ISO_8859_1);
