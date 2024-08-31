@@ -3,6 +3,7 @@ package ca.mgis.ansinist2k;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class AnsiNistDecoder {
@@ -513,7 +514,8 @@ public class AnsiNistDecoder {
 	
 	public byte[] serialize3() {
 		
-		StringBuilder serialized = new StringBuilder();
+		byte[] empty = new byte[0];
+		String serialized = new String(empty,StandardCharsets.ISO_8859_1);
 		List<List<Integer>> keyList = getKeyList();
 		int keycnt = 0;
 		for (Map.Entry<Integer, Object> rectypeEntry : ansiNistPacket.getRecordTypeMap().entrySet()) {
@@ -575,15 +577,15 @@ public class AnsiNistDecoder {
 							
 							keycnt++;
 						}
-						
 					}
-					
 				}
 				
 				int reclen = calculateRecordLength(recordBuffer);
 				
-				serialized.append(recordBuffer.toString().replaceAll("%s", reclen + ""));
+				recordBuffer = new StringBuffer(recordBuffer.toString().replaceFirst("%s", reclen + ""));
+				serialized = serialized + recordBuffer.toString();
 				
+				log.info(String.format("Record length calculated: %s , true length: %s", reclen, recordBuffer.length()));
 				
 			}
 			
@@ -591,7 +593,8 @@ public class AnsiNistDecoder {
 		
 		log.info(String.format("Serialize object length: %s", serialized.length()));
 		
-		return serialized.toString().getBytes();
+		return serialized.getBytes(StandardCharsets.ISO_8859_1);
+
 	}
 	
 }

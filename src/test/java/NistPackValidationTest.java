@@ -1,9 +1,7 @@
 import ca.mgis.ansinist2k.*;
 import junit.framework.TestCase;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.*;
 
 public class NistPackValidationTest extends TestCase {
 	
@@ -12,10 +10,23 @@ public class NistPackValidationTest extends TestCase {
 		AnsiNistPacket ansiNistPacket = new AnsiNistPacket("src/main/resources/test1.eft", new Validator177f()  );
 		
 		byte[] serializedEft = ansiNistPacket.serialize2();
-
-		FileOutputStream fos = new FileOutputStream("/Users/stlouisa/Downloads/test1_serialized.eft");
-		fos.write(serializedEft);
-		fos.close();
+		
+		
+		FileOutputStream fos = null;
+		try {
+			fos = new FileOutputStream(new File("/Users/stlouisa/Downloads/test1_serialized.eft"));
+			fos.write(serializedEft);
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			
+			// Put data in your baos
+			baos.writeTo(fos);
+			
+		} catch(IOException ioe) {
+			// Handle exception here
+			ioe.printStackTrace();
+		} finally {
+			fos.close();
+		}
 		
 //		ansiNistPacket.validate();
 		
