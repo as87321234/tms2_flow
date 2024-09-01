@@ -226,6 +226,28 @@
           ]
         }
       ]
+    },
+    {
+      "id": 2,
+      "mnemonic": "MAP",
+      "name": "MISCELLANEOUS APPLICANT CIVIL SUBMISSION",
+      "record_tag": [
+        {
+          "id": "2.001",
+          "identifier": "LEN",
+          "condition": "M",
+          "field_tag_name": "Logical Record Length",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 2,
+          "field_max_size": 7,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        }
+      ]
     }
   ]
 }
