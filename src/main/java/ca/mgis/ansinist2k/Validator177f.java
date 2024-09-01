@@ -184,7 +184,16 @@ public class Validator177f extends AnsiNistValidator {
 		}
 		
 		boolean valid = false;
-		valid = occurrenceCnt >= 1 && Objects.equals(condition, "M");
+		
+		// Check if field is mandatory
+		if (Objects.equals(condition, "M")) {
+			valid = occurrenceCnt >= 1;
+		}
+		
+		// Check if field is optional
+		if (Objects.equals(condition, "O")) {
+			valid = occurrenceCnt >= 0;
+		}
 		
 		if (valid) {
 			log.info(String.format("validateCondition  %s ", valid));
