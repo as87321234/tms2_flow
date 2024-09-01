@@ -1,7 +1,7 @@
 {
   "alpha_regx": "A-Z",
   "numeric_regx": "0-9",
-  "special_regx": "#$&’()*\\,.",
+  "special_regx": " #$&’()*\\,-.",
   "crlf_regx": "\r\n",
   "period_regx": ".",
   "record_type": [
@@ -64,6 +64,39 @@
             {
               "condition": "M",
               "tag_name": "Information Item 2",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 5,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Information Item 3",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 5,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Information Item 4",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 5,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Information Item 5",
               "character_set": [
                 "numeric"
               ],
@@ -246,7 +279,8 @@
           "field_occ_max": 1,
           "occurrence": [
           ]
-        },        {
+        },
+        {
           "id": "2.002",
           "identifier": "IDC",
           "condition": "M",
@@ -259,6 +293,51 @@
           "field_occ_min": 1,
           "field_occ_max": 1,
           "occurrence": [
+          ]
+        },
+        {
+          "id": "2.067",
+          "identifier": "IMA",
+          "condition": "C",
+          "field_tag_name": "Image Capture Equipment",
+          "character_set": [
+          ],
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
+            {
+              "condition": "M",
+              "tag_name": "Originating Fingerprint Reading System Make",
+              "character_set": [
+                "numeric","alpha","special"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 25,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Originating Fingerprint Reading System Model",
+              "character_set": [
+                "numeric","alpha","special"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 25,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Originating Fingerprint Reading System Serial Number",
+              "character_set": [
+                "numeric","alpha","special"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 50,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            }
           ]
         }
       ]
