@@ -66,12 +66,12 @@ public class NistPackValidationTest {
 				.deserialize(AnsiNistValidator.validation_1_7_7f));
 		AnsiNistValidator validator = packet.getAnsiNistValidator();
 		
-		// Test min and max length
+		// Test CharacterSet
 		packet.deleteAll();
 		Assertions.assertFalse(validator.validateCharacterSet("1.001", 1,1,1, "TWO"));
 		Assertions.assertTrue(validator.validateCharacterSet("1.001", 1,1,1, "0123456789"));
 
-		// Test CharacterSet
+		// Test min and max length
 		packet.deleteAll();
 		Assertions.assertFalse(validator.validateFieldLength("1.001", 1,1,1, "9"));
 		Assertions.assertTrue(validator.validateFieldLength("1.001", 1,1,1, "99"));
@@ -79,7 +79,6 @@ public class NistPackValidationTest {
 		Assertions.assertFalse(validator.validateFieldLength("1.001", 1,1,1, "9999"));
 		
 		// Test Min Max Occurrence
-		
 		packet.deleteAll();
 		packet.createItem("300", 1,1,1,1,1);
 		Assertions.assertTrue(validator.validateOccurrence( packet, "1.001", 1,1,1, "9"));
@@ -87,13 +86,11 @@ public class NistPackValidationTest {
 		Assertions.assertFalse(validator.validateOccurrence( packet, "1.001", 1,1,1, "9"));
 		
 		// Condition Mandatory
-
 		packet.deleteAll();
 		packet.createItem("300", 1,1,1,1,1);
 		Assertions.assertTrue(validator.validateCondition( packet, "1.001", 1,1,1, "9"));
 		packet.createItem("300", 1,2,2,1,1);
 		Assertions.assertFalse(validator.validateCondition( packet, "1.001", 1,1,1, "9"));
-		
 		
 	}
 	
@@ -105,13 +102,12 @@ public class NistPackValidationTest {
 				.deserialize(AnsiNistValidator.validation_1_7_7f));
 		AnsiNistValidator validator = packet.getAnsiNistValidator();
 		
-		// Test min and max length
+		// Test CharacterSet
 		packet.deleteAll();
-		packet.createItem("300", 1,1,2,1,1);
 		Assertions.assertFalse(validator.validateCharacterSet("1.002", 1,1,1, "TWO"));
 		Assertions.assertTrue(validator.validateCharacterSet("1.002", 1,1,1, "0123456789"));
 		
-		// Test CharacterSet
+		// Test min and max length
 		packet.deleteAll();
 		Assertions.assertFalse(validator.validateFieldLength("1.001", 1,1,1, "9"));
 		Assertions.assertTrue(validator.validateFieldLength("1.001", 1,1,1, "99"));
@@ -119,7 +115,6 @@ public class NistPackValidationTest {
 		Assertions.assertFalse(validator.validateFieldLength("1.001", 1,1,1, "9999"));
 		
 		// Test Min Max Occurrence
-		
 		packet.deleteAll();
 		packet.createItem("300", 1,1,1,1,1);
 		Assertions.assertTrue(validator.validateOccurrence( packet, "1.001", 1,1,1, "9"));
@@ -127,13 +122,11 @@ public class NistPackValidationTest {
 		Assertions.assertFalse(validator.validateOccurrence( packet, "1.001", 1,1,1, "9"));
 		
 		// Condition Mandatory
-		
 		packet.deleteAll();
 		packet.createItem("300", 1,1,1,1,1);
 		Assertions.assertTrue(validator.validateCondition( packet, "1.001", 1,1,1, "9"));
 		packet.createItem("300", 1,2,2,1,1);
 		Assertions.assertFalse(validator.validateCondition( packet, "1.001", 1,1,1, "9"));
-		
 		
 	}
 	
