@@ -902,4 +902,59 @@ public class NistPackValidationTest {
 		
 	}
 	
+	@Test
+	public void tag_2_002() throws Exception {
+		
+		AnsiNistPacket packet = new AnsiNistPacket();
+		packet.setAnsiNistValidator( (new ValidationDeserializerImpl())
+				.deserialize(AnsiNistValidator.validation_1_7_7f));
+		AnsiNistValidator validator = packet.getAnsiNistValidator();
+		
+		String tag="2.002";
+		int fieldIdKey = 2;
+		
+		
+		// Test CharacterSet
+		log.info("Check CharacterSet");
+		
+		packet.deleteAll();
+		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey,1,1, "TWO"));
+		Assertions.assertTrue(validator.validateCharacterSet(tag, fieldIdKey,1,1, "0123456789"));
+		
+		// Test min and max length
+		log.info("Check min and max record length");
+		
+		packet.deleteAll();
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey,1,1, ""));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey,1,1, "9"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey,1,1, "99"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey,1,1, "999"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey,1,1, "9999"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey,1,1, "99999"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey,1,1, "999999"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey,1,1, "9999999"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey,1,1, "99999999"));
+		
+		// Test Min Max Occurrence
+		log.info("Check min and max number of occurrences");
+		
+		packet.deleteAll();
+		packet.createItem("300", 2,1,fieldIdKey,1,1);
+		Assertions.assertTrue(validator.validateOccurrence( packet, tag, fieldIdKey,1,1, "9"));
+		packet.createItem("300", 2,2,fieldIdKey,1,1);
+		Assertions.assertFalse(validator.validateOccurrence( packet, tag, fieldIdKey,1,1, "9"));
+		
+		// Condition Mandatory
+		log.info("Check field condition");
+		
+		packet.deleteAll();
+		packet.createItem("300", 2,1,fieldIdKey,1,1);
+		Assertions.assertTrue(validator.validateCondition( packet, tag, fieldIdKey,1,1, "9"));
+		packet.createItem("300", 2,2,fieldIdKey,1,1);
+		Assertions.assertTrue(validator.validateCondition( packet, tag, fieldIdKey,1,1, "9"));
+		packet.deleteAll();
+		Assertions.assertFalse(validator.validateCondition( packet, tag, 1,1,1, "9"));
+		
+	}
+	
 }

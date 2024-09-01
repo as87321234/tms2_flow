@@ -246,6 +246,20 @@
           "field_occ_max": 1,
           "occurrence": [
           ]
+        },        {
+          "id": "2.002",
+          "identifier": "IDC",
+          "condition": "M",
+          "field_tag_name": "Image Designation Character",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 5,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
         }
       ]
     }
