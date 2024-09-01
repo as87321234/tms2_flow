@@ -24,6 +24,7 @@ public class RecordTag{
 	public int field_occ_min;
 	public int field_occ_max;
 	public String condition;
+	public String regexPattern;
 	public List<String> character_set;
 	
 	public ArrayList<Occurrence> occurrence;
