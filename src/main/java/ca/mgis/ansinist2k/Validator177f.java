@@ -124,8 +124,8 @@ public class Validator177f extends AnsiNistValidator {
 			
 			int occurrenceCnt = countOccurence(keyList, rectype, fieldIdKey, subfieldIdKey, itemIdKey);;
 			
-			int fieldOccMin = recordTag.occurrence.get(subfieldIdKey - 1).getField_occ_min();
-			int fieldOccMax = recordTag.occurrence.get(subfieldIdKey - 1).getField_occ_max();
+			int fieldOccMin = recordTag.occurrence.get(itemIdKey - 1).getField_occ_min();
+			int fieldOccMax = recordTag.occurrence.get(itemIdKey - 1).getField_occ_max();
 			
 			boolean valid = occurrenceCnt >= fieldOccMin && occurrenceCnt <= fieldOccMax;
 			
@@ -242,7 +242,7 @@ public class Validator177f extends AnsiNistValidator {
 			
 		} else {
 			
-			return validateCondition(keyList, rectype, fieldIdKey, subfieldIdKey, itemIdKey , recordTag.getOccurrence().get(subfieldIdKey - 1).getCondition() );
+			return validateCondition(keyList, rectype, fieldIdKey, subfieldIdKey, itemIdKey , recordTag.getOccurrence().get(itemIdKey - 1).getCondition() );
 			
 		}
 		
@@ -274,7 +274,7 @@ public class Validator177f extends AnsiNistValidator {
 			
 		} else {
 			
-			Occurrence occurrence = recordTag.getOccurrence().get(subfieldIdKey - 1);
+			Occurrence occurrence = recordTag.getOccurrence().get(itemIdKey - 1);
 			
 			int fieldMinSize = occurrence.getField_min_size();
 			int fieldMaxSize = occurrence.getField_max_size();
@@ -317,7 +317,7 @@ public class Validator177f extends AnsiNistValidator {
 			
 		} else {
 			
-			Occurrence occurrence = recordTag.getOccurrence().get(subfieldIdKey - 1);
+			Occurrence occurrence = recordTag.getOccurrence().get(itemIdKey - 1);
 			
 			String regexStr = buildRegex(occurrence.getCharacter_set());
 			
