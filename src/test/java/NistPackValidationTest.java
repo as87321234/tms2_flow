@@ -1,15 +1,23 @@
 import ca.mgis.ansinist2k.*;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
-public class NistPackValidationTest extends TestCase {
+
+@SpringBootTest(classes = NistPackValidationTest.class)
+public class NistPackValidationTest {
 	
-	public void testLoadEFT() throws Exception {
+	@Test
+	public void loadEFT() throws Exception {
 		
 		AnsiNistPacket ansiNistPacket = new AnsiNistPacket("src/main/resources/test1.eft", new Validator177f()  );
 		
-		byte[] serializedEft = ansiNistPacket.serialize2();
+		byte[] serializedEft = ansiNistPacket.serialize();
 		
 		
 		FileOutputStream fos = null;
@@ -28,31 +36,60 @@ public class NistPackValidationTest extends TestCase {
 			fos.close();
 		}
 		
-//		ansiNistPacket.validate();
+		ansiNistPacket.validate();
 		
 	}
 	
-	public void test_1_001() throws Exception {
+	@Test
+	public void tag_1_001() throws Exception {
+		
+		AnsiNistPacket packet = new AnsiNistPacket();
+		packet.setAnsiNistValidator( (new ValidationDeserializerImpl())
+				.deserialize(AnsiNistValidator.validation_1_7_7f));
+		AnsiNistValidator validator = packet.getAnsiNistValidator();
+		
+		// Test min and max length
+		packet.deleteAll();
+		Assertions.assertFalse(validator.validateCharacterSet("1.001", 1,1,1, "TWO"));
+		Assertions.assertTrue(validator.validateCharacterSet("1.001", 1,1,1, "0123456789"));
+
+		// Test CharacterSet
+		packet.deleteAll();
+		Assertions.assertFalse(validator.validateFieldLength("1.001", 1,1,1, "9"));
+		Assertions.assertTrue(validator.validateFieldLength("1.001", 1,1,1, "99"));
+		Assertions.assertTrue(validator.validateFieldLength("1.001", 1,1,1, "999"));
+		Assertions.assertFalse(validator.validateFieldLength("1.001", 1,1,1, "9999"));
+		
+		// Test Min Max Occurrence
+		
+		packet.deleteAll();
+		packet.createItem("300", 1,1,1,1,1);
+		Assertions.assertTrue(validator.validateOccurrence( packet, "1.001", 1,1,1, "9"));
+		packet.createItem("300", 1,2,1,1,1);
+		Assertions.assertFalse(validator.validateOccurrence( packet, "1.001", 1,1,1, "9"));
+		
+		// Condition Mandatory
+
+		packet.deleteAll();
+		packet.createItem("300", 1,1,1,1,1);
+		Assertions.assertTrue(validator.validateCondition( packet, "1.001", 1,1,1, "9"));
+		packet.createItem("300", 1,2,2,1,1);
+		Assertions.assertFalse(validator.validateCondition( packet, "1.001", 1,1,1, "9"));
+		
+		
+		
+		
+		//
+		
+	}
+	
+	@Test
+	public void tag_1_002() throws Exception {
 		
 		AnsiNistPacket packet = new AnsiNistPacket();
 		
-		packet.setAnsiNistValidator(ValidationDeserializer.deserialize177f());
-		
-		String value;
-		
-		packet.createItem("300", 1,1,1,1,1);
-		value = packet.findItem(1,1,1,1,1);
-		assertEquals("300", value);
-		
-		packet.validate();
-		
-	}
-	
-	public void test_1_002() throws Exception {
-		
-		AnsiNistPacket packet = new AnsiNistPacket( new Validator177f());
-		
-		
+		packet.setAnsiNistValidator( (new ValidationDeserializerImpl())
+				.deserialize(AnsiNistValidator.validation_1_7_7f));
 		
 		String value;
 		
@@ -60,10 +97,9 @@ public class NistPackValidationTest extends TestCase {
 		value = packet.findItem(1,1,1,1,1);
 		packet.createItem("300", 1,1,2,1,1);
 		value = packet.findItem(1,1,2,1,1);
-		assertEquals("300", value);
+		Assertions.assertEquals("300", value);
 		
 		packet.validate();
-		System.out.println(packet.serialize2());
 	
 	}
 	
