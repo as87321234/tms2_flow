@@ -454,6 +454,24 @@ public class AnsiNistDecoder {
 	}
 	
 	/**
+	 * The File Content Tag (i.e.: is derived frpm the AnsiNistPacket Content
+	 * <p>
+	 * It is some sort of manifest.
+	 * <p>
+	 * 1,2,10 or 14 for a MAP type transaction
+	 * followed by the Image Designation Character (IDC)
+	 *
+	 * @return
+	 */
+	
+	
+	private String createFileContentTag() {
+		
+		log.warn("createFileContentTag not implemented  ...");
+		
+		return "";
+	}
+	/**
 	 * Calculate record length
 	 *
 	 * @param recordBuffer
@@ -519,7 +537,12 @@ public class AnsiNistDecoder {
 								delimiter = AnsiNistDecoder.SEP_FS_STR;
 							}
 							
-							if (fieldIdKey != 1) {
+							if  (rectypeKey == 1 && fieldIdKey == 2 ) {
+								String fileContent = createFileContentTag();
+								recordBuffer.append(fileContent);
+							}
+							
+							if  (fieldIdKey != 1) {
 								recordBuffer.append(String.format("%s%s", itemIdEntry.getValue(), delimiter));
 							} else {
 								recordBuffer.append(String.format("%s%s", "%s", delimiter));
@@ -533,7 +556,6 @@ public class AnsiNistDecoder {
 								log.debug(String.format("Value key: {%s,%s,%s,%s,%s} = %s",
 										rectypeKey, recindxKey, fieldIdKey, subfieldIdKey,
 										itemIdKey, "Image"));
-								
 							}
 							
 							keycnt++;
@@ -546,7 +568,7 @@ public class AnsiNistDecoder {
 				recordBuffer = new StringBuffer(recordBuffer.toString().replaceFirst("%s", reclen + ""));
 				serialized = serialized + recordBuffer.toString();
 				
-				log.info(String.format("Record length calculated: %s , true length: %s", reclen, recordBuffer.length()));
+				log.debug(String.format("Record length calculated: %s , true length: %s", reclen, recordBuffer.length()));
 				
 			}
 			
