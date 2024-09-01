@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,7 +17,14 @@ public class RecordTag{
 	public String identifier;
 	public String tag_name = "";
 	public String note = "";
-	public int tag_min_occurrence = 1;
-	public int tag_max_occurrence = 1;
+	
+	public String field_tag_name;
+	public int field_min_size;
+	public int field_max_size;
+	public int field_occ_min;
+	public int field_occ_max;
+	public String condition;
+	public List<String> character_set;
+	
 	public ArrayList<Occurrence> occurrence;
 }

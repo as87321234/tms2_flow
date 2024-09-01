@@ -15,5 +15,6 @@ public class RecordType{
 	public String mnemonic;
 	public String name;
 	public String note;
+
 	public ArrayList<RecordTag> record_tag;
 }

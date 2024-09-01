@@ -15,12 +15,11 @@ Root[] root = om.readValue(myJsonString, Root[].class); */
 @ToString
 public class Occurrence{
 	public String condition;
-	public String check_condition;
-	public String occurrence_tag_name;
+	public String tag_name;
 	public ArrayList<String> character_set;
-	public int field_size_min;
-	public int field_size_max;
-	public int occurrence_min;
-	public int occurrence_max;
+	public int field_min_size;
+	public int field_max_size;
+	public int field_occ_min;
+	public int field_occ_max;
 }
 
