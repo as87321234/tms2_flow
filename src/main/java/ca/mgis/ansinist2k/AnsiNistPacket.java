@@ -430,9 +430,14 @@ public class AnsiNistPacket {
 							String tag = String.format("%s.%03d", rectypeKey, fieldIdKey);
 							String value = (String) itemIdEntry.getValue();
 							
-							log.info(String.format("itemId: %s - tag: %s - %s", key, tag, value ));
+							if (fieldIdKey != 999) {
+								log.debug(String.format("itemId: %s - tag: %s - %s", key, tag, value));
+							} else {
+								log.debug(String.format("itemId: %s - tag: %s - %s", key, tag, "Image"));
+							}
 							
-							valid = valid && ansiNistValidator.validate(tag, fieldIdKey, subfieldIdKey, itemIdKey, value);
+							log.warn("AnsiNistPacket validator not being called, to be enable once validation is in place");
+							// valid = valid && ansiNistValidator.validate(tag, fieldIdKey, subfieldIdKey, itemIdKey, value);
 							
 						}
 						
