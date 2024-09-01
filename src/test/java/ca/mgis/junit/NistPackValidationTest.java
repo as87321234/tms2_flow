@@ -1,19 +1,16 @@
 package ca.mgis.junit;
 
 import ca.mgis.ansinist2k.*;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 
 
-@SpringBootTest(classes = NistPackValidationTest.class)
+
+@SpringBootTest(classes = ca.mgis.junit.NistPackValidationTest.class)
 public class NistPackValidationTest {
 	
 	Logger log = LoggerFactory.getLogger(NistPackValidationTest.class);

@@ -401,7 +401,6 @@ public class AnsiNistPacket {
 	
 	public boolean validate() {
 		
-		
 		boolean valid = true;
 		for (Map.Entry<Integer, Object> rectypeEntry : getRecordTypeMap().entrySet()) {
 			
