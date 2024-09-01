@@ -12,10 +12,13 @@ import java.util.ArrayList;
 @ToString
 
 public class Validator{
+	
 	public String alpha_regx;
-	public String numeric_regx ;
+	public String numeric_regx;
 	public String special_regx;
 	public String crlf_regx;
+	public String period_regx;
 	
-	public ArrayList<RecordTag> record_tags;
+	public ArrayList<RecordType> record_type;
+	
 }

@@ -343,7 +343,7 @@ public class AnsiNistPacket {
 		return rectypeSet;
 	}
 	
-	public byte[] serialize2() throws Exception {
+	public byte[] serialize() throws Exception {
 		
 		return ansiNistDecoder.serialize();
 		
@@ -378,35 +378,142 @@ public class AnsiNistPacket {
 						
 						for (Map.Entry<Integer, Object> itemIdEntry : itemIdMap.entrySet()) {
 							Integer itemIdValue = subFieldIdEntry.getKey();
-							TreeMap<Integer, Object> valuedMap = (TreeMap<Integer, Object>) itemIdEntry.getValue();
+							Object valuedMap = itemIdEntry.getValue();
 							
 							log.debug(String.format("itemId: %s - %s", itemIdValue, itemIdEntry.toString()));
 							
 							if (fieldIdValue == 999) {
-								log.info(String.format("{%s,%s,%s,%s,%s} value: %s",
+								log.debug(String.format("{%s,%s,%s,%s,%s} value: %s",
 										rectypeValue, recindxValue, fieldIdValue,
 										subFieldIdValue, itemIdValue, "Image"));
 							} else {
-								log.info(String.format("{%s,%s,%s,%s,%s} value: %s",
+								log.debug(String.format("{%s,%s,%s,%s,%s} value: %s",
 										rectypeValue, recindxValue, fieldIdValue,
-										subFieldIdValue, itemIdValue, valuedMap.get(itemIdValue)));
+										subFieldIdValue, itemIdValue, valuedMap.toString()));
 							}
 						}
 					}
+				}
+			}
+		}
+	}
+	
+	
+	public boolean validate() {
+		
+		
+		boolean valid = true;
+		for (Map.Entry<Integer, Object> rectypeEntry : getRecordTypeMap().entrySet()) {
+			
+			Integer rectypeKey = rectypeEntry.getKey();
+			TreeMap<Integer, Object> recindxMap = (TreeMap<Integer, Object>) rectypeEntry.getValue();
+			
+			for (Map.Entry<Integer, Object> recindxEntry : recindxMap.entrySet()) {
+				
+				Integer recindxKey = recindxEntry.getKey();
+				TreeMap<Integer, Object> fieldIdMap = (TreeMap<Integer, Object>) recindxEntry.getValue();
+
+				for (Map.Entry<Integer, Object> fieldIdEntry : fieldIdMap.entrySet()) {
+					
+					Integer fieldIdKey = fieldIdEntry.getKey();
+					TreeMap<Integer, Object> subfieldIdMap = (TreeMap<Integer, Object>) fieldIdEntry.getValue();
+					
+					for (Map.Entry<Integer, Object> subfieldIdEntry : subfieldIdMap.entrySet()) {
+						
+						Integer subfieldIdKey = subfieldIdEntry.getKey();
+						TreeMap<Integer, Object> itemIdMap = (TreeMap<Integer, Object>) subfieldIdEntry.getValue();
+						
+						for (Map.Entry<Integer, Object> itemIdEntry : itemIdMap.entrySet()) {
+							
+							Integer itemIdKey = itemIdEntry.getKey();
+
+							String key = String.format("%s.%s.%s.%s.%s", rectypeKey, recindxKey, fieldIdKey, subfieldIdKey, itemIdKey);
+							String tag = String.format("%s.%03d", rectypeKey, fieldIdKey);
+							String value = (String) itemIdEntry.getValue();
+							
+							log.info(String.format("itemId: %s - tag: %s - %s", key, tag, value ));
+							
+							valid = valid && ansiNistValidator.validate(tag, fieldIdKey, subfieldIdKey, itemIdKey, value);
+							
+						}
+						
+					}
 					
 				}
+				
+				
 			}
 			
 		}
 		
+		return valid;
+
 	}
 	
-	
-	public void validate() {
+	/**
+	 * Get a list of all decode keys
+	 *
+	 * @return
+	 */
+	public List<List<Integer>> getKeyList() {
 		
-		traverse();
+		List<List<Integer>> keyList = new ArrayList<List<Integer>>();
 		
-//		this.validator.validate();
+		for (Map.Entry<Integer, Object> rectypeEntry : getRecordTypeMap().entrySet()) {
+			
+			int rectypeKey = rectypeEntry.getKey();
+			TreeMap<Integer, Object> recindxMap = (TreeMap<Integer, Object>) rectypeEntry.getValue();
+			
+			for (Map.Entry<Integer, Object> recindxEntry : recindxMap.entrySet()) {
+				
+				int recindxKey = recindxEntry.getKey();
+				TreeMap<Integer, Object> fieldIdMap = (TreeMap<Integer, Object>) recindxEntry.getValue();
+				
+				for (Map.Entry<Integer, Object> fieldIdEntry : fieldIdMap.entrySet()) {
+					
+					int fieldIdKey = fieldIdEntry.getKey();
+					TreeMap<Integer, Object> subfieldIdMap = (TreeMap<Integer, Object>) fieldIdEntry.getValue();
+					
+					for (Map.Entry<Integer, Object> fsubieldIdEntry : subfieldIdMap.entrySet()) {
+						
+						int subfieldIdKey = fsubieldIdEntry.getKey();
+						TreeMap<Integer, Object> itemldIdMap = (TreeMap<Integer, Object>) fsubieldIdEntry.getValue();
+						
+						for (Map.Entry<Integer, Object> itemldIdEntry : itemldIdMap.entrySet()) {
+							
+							int itemIdKey = itemldIdEntry.getKey();
+							keyList.add(Arrays.asList(new Integer[]{rectypeKey, recindxKey, fieldIdKey, subfieldIdKey, itemIdKey}));
+							
+						}
+						
+					}
+					
+				}
+				
+			}
+			
+		}
+		return keyList;
+		
 	}
 	
+	/**
+	 * Delete all record types
+	 *
+	 */
+	public void deleteAll() {
+		
+		Set<Map.Entry<Integer, Object>> keyset = recordTypeMap.entrySet();
+		
+		for (Map.Entry<Integer, Object> rectypeEntry : getRecordTypeMap().entrySet()) {
+			
+			TreeMap<Integer, Object> recindxMap = (TreeMap<Integer, Object>) recordTypeMap.get(recordTypeMap.firstKey());
+		
+			log.info("Delete all NistPacket record types = " + recindxMap.size());
+			recordTypeMap = new TreeMap<Integer, Object>();
+		
+			break;
+		}
+		
+	}
 }

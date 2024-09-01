@@ -157,7 +157,7 @@ public class AnsiNistDecoder {
 				ansiNistPacket.createItem(cleanSeperator(value), rectype[0], recindx[0], fieldId[0], subFieldId[0],
 						itemId[0]);
 				
-				log.info(String.format("field %d.%d.%d.%d.%d=%s", rectype[0], recindx[0], fieldId[0], subFieldId[0],
+				log.debug(String.format("field %d.%d.%d.%d.%d=%s", rectype[0], recindx[0], fieldId[0], subFieldId[0],
 						itemId[0], value));
 				
 			} else {
@@ -467,53 +467,7 @@ public class AnsiNistDecoder {
 		return length + strLength;
 	}
 	
-	/**
-	 * Get a list of all decode keys
-	 *
-	 * @return
-	 */
-	private List<List<Integer>> getKeyList() {
-		
-		List<List<Integer>> keyList = new ArrayList<List<Integer>>();
-		
-		for (Map.Entry<Integer, Object> rectypeEntry : this.ansiNistPacket.getRecordTypeMap().entrySet()) {
-			
-			int rectypeKey = rectypeEntry.getKey();
-			TreeMap<Integer, Object> recindxMap = (TreeMap<Integer, Object>) rectypeEntry.getValue();
-			
-			for (Map.Entry<Integer, Object> recindxEntry : recindxMap.entrySet()) {
-				
-				int recindxKey = recindxEntry.getKey();
-				TreeMap<Integer, Object> fieldIdMap = (TreeMap<Integer, Object>) recindxEntry.getValue();
-				
-				for (Map.Entry<Integer, Object> fieldIdEntry : fieldIdMap.entrySet()) {
-					
-					int fieldIdKey = fieldIdEntry.getKey();
-					TreeMap<Integer, Object> subfieldIdMap = (TreeMap<Integer, Object>) fieldIdEntry.getValue();
-					
-					for (Map.Entry<Integer, Object> fsubieldIdEntry : subfieldIdMap.entrySet()) {
-						
-						int subfieldIdKey = fsubieldIdEntry.getKey();
-						TreeMap<Integer, Object> itemldIdMap = (TreeMap<Integer, Object>) fsubieldIdEntry.getValue();
-						
-						for (Map.Entry<Integer, Object> itemldIdEntry : itemldIdMap.entrySet()) {
-							
-							int itemIdKey = itemldIdEntry.getKey();
-							keyList.add(Arrays.asList(new Integer[]{rectypeKey, recindxKey, fieldIdKey, subfieldIdKey, itemIdKey}));
-							
-						}
-						
-					}
-					
-				}
-				
-			}
-			
-		}
-		return keyList;
-		
-	}
-	
+
 	/**
 	 * Serialize AnsiNistPacket
 	 *
@@ -523,7 +477,7 @@ public class AnsiNistDecoder {
 		
 		byte[] empty = new byte[0];
 		String serialized = new String(empty, StandardCharsets.ISO_8859_1);
-		List<List<Integer>> keyList = getKeyList();
+		List<List<Integer>> keyList = ansiNistPacket.getKeyList();
 		int keycnt = 0;
 		for (Map.Entry<Integer, Object> rectypeEntry : ansiNistPacket.getRecordTypeMap().entrySet()) {
 			
@@ -572,11 +526,11 @@ public class AnsiNistDecoder {
 							}
 							
 							if (fieldIdKey != 999) {
-								log.info(String.format("Value key: {%s,%s,%s,%s,%s} = %s",
+								log.debug(String.format("Value key: {%s,%s,%s,%s,%s} = %s",
 										rectypeKey, recindxKey, fieldIdKey, subfieldIdKey,
 										itemIdKey, itemIdEntry.getValue().toString()));
 							} else {
-								log.info(String.format("Value key: {%s,%s,%s,%s,%s} = %s",
+								log.debug(String.format("Value key: {%s,%s,%s,%s,%s} = %s",
 										rectypeKey, recindxKey, fieldIdKey, subfieldIdKey,
 										itemIdKey, "Image"));
 								
@@ -598,7 +552,7 @@ public class AnsiNistDecoder {
 			
 		}
 		
-		log.info(String.format("Serialize object length: %s", serialized.length()));
+		log.debug(String.format("Serialize object length: %s", serialized.length()));
 		
 		return serialized.getBytes(StandardCharsets.ISO_8859_1);
 		
