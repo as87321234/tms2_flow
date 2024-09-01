@@ -149,6 +149,36 @@
           "field_occ_max": 1,
           "occurrence": [
           ]
+        },
+        {
+          "id": "1.009",
+          "identifier": "TCN",
+          "condition": "M",
+          "field_tag_name": "Transaction Control Number",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 13,
+          "field_max_size": 13,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "1.010",
+          "identifier": "TCR",
+          "condition": "O",
+          "field_tag_name": "Transaction Control Reference Number",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 13,
+          "field_max_size": 13,
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
         }
       ]
     }
