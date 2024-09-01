@@ -209,7 +209,23 @@
           "field_occ_max": 1,
           "occurrence": [
           ]
-        }]
+        },
+        {
+          "id": "1.014",
+          "identifier": "GMT",
+          "condition": "O",
+          "field_tag_name": "Greenwich Mean Time",
+          "character_set": [
+            "numeric", "alpha"
+          ],
+          "field_min_size": 15,
+          "field_max_size": 15,
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        }
+      ]
     }
   ]
 }
