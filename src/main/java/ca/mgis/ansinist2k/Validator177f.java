@@ -43,15 +43,15 @@ public class Validator177f extends AnsiNistValidator {
 							recordTag.getId(),
 							recordTag.getIdentifier(),
 							recordTag.getTag_name(),
-							recordTag.getTag_min_occurrence(),
-							recordTag.getTag_max_occurrence(),
-							occurrence.getOccurrence_tag_name(),
+							recordTag.getField_occ_min(),
+							recordTag.getField_occ_max(),
+							occurrence.getTag_name(),
 							occurrence.getCharacter_set(),
 							occurrence.getCondition(),
-							occurrence.getField_size_min(),
-							occurrence.getField_size_max(),
-							occurrence.getOccurrence_min(),
-							occurrence.getOccurrence_max()
+							occurrence.getField_min_size(),
+							occurrence.getField_max_size(),
+							occurrence.getField_occ_min(),
+							occurrence.getField_occ_max()
 					));
 					
 					if (!recordTag.getNote().contentEquals(""))
@@ -97,13 +97,56 @@ public class Validator177f extends AnsiNistValidator {
 	public boolean validateOccurrence(AnsiNistPacket packet, String tag, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKey, String value) {
 		
 		String key = String.format("%s:%s.%s.%s", tag, fieldIdKey, subfieldIdKey, itemIdKey);
-		
+		RecordTag recordTag = findTag(tag);
 		List<List<Integer>> keyList = packet.getKeyList();
+		
 		int rectype = Integer.parseInt(tag.split("\\.")[0]);
 		
+		if (subfieldIdKey == 1 && itemIdKey == 1 && recordTag.getOccurrence().size() == 0) {
+			
+			int occurrenceCnt = countOccurence(keyList, rectype, fieldIdKey, subfieldIdKey, itemIdKey);;
+			
+			int fieldOccMin = recordTag.getField_occ_min();
+			int fieldOccMax = recordTag.getField_occ_max();
+			
+			boolean valid = occurrenceCnt >= fieldOccMin && occurrenceCnt <= fieldOccMax;
+			
+			if (valid) {
+				log.info(String.format("validateCondition key: %s - length: %s ", key, valid));
+			} else {
+				log.error(String.format("validateCondition key: %s - length: %s ", key, valid));
+			}
+
+			return valid;
+			
+		} else {
+			
+			int occurrenceCnt = countOccurence(keyList, rectype, fieldIdKey, subfieldIdKey, itemIdKey);;
+			
+			int fieldOccMin = recordTag.occurrence.get(subfieldIdKey - 1).getField_occ_min();
+			int fieldOccMax = recordTag.occurrence.get(subfieldIdKey - 1).getField_occ_max();
+			
+			boolean valid = occurrenceCnt >= fieldOccMin && occurrenceCnt <= fieldOccMax;
+			
+			if (valid) {
+				log.info(String.format("validateCondition key: %s - length: %s ", key, valid));
+			} else {
+				log.error(String.format("validateCondition key: %s - length: %s ", key, valid));
+			}
+			
+			return valid;
+			
+		}
+		
+	}
+	
+	private int countOccurence(List<List<Integer>> keyList, int rectype, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKey) {
+		
 		int occurrenceCnt = 0;
+		
 		for (int i = 0; i < keyList.size(); i++) {
-			List<Integer> keyDetail = keyList.get(0);
+			
+			List<Integer> keyDetail = keyList.get(i);
 			
 			if (keyDetail.get(0) == rectype
 					&& keyDetail.get(2) == fieldIdKey
@@ -111,26 +154,45 @@ public class Validator177f extends AnsiNistValidator {
 					&& keyDetail.get(4) == itemIdKey) {
 				
 				occurrenceCnt++;
-		
+				
 			}
+			
 		}
 		
-		// Check CharacterSet
-		RecordTag recordTag = findTag(tag);
-		Occurrence occurrence = recordTag.occurrence.get(subfieldIdKey - 1);
+		return occurrenceCnt;
+	}
+	
+	private boolean validateCondition(List<List<Integer>> keyList, int rectype, Integer fieldIdKey,
+									  Integer subfieldIdKey, Integer itemIdKey, String condition) {
 		
-		int occurrenceMinSize = occurrence.getOccurrence_min();
-		int occurrenceMaxSize = occurrence.getOccurrence_max();
+		int occurrenceCnt = 0;
 		
-		boolean valid =  occurrenceCnt >= occurrenceMinSize && occurrenceCnt <= occurrenceMaxSize;
+		for (int i = 0; i < keyList.size(); i++) {
+			
+			List<Integer> keyDetail = keyList.get(i);
+			
+			if (keyDetail.get(0) == rectype
+					&& keyDetail.get(2) == fieldIdKey
+					&& keyDetail.get(3) == subfieldIdKey
+					&& keyDetail.get(4) == itemIdKey) {
+				
+				occurrenceCnt++;
+				
+			}
+			
+		}
+		
+		boolean valid = false;
+		valid = occurrenceCnt >= 1 && Objects.equals(condition, "M");
 		
 		if (valid) {
-			log.info(String.format("validateCondition key: %s value: %s - length: %s ", key, value, valid));
+			log.info(String.format("validateCondition  %s ", valid));
 		} else {
-			log.error(String.format("validateCondition key: %s value: %s - length: %s ", key, value, valid));
+			log.info(String.format("validateCondition  %s ", valid));
 		}
 		
 		return valid;
+		
 	}
 	
 	@Override
@@ -140,80 +202,107 @@ public class Validator177f extends AnsiNistValidator {
 		
 		List<List<Integer>> keyList = packet.getKeyList();
 		int rectype = Integer.parseInt(tag.split("\\.")[0]);
-		
-		int occurrenceCnt = 0;
-		for (int i = 0; i < keyList.size(); i++) {
-			List<Integer> keyDetail = keyList.get(0);
-			
-			if (keyDetail.get(0) == rectype
-					&& keyDetail.get(2) == fieldIdKey
-					&& keyDetail.get(3) == subfieldIdKey
-					&& keyDetail.get(4) == itemIdKey) {
-				
-				occurrenceCnt++;
-				
-			}
-		}
-		
-		// Check CharacterSet
 		RecordTag recordTag = findTag(tag);
-		Occurrence occurrence = recordTag.occurrence.get(subfieldIdKey - 1);
 		
-		String occurrenceCondition = occurrence.getCondition();
-
-		boolean valid = false;
-		
-		if (occurrenceCnt == 1 && Objects.equals(occurrenceCondition, "M")) {
-			valid = true;
-		}
-		
-		if (occurrenceCnt == 0 && Objects.equals(occurrenceCondition, "M")) {
-			valid = false;
-		}
-		
-		if (valid) {
-			log.info(String.format("validateCondition key: %s value: %s - length: %s ", key, value, valid));
+		if (subfieldIdKey == 1 && itemIdKey == 1 && recordTag.getOccurrence().size() == 0) {
+			
+			return validateCondition(keyList, rectype, fieldIdKey, subfieldIdKey, itemIdKey , recordTag.getCondition() );
+			
 		} else {
-			log.error(String.format("validateCondition key: %s value: %s - length: %s ", key, value, valid));
+			
+			return validateCondition(keyList, rectype, fieldIdKey, subfieldIdKey, itemIdKey , recordTag.getOccurrence().get(subfieldIdKey - 1).getCondition() );
+			
 		}
 		
-		return valid;
 	}
-
 
 	@Override
 	public boolean validateFieldLength(String tag, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKey, String value) {
 		
 		String key = String.format("%s:%s.%s.%s", tag, fieldIdKey, subfieldIdKey, itemIdKey);
 		
-		// Check CharacterSet
+		boolean valid;
 		
 		RecordTag recordTag = findTag(tag);
-		Occurrence occurrence = recordTag.occurrence.get(subfieldIdKey - 1);
 		
-		int fieldMinSize = occurrence.getField_size_min();
-		int fieldMaxSize = occurrence.getField_size_max();
-		
-		boolean valid =  value.length() >= fieldMinSize && value.length() <= fieldMaxSize;
-		
-		if (valid) {
-			log.info(String.format("validateFieldLength key: %s value: %s - length: %s ", key, value, valid));
+		if (subfieldIdKey == 1 && itemIdKey == 1 && recordTag.getOccurrence().size() == 0) {
+			
+			int fieldMinSize = recordTag.getField_min_size();
+			int fieldMaxSize = recordTag.getField_max_size();
+			
+			valid = value.length() >= fieldMinSize && value.length() <= fieldMaxSize;
+			
+			if (valid) {
+				log.info(String.format("validateFieldLength key: %s value: %s - length: %s ", key, value, valid));
+			} else {
+				log.error(String.format("validateFieldLength key: %s value: %s - length: %s ", key, value, valid));
+			}
+			
+			return valid;
+			
 		} else {
-			log.error(String.format("validateFieldLength key: %s value: %s - length: %s ", key, value, valid));
+			
+			Occurrence occurrence = recordTag.getOccurrence().get(subfieldIdKey - 1);
+			
+			int fieldMinSize = occurrence.getField_min_size();
+			int fieldMaxSize = occurrence.getField_max_size();
+			
+			valid = value.length() >= fieldMinSize && value.length() <= fieldMaxSize;
+			
+			if (valid) {
+				log.info(String.format("validateFieldLength key: %s value: %s - length: %s ", key, value, valid));
+			} else {
+				log.error(String.format("validateFieldLength key: %s value: %s - length: %s ", key, value, valid));
+			}
+			
+			return valid;
+			
 		}
 		
-		return valid;
 	}
+	
 	@Override
 	public boolean validateCharacterSet(String tag, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKey, String value) {
 		
 		String key = String.format("%s:%s.%s.%s", tag, fieldIdKey, subfieldIdKey, itemIdKey);
 		
-		// Check CharacterSet
 		RecordTag recordTag = findTag(tag);
-		Occurrence occurrence = recordTag.occurrence.get(subfieldIdKey - 1);
+		StringBuilder regex = new StringBuilder();
 		
-		List<String> characterSetList = occurrence.getCharacter_set();
+		if (subfieldIdKey == 1 && itemIdKey == 1 && recordTag.getOccurrence().size() == 0) {
+			
+			String regexStr = buildRegex(recordTag.getCharacter_set());
+			
+			boolean valid = value.matches(regexStr) ? true : false;
+			
+			if (valid) {
+				log.info(String.format("validateCharacterSet key: %s value: %s - matches: %s ", key, value, valid));
+			} else {
+				log.error(String.format("validateCharacterSet key: %s value: %s - matches: %s ", key, value, valid));
+			}
+			
+			return valid;
+			
+		} else {
+			
+			Occurrence occurrence = recordTag.getOccurrence().get(subfieldIdKey - 1);
+			
+			String regexStr = buildRegex(occurrence.getCharacter_set());
+			
+			boolean valid = value.matches(regexStr) ? true : false;
+			
+			if (valid) {
+				log.info(String.format("validateCharacterSet key: %s value: %s - matches: %s ", key, value, valid));
+			} else {
+				log.error(String.format("validateCharacterSet key: %s value: %s - matches: %s ", key, value, valid));
+			}
+			
+			return valid;
+			
+		}
+	}
+	
+	private String buildRegex(List<String> characterSetList) {
 		
 		StringBuilder regex = new StringBuilder();
 		
@@ -243,15 +332,9 @@ public class Validator177f extends AnsiNistValidator {
 		
 		regex = new StringBuilder(regex.substring(0, regex.length() - 1));
 		String regexStr = "[" + regex.toString() + "]+";
-		boolean valid = value.matches(regexStr) ? true : false;
 		
-		if (valid) {
-			log.info(String.format("validateCharacterSet key: %s value: %s - matches: %s ", key, value, valid));
-		} else {
-			log.error(String.format("validateCharacterSet key: %s value: %s - matches: %s ", key, value, valid));
-		}
+		return regexStr;
 		
-		return valid;
 	}
 	
 }
