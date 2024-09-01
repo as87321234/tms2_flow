@@ -339,6 +339,21 @@
               "field_occ_max": 1
             }
           ]
+        },
+        {
+          "id": "2.800",
+          "identifier": "DCN",
+          "condition": "M",
+          "field_tag_name": "Document Control Number",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 20,
+          "field_max_size": 20,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
         }
       ]
     }
