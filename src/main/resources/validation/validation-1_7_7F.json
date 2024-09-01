@@ -1,9 +1,9 @@
 {
-  "alpha_regx": "^[A-Z]*$",
-  "numeric_regx": "^[A-Z]*$",
-  "special_regx" : "^[#$&’()*,.]*$",
-  "crlf_regx" : "\r\n",
-  "period_regx" : ".",
+  "alpha_regx": "A-Z",
+  "numeric_regx": "0-9",
+  "special_regx": "#$&’()*\\,.",
+  "crlf_regx": "\r\n",
+  "period_regx": ".",
   "record_type": [
     {
       "id": 1,
