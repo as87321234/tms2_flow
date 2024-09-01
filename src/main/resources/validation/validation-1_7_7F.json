@@ -179,6 +179,21 @@
           "field_occ_max": 1,
           "occurrence": [
           ]
+        },
+        {
+          "id": "1.011",
+          "identifier": "NSR",
+          "condition": "M",
+          "field_tag_name": "Native Scanning Resolution",
+          "character_set": [
+            "numeric", "period"
+          ],
+          "field_min_size": 5,
+          "field_max_size": 5,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
         }
       ]
     }
