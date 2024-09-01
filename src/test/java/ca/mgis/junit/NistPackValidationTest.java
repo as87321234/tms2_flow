@@ -31,6 +31,7 @@ public class NistPackValidationTest {
 	@Test
 	public void loadEFT() throws Exception {
 		
+		byte[] orginal = new FileInputStream("src/main/resources/test1.eft").readAllBytes();
 		AnsiNistPacket ansiNistPacket = new AnsiNistPacket("src/main/resources/test1.eft", new Validator177f()  );
 		ansiNistPacket.setAnsiNistValidator( (new ValidationDeserializerImpl())
 				.deserialize(AnsiNistValidator.validation_1_7_7f));
@@ -40,7 +41,7 @@ public class NistPackValidationTest {
 		
 		FileOutputStream fos = null;
 		try {
-			fos = new FileOutputStream(new File("/Users/stlouisa/Downloads/test1_serialized.eft"));
+			fos = new FileOutputStream(new File("src/main/resources/test1_serialized.eft"));
 			fos.write(serializedEft);
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			
@@ -53,6 +54,8 @@ public class NistPackValidationTest {
 		} finally {
 			fos.close();
 		}
+		
+		Assertions.assertArrayEquals(orginal, serializedEft);
 		
 //		ansiNistPacket.validate();
 		
