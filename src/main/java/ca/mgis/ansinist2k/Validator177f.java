@@ -90,6 +90,7 @@ public class Validator177f extends AnsiNistValidator {
 		boolean valid = validateCharacterSet(tag, fieldIdKey, subfieldIdKey, itemIdKey, value);
 		boolean lengthValid = validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, value);
 		
+		log.warn("Not fully implemented validation ...");
 		return valid && lengthValid;
 	}
 
@@ -189,6 +190,28 @@ public class Validator177f extends AnsiNistValidator {
 			log.info(String.format("validateCondition  %s ", valid));
 		} else {
 			log.info(String.format("validateCondition  %s ", valid));
+		}
+		
+		return valid;
+		
+	}
+	
+	@Override
+	public boolean validateRegexPattern(String tag, Integer fieldIdKey,
+									  Integer subfieldIdKey, Integer itemIdKey, String value) {
+		
+		String key = String.format("%s:%s.%s.%s", tag, fieldIdKey, subfieldIdKey, itemIdKey);
+		
+		RecordTag recordTag = findTag(tag);
+		
+		String regexPattern =	recordTag.getRegexPattern();
+		
+		boolean valid = value.matches(regexPattern);
+		
+		if (valid) {
+			log.info(String.format("validate value: %s, regex:  %s ",value, regexPattern));
+		} else {
+			log.error(String.format("failed validate value: %s, regex:  %s ",value, regexPattern));
 		}
 		
 		return valid;

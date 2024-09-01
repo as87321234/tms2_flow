@@ -28,6 +28,7 @@
         {
           "id": "1.002",
           "identifier": "VER",
+          "condition": "M",
           "field_tag_name": "ANSI/NIST Version Number",
           "character_set": [
             "numeric"
@@ -36,7 +37,6 @@
           "field_max_size": 4,
           "field_occ_min": 1,
           "field_occ_max": 1,
-          "condition": "M",
           "occurrence": [
           ]
         },
@@ -77,6 +77,7 @@
         {
           "id": "1.004",
           "identifier": "TOT",
+          "condition": "M",
           "field_tag_name": "Type of Transaction",
           "character_set": [
             "alpha"
@@ -85,13 +86,13 @@
           "field_max_size": 5,
           "field_occ_min": 1,
           "field_occ_max": 1,
-          "condition": "M",
           "occurrence": [
           ]
         },
         {
           "id": "1.005",
           "identifier": "DAT",
+          "condition": "M",
           "field_tag_name": "Date",
           "character_set": [
             "numeric"
@@ -100,7 +101,37 @@
           "field_max_size": 8,
           "field_occ_min": 1,
           "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "1.006",
+          "identifier": "PRY",
           "condition": "M",
+          "field_tag_name": "Priority",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 1,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "regexPattern" : "[1-9]",
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "1.007",
+          "identifier": "DAI",
+          "condition": "M",
+          "field_tag_name": "Destination Agency Identifier",
+          "character_set": [
+            "numeric", "alpha"
+          ],
+          "field_min_size": 7,
+          "field_max_size": 7,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
           "occurrence": [
           ]
         }
