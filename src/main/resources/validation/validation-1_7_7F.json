@@ -807,6 +807,51 @@
               "field_occ_max": 1
             }
           ]
+        },
+        {
+          "id": "2.824",
+          "identifier": "OTN",
+          "condition": "O",
+          "field_tag_name": "Other Names/Alias",
+          "character_set": [
+          ],
+          "field_occ_min": 0,
+          "field_occ_max": 40,
+          "occurrence": [
+            {
+              "condition": "M",
+              "tag_name": "Surname",
+              "character_set": [
+                "alpha", "space", "hyphen", "apostrophe", "period"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 24,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Body Location Code",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 3,
+              "field_max_size": 3,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "O",
+              "tag_name": "Description",
+              "character_set": [
+                "numeric", "alpha", "special"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 20,
+              "field_occ_min": 0,
+              "field_occ_max": 1
+            }
+          ]
         }
       ]
     }
