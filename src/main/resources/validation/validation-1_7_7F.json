@@ -462,6 +462,23 @@
           "field_occ_max": 1,
           "occurrence": [
           ]
+        },
+        {
+          "id": "2.804",
+          "identifier": "IRN",
+          "condition": "O",
+          "field_tag_name": "Contributor Individual Reference Number",
+          "character_set": [
+            "numeric",
+            "alpha",
+            "special"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 32,
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
         }
       ]
     }
