@@ -596,6 +596,36 @@
           "field_occ_max": 1,
           "occurrence": [
           ]
+        },
+        {
+          "id": "2.808",
+          "identifier": "HAI",
+          "condition": "C",
+          "field_tag_name": "Hair Colour",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 2,
+          "field_max_size": 2,
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "2.809",
+          "identifier": "EYE",
+          "condition": "C",
+          "field_tag_name": "Eye Colour",
+          "character_set": [
+            "alpha"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 1,
+          "field_occ_min": 0,
+          "field_occ_max": 2,
+          "occurrence": [
+          ]
         }
       ]
     }
