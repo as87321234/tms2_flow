@@ -25,6 +25,8 @@ public class Validator177f extends AnsiNistValidator {
 	public String special_regx;
 	public String crlf_regx;
 	public String period_regx;
+	public String hyphen_regx;
+	public String space_regx;
 	
 	public ArrayList<RecordType> record_type;
 	

@@ -3,6 +3,8 @@
   "numeric_regx": "0-9",
   "special_regx": " #$&’()*\\,-.",
   "crlf_regx": "\r\n",
+  "hyphen_regx": "-",
+  "space_regx": " ",
   "period_regx": ".",
   "record_type": [
     {
@@ -149,7 +151,7 @@
           "field_max_size": 1,
           "field_occ_min": 1,
           "field_occ_max": 1,
-          "regexPattern" : "[1-9]",
+          "regexPattern": "[1-9]",
           "occurrence": [
           ]
         },
@@ -159,7 +161,8 @@
           "condition": "M",
           "field_tag_name": "Destination Agency Identifier",
           "character_set": [
-            "numeric", "alpha"
+            "numeric",
+            "alpha"
           ],
           "field_min_size": 7,
           "field_max_size": 7,
@@ -174,7 +177,8 @@
           "condition": "M",
           "field_tag_name": "Originating Agency Identifier",
           "character_set": [
-            "numeric", "alpha"
+            "numeric",
+            "alpha"
           ],
           "field_min_size": 7,
           "field_max_size": 7,
@@ -219,7 +223,8 @@
           "condition": "M",
           "field_tag_name": "Native Scanning Resolution",
           "character_set": [
-            "numeric", "period"
+            "numeric",
+            "period"
           ],
           "field_min_size": 5,
           "field_max_size": 5,
@@ -234,7 +239,8 @@
           "condition": "M",
           "field_tag_name": "Nominal Transmitting Resolution",
           "character_set": [
-            "numeric", "period"
+            "numeric",
+            "period"
           ],
           "field_min_size": 5,
           "field_max_size": 5,
@@ -249,7 +255,8 @@
           "condition": "O",
           "field_tag_name": "Greenwich Mean Time",
           "character_set": [
-            "numeric", "alpha"
+            "numeric",
+            "alpha"
           ],
           "field_min_size": 15,
           "field_max_size": 15,
@@ -309,7 +316,9 @@
               "condition": "M",
               "tag_name": "Originating Fingerprint Reading System Make",
               "character_set": [
-                "numeric","alpha","special"
+                "numeric",
+                "alpha",
+                "special"
               ],
               "field_min_size": 1,
               "field_max_size": 25,
@@ -320,7 +329,9 @@
               "condition": "M",
               "tag_name": "Originating Fingerprint Reading System Model",
               "character_set": [
-                "numeric","alpha","special"
+                "numeric",
+                "alpha",
+                "special"
               ],
               "field_min_size": 1,
               "field_max_size": 25,
@@ -331,7 +342,9 @@
               "condition": "M",
               "tag_name": "Originating Fingerprint Reading System Serial Number",
               "character_set": [
-                "numeric","alpha","special"
+                "numeric",
+                "alpha",
+                "special"
               ],
               "field_min_size": 1,
               "field_max_size": 50,
@@ -361,13 +374,76 @@
           "condition": "O",
           "field_tag_name": "Fingerprint Section Number",
           "character_set": [
-            "numeric","alpha"
+            "numeric",
+            "alpha"
           ],
           "field_min_size": 1,
           "field_max_size": 7,
           "field_occ_min": 0,
           "field_occ_max": 1,
           "occurrence": [
+          ]
+        },
+        {
+          "id": "2.802",
+          "identifier": "ADR",
+          "condition": "M",
+          "field_tag_name": "Address",
+          "character_set": [
+          ],
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+            {
+              "condition": "M",
+              "tag_name": "Apt./Unit # - Street #/Name",
+              "character_set": [
+                "numeric",
+                "alpha",
+                "special"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 50,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "City",
+              "character_set": [
+                "numeric",
+                "alpha",
+                "special"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 35,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "O",
+              "tag_name": "Province/State Code",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 2,
+              "field_max_size": 2,
+              "field_occ_min": 0,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "O",
+              "tag_name": "Postal Code/ZIP Code",
+              "character_set": [
+                "numeric",
+                "hyphen",
+                "space"
+              ],
+              "field_min_size": 2,
+              "field_max_size": 2,
+              "field_occ_min": 0,
+              "field_occ_max": 1
+            }
           ]
         }
       ]
