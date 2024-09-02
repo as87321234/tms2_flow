@@ -20,6 +20,7 @@ public class Validator{
 	public String period_regx;
 	public String hyphen_regx;
 	public String space_regx;
+	public String apostrophe_regx;
 	
 	public ArrayList<RecordType> record_type;
 	

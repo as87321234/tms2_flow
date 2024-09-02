@@ -27,6 +27,8 @@ public class Validator177f extends AnsiNistValidator {
 	public String period_regx;
 	public String hyphen_regx;
 	public String space_regx;
+	public String apostrophe_regx;
+	
 	
 	public ArrayList<RecordType> record_type;
 	
@@ -360,6 +362,14 @@ public class Validator177f extends AnsiNistValidator {
 			
 			if (characterSet.equals("special")) {
 				regex.append(special_regx).append(",");
+			}
+			
+			if (characterSet.equals("space")) {
+				regex.append(space_regx).append(",");
+			}
+			
+			if (characterSet.equals("apostrophe")) {
+				regex.append(apostrophe_regx).append(",");
 			}
 			
 		}
