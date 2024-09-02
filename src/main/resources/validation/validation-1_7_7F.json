@@ -686,7 +686,8 @@
           "field_occ_max": 1,
           "occurrence": [
           ]
-        },        {
+        },
+        {
           "id": "2.816",
           "identifier": "FLG",
           "condition": "O",
@@ -698,6 +699,21 @@
           "field_max_size": 1,
           "field_occ_min": 0,
           "field_occ_max": 3,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "2.817",
+          "identifier": "CTR",
+          "condition": "O",
+          "field_tag_name": "Response to Agency Identifier",
+          "character_set": [
+            "alpha", "numeric"
+          ],
+          "field_min_size": 6,
+          "field_max_size": 9,
+          "field_occ_min": 0,
+          "field_occ_max": 1,
           "occurrence": [
           ]
         }
