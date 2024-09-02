@@ -716,7 +716,8 @@
           "field_occ_max": 1,
           "occurrence": [
           ]
-        },        {
+        },
+        {
           "id": "2.818",
           "identifier": "YPF",
           "condition": "O",
@@ -726,6 +727,36 @@
           ],
           "field_min_size": 1,
           "field_max_size": 1,
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "2.819",
+          "identifier": "LGF",
+          "condition": "M",
+          "field_tag_name": "Language Flag",
+          "character_set": [
+            "alpha"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 1,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "2.822",
+          "identifier": "CPX",
+          "condition": "O",
+          "field_tag_name": "Complexion",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 4,
+          "field_max_size": 4,
           "field_occ_min": 0,
           "field_occ_max": 1,
           "occurrence": [
