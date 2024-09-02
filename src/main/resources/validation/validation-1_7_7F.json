@@ -626,6 +626,21 @@
           "field_occ_max": 2,
           "occurrence": [
           ]
+        },
+        {
+          "id": "2.810",
+          "identifier": "HGT",
+          "condition": "M",
+          "field_tag_name": "Height",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 3,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
         }
       ]
     }
