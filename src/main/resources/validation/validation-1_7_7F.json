@@ -505,6 +505,21 @@
               "field_max_size": 24,
               "field_occ_min": 1,
               "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Given Name 1",
+              "character_set": [
+                "alpha",
+                "space",
+                "hyphen",
+                "apostrophe",
+                "period"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 15,
+              "field_occ_min": 1,
+              "field_occ_max": 1
             }
           ]
         }
