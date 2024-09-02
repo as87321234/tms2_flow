@@ -794,6 +794,17 @@
               "field_max_size": 3,
               "field_occ_min": 1,
               "field_occ_max": 1
+            },
+            {
+              "condition": "O",
+              "tag_name": "Description",
+              "character_set": [
+                "numeric", "alpha", "special"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 20,
+              "field_occ_min": 0,
+              "field_occ_max": 1
             }
           ]
         }
