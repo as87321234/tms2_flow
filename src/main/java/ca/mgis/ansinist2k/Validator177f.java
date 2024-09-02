@@ -155,7 +155,7 @@ public class Validator177f extends AnsiNistValidator {
 			
 			if (keyDetail.get(0) == rectype
 					&& Objects.equals(keyDetail.get(2), fieldIdKey)
-					&& Objects.equals(keyDetail.get(3), subfieldIdKey)
+//					&& Objects.equals(keyDetail.get(3), subfieldIdKey)
 					&& Objects.equals(keyDetail.get(4), itemIdKey)) {
 				
 				occurrenceCnt++;
