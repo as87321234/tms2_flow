@@ -47,6 +47,7 @@
           "id": "1.003",
           "identifier": "CNT",
           "field_tag_name": "File Content",
+          "condition": "M",
           "character_set": [
             "numeric"
           ],
