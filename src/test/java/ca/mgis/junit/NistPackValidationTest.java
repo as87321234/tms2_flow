@@ -159,7 +159,7 @@ public class NistPackValidationTest {
 		packet.createItem("0500", 1, 1, fieldIdKey, 1, itemIdKey);
 		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, 1, itemIdKey, "9"));
 		packet.createItem("0500", 1, 1, fieldIdKey, 2, itemIdKey);
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, 1, itemIdKey, "9"));
+		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, 1, itemIdKey, "9"));
 		
 		// Condition Mandatory
 		log.info("Check field condition");
