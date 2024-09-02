@@ -195,7 +195,7 @@ public class Validator177f extends AnsiNistValidator {
 		}
 		
 		// Check if field is optional
-		if (Objects.equals(condition, "O")) {
+		if (Objects.equals(condition, "O") || Objects.equals(condition, "C")) {
 			valid = occurrenceCnt >= 0;
 		}
 		
