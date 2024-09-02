@@ -550,7 +550,51 @@
               "field_max_size": 15,
               "field_occ_min": 0,
               "field_occ_max": 1
+            },
+            {
+              "condition": "O",
+              "tag_name": "Given Name 4",
+              "character_set": [
+                "alpha",
+                "space",
+                "hyphen",
+                "apostrophe",
+                "period"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 15,
+              "field_occ_min": 0,
+              "field_occ_max": 1
+            },            {
+              "condition": "O",
+              "tag_name": "Given Name 5",
+              "character_set": [
+                "alpha",
+                "space",
+                "hyphen",
+                "apostrophe",
+                "period"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 15,
+              "field_occ_min": 0,
+              "field_occ_max": 1
             }
+          ]
+        },
+        {
+          "id": "2.807",
+          "identifier": "SEX",
+          "condition": "M",
+          "field_tag_name": "Sex",
+          "character_set": [
+            "alpha"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 1,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
           ]
         }
       ]
