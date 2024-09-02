@@ -671,6 +671,21 @@
           "field_occ_max": 1,
           "occurrence": [
           ]
+        },
+        {
+          "id": "2.815",
+          "identifier": "POB",
+          "condition": "M",
+          "field_tag_name": "Place of Birth",
+          "character_set": [
+            "alpha"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 1,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
         }
       ]
     }
