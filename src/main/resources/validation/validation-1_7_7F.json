@@ -6,6 +6,7 @@
   "hyphen_regx": "-",
   "space_regx": " ",
   "period_regx": ".",
+  "apostrophe_regx": "’",
   "record_type": [
     {
       "id": 1,
@@ -478,6 +479,33 @@
           "field_occ_min": 0,
           "field_occ_max": 1,
           "occurrence": [
+          ]
+        },
+        {
+          "id": "2.806",
+          "identifier": "NAME",
+          "condition": "M",
+          "field_tag_name": "Primary Name",
+          "character_set": [
+          ],
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+            {
+              "condition": "M",
+              "tag_name": "Surname",
+              "character_set": [
+                "alpha",
+                "space",
+                "hyphen",
+                "apostrophe",
+                "period"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 24,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            }
           ]
         }
       ]
