@@ -102,6 +102,7 @@ public class Validator177f extends AnsiNistValidator {
 	public boolean validateOccurrence(AnsiNistPacket packet, String tag, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKey, String value) {
 		
 		String key = String.format("%s:%s.%s.%s", tag, fieldIdKey, subfieldIdKey, itemIdKey);
+		
 		RecordTag recordTag = findTag(tag);
 		List<List<Integer>> keyList = packet.getKeyList();
 		
@@ -114,7 +115,8 @@ public class Validator177f extends AnsiNistValidator {
 			int fieldOccMin = recordTag.getField_occ_min();
 			int fieldOccMax = recordTag.getField_occ_max();
 			
-			boolean valid = occurrenceCnt >= fieldOccMin && occurrenceCnt <= fieldOccMax;
+			boolean valid = (recordTag.condition.equals("O") && occurrenceCnt == 0)
+					|| occurrenceCnt >= fieldOccMin && occurrenceCnt <= fieldOccMax;
 			
 			if (valid) {
 				log.info(String.format("validateCondition key: %s - length: %s ", key, valid));
@@ -131,7 +133,9 @@ public class Validator177f extends AnsiNistValidator {
 			int fieldOccMin = recordTag.occurrence.get(itemIdKey - 1).getField_occ_min();
 			int fieldOccMax = recordTag.occurrence.get(itemIdKey - 1).getField_occ_max();
 			
-			boolean valid = occurrenceCnt >= fieldOccMin && occurrenceCnt <= fieldOccMax;
+			boolean valid = (recordTag.condition.equals("O") && occurrenceCnt == 0)
+					|| occurrenceCnt >= fieldOccMin && occurrenceCnt <= fieldOccMax;
+			
 			
 			if (valid) {
 				log.info(String.format("validateCondition key: %s - length: %s ", key, valid));
