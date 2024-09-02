@@ -641,6 +641,36 @@
           "field_occ_max": 1,
           "occurrence": [
           ]
+        },
+        {
+          "id": "2.811",
+          "identifier": "WGT",
+          "condition": "M",
+          "field_tag_name": "Weight",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 3,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "2.814",
+          "identifier": "RACE",
+          "condition": "C",
+          "field_tag_name": "Race Descent",
+          "character_set": [
+            "alpha"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 1,
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
         }
       ]
     }

@@ -2097,6 +2097,118 @@ public class NistPackValidationTest {
 		
 	}
 	
+	@Test
+	public void tag_2_811() throws Exception {
+		
+		AnsiNistPacket packet = new AnsiNistPacket();
+		packet.setAnsiNistValidator( (new ValidationDeserializerImpl())
+				.deserialize(AnsiNistValidator.validation_1_7_7f));
+		AnsiNistValidator validator = packet.getAnsiNistValidator();
+		
+		String tag="2.811";
+		int fieldIdKey = 811;
+		int itemIdKey = 1;
+		
+		// Test CharacterSet
+		log.info("Check CharacterSet");
+		
+		packet.deleteAll();
+		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey,1,itemIdKey, "ABCDEFGHIJKLMNOPQRSTUVWXYZ"));
+		Assertions.assertTrue(validator.validateCharacterSet(tag, fieldIdKey,1,itemIdKey, "0123456789"));
+		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey,1,itemIdKey, " #$&’()*,-."));
+		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey,1,itemIdKey, " #$&’()*,-.0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"));
+		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey,1,itemIdKey, "AbCDEFGHIJKLMNOPQRSTUVWXYZ"));
+		
+		// Test min and max length
+		log.info("Check min and max record length");
+		
+		packet.deleteAll();
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey,1,itemIdKey, ""));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey,1,itemIdKey, "1"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey,1,itemIdKey, "12"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey,1,itemIdKey, "123"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey,1,itemIdKey, "1234"));
+		
+		// Test Min Max Occurrence
+		log.info("Check min and max number of occurrences");
+		
+		packet.deleteAll();
+		Assertions.assertFalse(validator.validateOccurrence( packet, tag, fieldIdKey,1,itemIdKey, "9"));
+		
+		packet.deleteAll();
+		packet.createItem("300", 2,1,fieldIdKey,1,itemIdKey);
+		Assertions.assertTrue(validator.validateOccurrence( packet, tag, fieldIdKey,1,itemIdKey, "9"));
+		
+		packet.deleteAll();
+		packet.createItem("300", 2,1,fieldIdKey,1,itemIdKey);
+		packet.createItem("300", 2,1,fieldIdKey,2,itemIdKey );
+		Assertions.assertFalse(validator.validateOccurrence( packet, tag, fieldIdKey,1,itemIdKey, "9"));
+		
+		// Condition Mandatory
+		log.info("Check field condition");
+		
+		packet.deleteAll();
+		packet.createItem("300", 2,1,fieldIdKey,1,itemIdKey);
+		Assertions.assertTrue(validator.validateCondition( packet, tag, fieldIdKey,1,itemIdKey, "9"));
+		packet.deleteAll();
+		Assertions.assertFalse(validator.validateCondition( packet, tag, 1,1,itemIdKey, "9"));
+		
+	}
+	@Test
+	public void tag_2_814() throws Exception {
+		
+		AnsiNistPacket packet = new AnsiNistPacket();
+		packet.setAnsiNistValidator( (new ValidationDeserializerImpl())
+				.deserialize(AnsiNistValidator.validation_1_7_7f));
+		AnsiNistValidator validator = packet.getAnsiNistValidator();
+		
+		String tag="2.814";
+		int fieldIdKey = 814;
+		int itemIdKey = 1;
+		
+		// Test CharacterSet
+		log.info("Check CharacterSet");
+		
+		packet.deleteAll();
+		Assertions.assertTrue(validator.validateCharacterSet(tag, fieldIdKey,1,itemIdKey, "ABCDEFGHIJKLMNOPQRSTUVWXYZ"));
+		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey,1,itemIdKey, "0123456789"));
+		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey,1,itemIdKey, " #$&’()*,-."));
+		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey,1,itemIdKey, " #$&’()*,-.0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"));
+		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey,1,itemIdKey, "AbCDEFGHIJKLMNOPQRSTUVWXYZ"));
+		
+		// Test min and max length
+		log.info("Check min and max record length");
+		
+		packet.deleteAll();
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey,1,itemIdKey, ""));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey,1,itemIdKey, "1"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey,1,itemIdKey, "12"));
+		
+		// Test Min Max Occurrence
+		log.info("Check min and max number of occurrences");
+		
+		packet.deleteAll();
+		Assertions.assertTrue(validator.validateOccurrence( packet, tag, fieldIdKey,1,itemIdKey, "9"));
+		
+		packet.deleteAll();
+		packet.createItem("300", 2,1,fieldIdKey,1,itemIdKey);
+		Assertions.assertTrue(validator.validateOccurrence( packet, tag, fieldIdKey,1,itemIdKey, "9"));
+		
+		packet.deleteAll();
+		packet.createItem("300", 2,1,fieldIdKey,1,itemIdKey);
+		packet.createItem("300", 2,1,fieldIdKey,2,itemIdKey );
+		Assertions.assertFalse(validator.validateOccurrence( packet, tag, fieldIdKey,1,itemIdKey, "9"));
+		
+		// Condition Mandatory
+		log.info("Check field condition");
+		
+		packet.deleteAll();
+		packet.createItem("300", 2,1,fieldIdKey,1,itemIdKey);
+		Assertions.assertTrue(validator.validateCondition( packet, tag, fieldIdKey,1,itemIdKey, "9"));
+		packet.deleteAll();
+		Assertions.assertTrue(validator.validateCondition( packet, tag, 1,1,itemIdKey, "9"));
+		
+	}
 	
 	
 }
