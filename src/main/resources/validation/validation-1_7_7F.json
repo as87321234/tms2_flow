@@ -783,6 +783,17 @@
               "field_max_size": 1,
               "field_occ_min": 1,
               "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Body Location Code",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 3,
+              "field_max_size": 3,
+              "field_occ_min": 1,
+              "field_occ_max": 1
             }
           ]
         }
