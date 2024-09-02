@@ -716,6 +716,20 @@
           "field_occ_max": 1,
           "occurrence": [
           ]
+        },        {
+          "id": "2.818",
+          "identifier": "YPF",
+          "condition": "O",
+          "field_tag_name": "Young Person Flag",
+          "character_set": [
+            "alpha"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 1,
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
         }
       ]
     }
