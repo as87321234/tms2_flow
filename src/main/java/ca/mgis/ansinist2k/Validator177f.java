@@ -68,7 +68,7 @@ public class Validator177f extends AnsiNistValidator {
 	}
 	
 	
-	private RecordTag findTag(String tag) {
+	public RecordTag findTag(String tag) {
 		
 		for (RecordType recordType : record_type) {
 			
@@ -97,7 +97,7 @@ public class Validator177f extends AnsiNistValidator {
 		log.warn("Not fully implemented validation ...");
 		return valid && lengthValid;
 	}
-
+	
 	@Override
 	public boolean validateOccurrence(AnsiNistPacket packet, String tag, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKey, String value) {
 		
@@ -110,7 +110,7 @@ public class Validator177f extends AnsiNistValidator {
 		
 		if (subfieldIdKey == 1 && itemIdKey == 1 && recordTag.getOccurrence().size() == 0) {
 			
-			int occurrenceCnt = countOccurence(keyList, rectype, fieldIdKey, subfieldIdKey, itemIdKey);;
+			int occurrenceCnt = countOccurrence(keyList, rectype, fieldIdKey, subfieldIdKey, itemIdKey);
 			
 			int fieldOccMin = recordTag.getField_occ_min();
 			int fieldOccMax = recordTag.getField_occ_max();
@@ -128,7 +128,7 @@ public class Validator177f extends AnsiNistValidator {
 			
 		} else {
 			
-			int occurrenceCnt = countOccurence(keyList, rectype, fieldIdKey, subfieldIdKey, itemIdKey);;
+			int occurrenceCnt = countOccurrence(keyList, rectype, fieldIdKey, subfieldIdKey, itemIdKey);;
 			
 			int fieldOccMin = recordTag.occurrence.get(itemIdKey - 1).getField_occ_min();
 			int fieldOccMax = recordTag.occurrence.get(itemIdKey - 1).getField_occ_max();
@@ -149,7 +149,7 @@ public class Validator177f extends AnsiNistValidator {
 		
 	}
 	
-	private int countOccurence(List<List<Integer>> keyList, int rectype, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKey) {
+	private int countOccurrence(List<List<Integer>> keyList, int rectype, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKey) {
 		
 		int occurrenceCnt = 0;
 		
@@ -160,8 +160,7 @@ public class Validator177f extends AnsiNistValidator {
 			if (keyDetail.get(0) == rectype
 					&& Objects.equals(keyDetail.get(2), fieldIdKey)
 					&& Objects.equals(keyDetail.get(3), subfieldIdKey)
-					&& Objects.equals(keyDetail.get(4), itemIdKey)
-			) {
+					&& Objects.equals(keyDetail.get(4), itemIdKey)) {
 				
 				occurrenceCnt++;
 				
@@ -235,6 +234,15 @@ public class Validator177f extends AnsiNistValidator {
 	}
 	
 	@Override
+	public int getOccurrenceCount(AnsiNistPacket packet, int rectype, int fieldIdKey, int subfieldIdKey, int itemIdKey) {
+		
+		List<List<Integer>> keyList = packet.getKeyList();
+		
+		return countOccurrence(keyList, rectype, fieldIdKey, subfieldIdKey, itemIdKey);
+		
+	}
+	
+	@Override
 	public boolean validateCondition(AnsiNistPacket packet, String tag, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKey, String value) {
 		
 		String key = String.format("%s:%s.%s.%s", tag, fieldIdKey, subfieldIdKey, itemIdKey);
@@ -243,7 +251,7 @@ public class Validator177f extends AnsiNistValidator {
 		int rectype = Integer.parseInt(tag.split("\\.")[0]);
 		RecordTag recordTag = findTag(tag);
 		
-		int occurrenceCnt = countOccurence(keyList, rectype, fieldIdKey, subfieldIdKey, itemIdKey);
+		int occurrenceCnt = countOccurrence(keyList, rectype, fieldIdKey, subfieldIdKey, itemIdKey);
 		
 		boolean valid = false;
 		if (subfieldIdKey == 1 && itemIdKey == 1 && recordTag.getOccurrence().size() == 0) {
