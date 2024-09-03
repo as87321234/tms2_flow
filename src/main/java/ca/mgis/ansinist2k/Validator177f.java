@@ -236,6 +236,46 @@ public class Validator177f extends AnsiNistValidator {
 	}
 	
 	@Override
+	public String getAlphaCharacterSet() {
+		return "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	}
+	
+	@Override
+	public String getNumericCharacterSet() {
+		return "0123456789";
+	}
+	
+	@Override
+	public String getSpecialCharacterSet() {
+		return " #$&’()*,-.";
+	}
+	
+	@Override
+	public String getCrlfCharacterSet() {
+		return "\r\n";
+	}
+	
+	@Override
+	public String getPeriodCharacterSet() {
+		return ".";
+	}
+	
+	@Override
+	public String getHyphenCharacterSet() {
+		return "-";
+	}
+	
+	@Override
+	public String getSpaceCharacterSet() {
+		return " ";
+	}
+	
+	@Override
+	public String getApostropheCharacterSet() {
+		return "’";
+	}
+	
+	@Override
 	public boolean validateCondition(AnsiNistPacket packet, String tag, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKey, String value) {
 		
 		String key = String.format("%s:%s.%s.%s", tag, fieldIdKey, subfieldIdKey, itemIdKey);

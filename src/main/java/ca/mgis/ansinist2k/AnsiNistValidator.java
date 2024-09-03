@@ -13,6 +13,8 @@ public abstract class AnsiNistValidator {
 	static public String special_regx;
 	static public String crlf_regx;
 	static public String period_regx;
+	static public String space_regx;
+	static public String hyphen_regx;
 	
 	
 	public static String validation_1_7_7f = "/Users/stlouisa/IdeaProjects/tms2_flow/src/main/resources/validation/validation-1_7_7F.json";
@@ -29,4 +31,21 @@ public abstract class AnsiNistValidator {
 	
 	public abstract boolean validateRegexPattern(String tag, Integer fieldIdKey,
 												 Integer subfieldIdKey, Integer itemIdKey, String value);
+	
+	public abstract String getAlphaCharacterSet();
+	
+	public abstract String getNumericCharacterSet();
+	
+	public abstract String getSpecialCharacterSet();
+	
+	public abstract String getCrlfCharacterSet();
+	
+	public abstract String getPeriodCharacterSet();
+	
+	public abstract String getHyphenCharacterSet();
+	
+	public abstract String getSpaceCharacterSet();
+	
+	public abstract String getApostropheCharacterSet();
+	
 }
