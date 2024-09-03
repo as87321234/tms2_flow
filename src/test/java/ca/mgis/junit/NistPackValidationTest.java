@@ -81,41 +81,42 @@ public class NistPackValidationTest {
 		int recordType = 1;
 		int fieldIdKey = 1;
 		int subfieldIdKey = 1;
+		int itemIdKey = 1;
 		
 		// Test CharacterSet
 		log.info("Check CharacterSet");
 		
 		packet.deleteAll();
-		checkCharacterSet("N", validator, tag, fieldIdKey, subfieldIdKey);
+		checkCharacterSet("N", validator, tag, fieldIdKey, itemIdKey);
 		
 		// Test Min Max Occurrence
 		log.info("Check min and max number of occurrences");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, itemIdKey, itemIdKey, ""));
 		
 		packet.deleteAll();
-		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, 1);
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		packet.createItem("", recordType, 2, fieldIdKey, itemIdKey, itemIdKey);
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, itemIdKey, itemIdKey, ""));
 		
 		// Condition Mandatory
 		log.info("Check field condition");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, itemIdKey, itemIdKey, ""));
 		
 		packet.deleteAll();
-		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, 1);
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		packet.createItem("", recordType, 2, fieldIdKey, itemIdKey, itemIdKey);
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, itemIdKey, itemIdKey, ""));
 		
 		// Test min and max length
 		log.info("Check min and max record length");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "9"));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "99"));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "999"));
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "9999"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, itemIdKey, itemIdKey, "9"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, itemIdKey, itemIdKey, "99"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, itemIdKey, itemIdKey, "999"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, itemIdKey, itemIdKey, "9999"));
 		
 	}
 	
@@ -131,6 +132,7 @@ public class NistPackValidationTest {
 		int recordType = 1;
 		int fieldIdKey = 2;
 		int subfieldIdKey = 1;
+		int itemIdKey = 1;
 		
 		// Test CharacterSet
 		log.info("Check CharacterSet");
@@ -142,27 +144,27 @@ public class NistPackValidationTest {
 		log.info("Check min and max number of occurrences");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		packet.deleteAll();
-		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, 1);
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, itemIdKey);
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		// Condition Mandatory
 		log.info("Check field condition");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		packet.deleteAll();
-		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, 1);
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, itemIdKey);
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		// Test min and max length
 		log.info("Check min and max record length");
 		
 		packet.deleteAll();
-		packet.createItem("300", recordType, 1, fieldIdKey, subfieldIdKey, 1);
+		packet.createItem("300", recordType, 1, fieldIdKey, subfieldIdKey, itemIdKey);
 		
 	}
 	
@@ -178,6 +180,7 @@ public class NistPackValidationTest {
 		int recordType = 1;
 		int fieldIdKey = 3;
 		int subfieldIdKey = 1;
+		int itemIdKey = 1;
 		
 		// Test CharacterSet
 		log.info("Check CharacterSet");
@@ -189,31 +192,31 @@ public class NistPackValidationTest {
 		log.info("Check min and max number of occurrences");
 		
 		packet.deleteAll();
-		packet.createItem("1", recordType, 1, fieldIdKey, subfieldIdKey, 1);
-		packet.createItem("5", recordType, 1, fieldIdKey, subfieldIdKey, 2);
+		packet.createItem("1", recordType, 1, fieldIdKey, subfieldIdKey, itemIdKey);
+		packet.createItem("5", recordType, 1, fieldIdKey, subfieldIdKey, itemIdKey+1);
 		
 		
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		// Condition Mandatory
 		log.info("Check field condition");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		packet.deleteAll();
-		packet.createItem("1", recordType, 1, fieldIdKey, subfieldIdKey, 1);
-		packet.createItem("5", recordType, 1, fieldIdKey, subfieldIdKey, 2);
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		packet.createItem("1", recordType, 1, fieldIdKey, subfieldIdKey, itemIdKey);
+		packet.createItem("5", recordType, 1, fieldIdKey, subfieldIdKey, itemIdKey+1);
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		// Test min and max length
 		log.info("Check min and max record length");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, ""));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "9"));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "99"));
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "999"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "9"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "99"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "999"));
 		
 	}
 	
@@ -229,6 +232,7 @@ public class NistPackValidationTest {
 		int recordType = 1;
 		int fieldIdKey = 3;
 		int subfieldIdKey = 2;
+		int itemIdKey = 1;
 		
 		// Test CharacterSet
 		log.info("Check CharacterSet");
@@ -240,35 +244,35 @@ public class NistPackValidationTest {
 		log.info("Check min and max number of occurrences");
 		
 		packet.deleteAll();
-		packet.createItem("1", recordType, 1, fieldIdKey, subfieldIdKey, 1);
-		packet.createItem("5", recordType, 1, fieldIdKey, subfieldIdKey, 2);
+		packet.createItem("1", recordType, 1, fieldIdKey, subfieldIdKey, itemIdKey);
+		packet.createItem("5", recordType, 1, fieldIdKey, subfieldIdKey, itemIdKey+1);
 		
 		
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		// Condition Mandatory
 		log.info("Check field condition");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		packet.deleteAll();
-		packet.createItem("1", recordType, 1, fieldIdKey, subfieldIdKey, 1);
-		packet.createItem("5", recordType, 1, fieldIdKey, subfieldIdKey, 2);
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		packet.createItem("1", recordType, 1, fieldIdKey, subfieldIdKey, itemIdKey);
+		packet.createItem("5", recordType, 1, fieldIdKey, subfieldIdKey, itemIdKey+1);
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		
 		// Test min and max length
 		log.info("Check min and max record length");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, ""));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "9"));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "99"));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "999"));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "9999"));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "99999"));
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "999999"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "9"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "99"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "999"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "9999"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "99999"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "999999"));
 		
 	}
 	@Test
@@ -283,6 +287,7 @@ public class NistPackValidationTest {
 		int recordType = 1;
 		int fieldIdKey = 3;
 		int subfieldIdKey = 3;
+		int itemIdKey = 1;
 		
 		// Test CharacterSet
 		log.info("Check CharacterSet");
@@ -294,35 +299,35 @@ public class NistPackValidationTest {
 		log.info("Check min and max number of occurrences");
 		
 		packet.deleteAll();
-		packet.createItem("1", recordType, 1, fieldIdKey, subfieldIdKey, 1);
-		packet.createItem("5", recordType, 1, fieldIdKey, subfieldIdKey, 2);
+		packet.createItem("1", recordType, 1, fieldIdKey, subfieldIdKey, itemIdKey);
+		packet.createItem("5", recordType, 1, fieldIdKey, subfieldIdKey, itemIdKey + 1);
 		
 		
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		// Condition Mandatory
 		log.info("Check field condition");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		packet.deleteAll();
-		packet.createItem("1", recordType, 1, fieldIdKey, subfieldIdKey, 1);
-		packet.createItem("5", recordType, 1, fieldIdKey, subfieldIdKey, 2);
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		packet.createItem("1", recordType, 1, fieldIdKey, subfieldIdKey, itemIdKey);
+		packet.createItem("5", recordType, 1, fieldIdKey, subfieldIdKey, itemIdKey+1);
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		
 		// Test min and max length
 		log.info("Check min and max record length");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, ""));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "9"));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "99"));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "999"));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "9999"));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "99999"));
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "999999"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "9"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "99"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "999"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "9999"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "99999"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "999999"));
 		
 	}
 	
@@ -338,6 +343,7 @@ public class NistPackValidationTest {
 		int recordType = 1;
 		int fieldIdKey = 4;
 		int subfieldIdKey = 1;
+		int itemIdKey = 1;
 		
 		// Test CharacterSet
 		log.info("Check CharacterSet");
@@ -349,32 +355,32 @@ public class NistPackValidationTest {
 		log.info("Check min and max number of occurrences");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		packet.deleteAll();
-		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, 1);
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, itemIdKey);
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		// Condition Mandatory
 		log.info("Check field condition");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		packet.deleteAll();
-		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, 1);
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, itemIdKey);
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		// Test min and max length
 		log.info("Check min and max record length");
 		
 		packet.deleteAll();
 		
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey,subfieldIdKey,1, "AA"));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey,subfieldIdKey,1, "AAA"));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey,subfieldIdKey,1, "AAAA"));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey,subfieldIdKey,1, "AAAAA"));
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey,subfieldIdKey,1, "AAAAAA"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey,subfieldIdKey,itemIdKey, "AA"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey,subfieldIdKey,itemIdKey, "AAA"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey,subfieldIdKey,itemIdKey, "AAAA"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey,subfieldIdKey,itemIdKey, "AAAAA"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey,subfieldIdKey,itemIdKey, "AAAAAA"));
 		
 	}
 	
@@ -390,6 +396,7 @@ public class NistPackValidationTest {
 		int recordType = 1;
 		int fieldIdKey = 5;
 		int subfieldIdKey = 1;
+		int itemIdKey = 1;
 		
 		// Test CharacterSet
 		log.info("Check CharacterSet");
@@ -401,29 +408,29 @@ public class NistPackValidationTest {
 		log.info("Check min and max number of occurrences");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		packet.deleteAll();
-		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, 1);
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, itemIdKey);
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		// Condition Mandatory
 		log.info("Check field condition");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		packet.deleteAll();
-		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, 1);
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, itemIdKey);
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		// Test min and max length
 		log.info("Check min and max record length");
 		
 		packet.deleteAll();
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "20240101"));
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "202401012"));
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "202401013"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "20240101"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "202401012"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "202401013"));
 		
 	}
 	
@@ -439,6 +446,7 @@ public class NistPackValidationTest {
 		int recordType = 1;
 		int fieldIdKey = 6;
 		int subfieldIdKey = 1;
+		int itemIdKey = 1;
 		
 		// Test CharacterSet
 		log.info("Check CharacterSet");
@@ -450,29 +458,29 @@ public class NistPackValidationTest {
 		log.info("Check min and max number of occurrences");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		packet.deleteAll();
-		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, 1);
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, itemIdKey);
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		// Condition Mandatory
 		log.info("Check field condition");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		packet.deleteAll();
-		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, 1);
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, itemIdKey);
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		// Test min and max length
 		log.info("Check min and max record length");
 		
 		packet.deleteAll();
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "0"));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "1"));
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "11"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "0"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "1"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "11"));
 		
 	}
 	
@@ -488,6 +496,7 @@ public class NistPackValidationTest {
 		int recordType = 1;
 		int fieldIdKey = 7;
 		int subfieldIdKey = 1;
+		int itemIdKey = 1;
 		
 		// Test CharacterSet
 		log.info("Check CharacterSet");
@@ -499,32 +508,32 @@ public class NistPackValidationTest {
 		log.info("Check min and max number of occurrences");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		packet.deleteAll();
-		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, 1);
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, itemIdKey);
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		// Condition Mandatory
 		log.info("Check field condition");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		packet.deleteAll();
-		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, 1);
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, itemIdKey);
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		// Test min and max length
 		log.info("Check min and max record length");
 		
 		packet.deleteAll();
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "0000000"));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "ON00000"));
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "00000000"));
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "ON000000"));
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "000000"));
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "ON0000"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "0000000"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "ON00000"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "00000000"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "ON000000"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "000000"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "ON0000"));
 		
 	}
 	
@@ -540,6 +549,7 @@ public class NistPackValidationTest {
 		int recordType = 1;
 		int fieldIdKey = 8;
 		int subfieldIdKey = 1;
+		int itemIdKey = 1;
 		
 		// Test CharacterSet
 		log.info("Check CharacterSet");
@@ -551,32 +561,32 @@ public class NistPackValidationTest {
 		log.info("Check min and max number of occurrences");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		packet.deleteAll();
-		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, 1);
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, itemIdKey);
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		// Condition Mandatory
 		log.info("Check field condition");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		packet.deleteAll();
-		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, 1);
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, itemIdKey);
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		// Test min and max length
 		log.info("Check min and max record length");
 		
 		packet.deleteAll();
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "0000000"));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "ON00000"));
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "00000000"));
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "ON000000"));
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "000000"));
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "ON0000"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "0000000"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "ON00000"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "00000000"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "ON000000"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "000000"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "ON0000"));
 		
 	}
 	
@@ -592,6 +602,7 @@ public class NistPackValidationTest {
 		int recordType = 1;
 		int fieldIdKey = 9;
 		int subfieldIdKey = 1;
+		int itemIdKey = 1;
 		
 		// Test CharacterSet
 		log.info("Check CharacterSet");
@@ -603,30 +614,30 @@ public class NistPackValidationTest {
 		log.info("Check min and max number of occurrences");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		packet.deleteAll();
-		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, 1);
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, itemIdKey);
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		// Condition Mandatory
 		log.info("Check field condition");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		packet.deleteAll();
-		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, 1);
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, itemIdKey);
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		
 		// Test min and max length
 		log.info("Check min and max record length");
 		
 		packet.deleteAll();
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "0000000000000"));
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "00000000000000"));
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "000000000000"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "0000000000000"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "00000000000000"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "000000000000"));
 		
 	}
 	
@@ -642,6 +653,7 @@ public class NistPackValidationTest {
 		int recordType = 1;
 		int fieldIdKey = 10;
 		int subfieldIdKey = 1;
+		int itemIdKey = 1;
 		
 		// Test CharacterSet
 		log.info("Check CharacterSet");
@@ -653,29 +665,29 @@ public class NistPackValidationTest {
 		log.info("Check min and max number of occurrences");
 		
 		packet.deleteAll();
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		packet.deleteAll();
-		packet.createItem("", 1, 2, fieldIdKey, subfieldIdKey, 1);
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		packet.createItem("", 1, 2, fieldIdKey, subfieldIdKey, itemIdKey);
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		// Condition Mandatory
 		log.info("Check field condition");
 		
 		packet.deleteAll();
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		packet.deleteAll();
-		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, 1);
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, itemIdKey);
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		// Test min and max length
 		log.info("Check min and max record length");
 		
 		packet.deleteAll();
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "0000000000000"));
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "00000000000000"));
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "000000000000"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "0000000000000"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "00000000000000"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "000000000000"));
 		
 	}
 	
@@ -691,6 +703,7 @@ public class NistPackValidationTest {
 		int recordType = 1;
 		int fieldIdKey = 11;
 		int subfieldIdKey = 1;
+		int itemIdKey = 1;
 		
 		// Test CharacterSet
 		log.info("Check CharacterSet");
@@ -702,31 +715,31 @@ public class NistPackValidationTest {
 		log.info("Check min and max number of occurrences");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		packet.deleteAll();
-		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, 1);
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, itemIdKey);
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		// Condition Mandatory
 		log.info("Check field condition");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		packet.deleteAll();
-		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, 1);
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, itemIdKey);
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		// Test min and max length
 		log.info("Check min and max record length");
 		
 		packet.deleteAll();
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "00000"));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "00.00"));
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "0000"));
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "00.0"));
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "00.000"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "00000"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "00.00"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "0000"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "00.0"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "00.000"));
 		
 	}
 	
@@ -742,6 +755,7 @@ public class NistPackValidationTest {
 		int recordType = 1;
 		int fieldIdKey = 12;
 		int subfieldIdKey = 1;
+		int itemIdKey = 1;
 		
 		// Test CharacterSet
 		log.info("Check CharacterSet");
@@ -753,32 +767,32 @@ public class NistPackValidationTest {
 		log.info("Check min and max number of occurrences");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		packet.deleteAll();
-		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, 1);
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, itemIdKey);
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		// Condition Mandatory
 		log.info("Check field condition");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		packet.deleteAll();
-		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, 1);
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, itemIdKey);
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		
 		// Test min and max length
 		log.info("Check min and max record length");
 		
 		packet.deleteAll();
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "00000"));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "00.00"));
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "0000"));
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "00.0"));
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "00.000"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "00000"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "00.00"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "0000"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "00.0"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "00.000"));
 		
 	}
 	
@@ -794,6 +808,7 @@ public class NistPackValidationTest {
 		int recordType = 1;
 		int fieldIdKey = 14;
 		int subfieldIdKey = 1;
+		int itemIdKey = 1;
 		
 		// Test CharacterSet
 		log.info("Check CharacterSet");
@@ -805,29 +820,29 @@ public class NistPackValidationTest {
 		log.info("Check min and max number of occurrences");
 		
 		packet.deleteAll();
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		packet.deleteAll();
-		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, 1);
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, itemIdKey);
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		// Condition Mandatory
 		log.info("Check field condition");
 		
 		packet.deleteAll();
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		packet.deleteAll();
-		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, 1);
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, itemIdKey);
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		// Test min and max length
 		log.info("Check min and max record length");
 		
 		packet.deleteAll();
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "20200325173337Z"));
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "202003251733370Z"));
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "2020032517333Z"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "20200325173337Z"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "202003251733370Z"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "2020032517333Z"));
 		
 	}
 	
@@ -843,52 +858,53 @@ public class NistPackValidationTest {
 		int recordType = 2;
 		int fieldIdKey = 1;
 		int subfieldIdKey = 1;
+		int itemIdKey = 1;
 		
 		// Test CharacterSet
 		log.info("Check CharacterSet");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getAlphaCharacterSet()));
-		Assertions.assertTrue(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getNumericCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpecialCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getCrlfCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getHyphenCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getPeriodCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpaceCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getApostropheCharacterSet()));
+		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, itemIdKey, validator.getAlphaCharacterSet()));
+		Assertions.assertTrue(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, itemIdKey, validator.getNumericCharacterSet()));
+		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, itemIdKey, validator.getSpecialCharacterSet()));
+		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, itemIdKey, validator.getCrlfCharacterSet()));
+		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, itemIdKey, validator.getHyphenCharacterSet()));
+		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, itemIdKey, validator.getPeriodCharacterSet()));
+		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, itemIdKey, validator.getSpaceCharacterSet()));
+		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, itemIdKey, validator.getApostropheCharacterSet()));
 		
 		// Test Min Max Occurrence
 		log.info("Check min and max number of occurrences");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		packet.deleteAll();
-		packet.createItem("", recordType, 1, fieldIdKey, subfieldIdKey, 1);
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		packet.createItem("", recordType, 1, fieldIdKey, subfieldIdKey, itemIdKey);
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		// Condition Mandatory
 		log.info("Check field condition");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		packet.deleteAll();
-		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, 1);
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, itemIdKey);
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, itemIdKey, ""));
 		
 		// Test min and max length
 		log.info("Check min and max record length");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "9"));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "99"));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "999"));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "9999"));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "99999"));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "999999"));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "9999999"));
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "99999999"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "9"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "99"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "999"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "9999"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "99999"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "999999"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "9999999"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, "99999999"));
 		
 	}
 	
