@@ -390,40 +390,20 @@ public class Validator177f extends AnsiNistValidator {
 			
 			if (characterSet.equals("numeric")) {
 				regex.append(numeric_regx).append(",");
-				break;
-			}
-			
-			if (characterSet.equals("alpha")) {
+			} else if (characterSet.equals("alpha")) {
 				regex.append(alpha_regx).append(",");
-				break;
-			}
-			
-			if (characterSet.equals("crlf")) {
+			} else if (characterSet.equals("crlf")) {
 				regex.append(crlf_regx).append(",");
-				break;
-			}
-			
-			if (characterSet.equals("period")) {
+			} else if (characterSet.equals("period")) {
 				regex.append(period_regx).append(",");
-				break;
-			}
-			
-			if (characterSet.equals("special")) {
+			}else if (characterSet.equals("special")) {
 				regex.append(special_regx).append(",");
-				break;
-			}
-			
-			if (characterSet.equals("space")) {
+			} else if (characterSet.equals("space")) {
 				regex.append(space_regx).append(",");
-				break;
-			}
-			
-			if (characterSet.equals("apostrophe")) {
+			} else if (characterSet.equals("apostrophe")) {
 				regex.append(apostrophe_regx).append(",");
-				break;
-			}
-
-			throw new Exception("Invalid character set. ");
+			} else
+				throw new Exception("Invalid character set. ");
 		}
 		
 		regex = new StringBuilder(regex.substring(0, regex.length() - 1));

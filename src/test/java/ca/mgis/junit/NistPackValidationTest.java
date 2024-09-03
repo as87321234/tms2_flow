@@ -1,7 +1,11 @@
 package ca.mgis.junit;
 
-import ca.mgis.ansinist2k.*;
+import ca.mgis.ansinist2k.AnsiNistPacket;
+import ca.mgis.ansinist2k.AnsiNistValidator;
+import ca.mgis.ansinist2k.ValidationDeserializerImpl;
+import ca.mgis.ansinist2k.Validator177f;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -82,15 +86,8 @@ public class NistPackValidationTest {
 		log.info("Check CharacterSet");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getAlphaCharacterSet()));
-		Assertions.assertTrue(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getNumericCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpecialCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getCrlfCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getHyphenCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getPeriodCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpaceCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getApostropheCharacterSet()));
-
+		checkCharacterSet("N", validator, tag, fieldIdKey, subfieldIdKey);
+		
 		// Test Min Max Occurrence
 		log.info("Check min and max number of occurrences");
 		
@@ -139,14 +136,7 @@ public class NistPackValidationTest {
 		log.info("Check CharacterSet");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getAlphaCharacterSet()));
-		Assertions.assertTrue(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getNumericCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpecialCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getCrlfCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getHyphenCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getPeriodCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpaceCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getApostropheCharacterSet()));
+		checkCharacterSet("N", validator, tag, fieldIdKey, subfieldIdKey);
 		
 		// Test Min Max Occurrence
 		log.info("Check min and max number of occurrences");
@@ -193,14 +183,7 @@ public class NistPackValidationTest {
 		log.info("Check CharacterSet");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getAlphaCharacterSet()));
-		Assertions.assertTrue(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getNumericCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpecialCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getCrlfCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getHyphenCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getPeriodCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpaceCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getApostropheCharacterSet()));
+		checkCharacterSet("N", validator, tag, fieldIdKey, subfieldIdKey);
 		
 		// Test Min Max Occurrence
 		log.info("Check min and max number of occurrences");
@@ -251,14 +234,7 @@ public class NistPackValidationTest {
 		log.info("Check CharacterSet");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getAlphaCharacterSet()));
-		Assertions.assertTrue(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getNumericCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpecialCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getCrlfCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getHyphenCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getPeriodCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpaceCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getApostropheCharacterSet()));
+		checkCharacterSet("N", validator, tag, fieldIdKey, subfieldIdKey);
 		
 		// Test Min Max Occurrence
 		log.info("Check min and max number of occurrences");
@@ -312,14 +288,7 @@ public class NistPackValidationTest {
 		log.info("Check CharacterSet");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getAlphaCharacterSet()));
-		Assertions.assertTrue(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getNumericCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpecialCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getCrlfCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getHyphenCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getPeriodCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpaceCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getApostropheCharacterSet()));
+		checkCharacterSet("N", validator, tag, fieldIdKey, subfieldIdKey);
 		
 		// Test Min Max Occurrence
 		log.info("Check min and max number of occurrences");
@@ -374,14 +343,7 @@ public class NistPackValidationTest {
 		log.info("Check CharacterSet");
 		
 		packet.deleteAll();
-		Assertions.assertTrue(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getAlphaCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getNumericCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpecialCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getCrlfCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getHyphenCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getPeriodCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpaceCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getApostropheCharacterSet()));
+		checkCharacterSet("A", validator, tag, fieldIdKey, subfieldIdKey);
 		
 		// Test Min Max Occurrence
 		log.info("Check min and max number of occurrences");
@@ -433,14 +395,7 @@ public class NistPackValidationTest {
 		log.info("Check CharacterSet");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getAlphaCharacterSet()));
-		Assertions.assertTrue(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getNumericCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpecialCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getCrlfCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getHyphenCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getPeriodCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpaceCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getApostropheCharacterSet()));
+		checkCharacterSet("N", validator, tag, fieldIdKey, subfieldIdKey);
 		
 		// Test Min Max Occurrence
 		log.info("Check min and max number of occurrences");
@@ -489,14 +444,7 @@ public class NistPackValidationTest {
 		log.info("Check CharacterSet");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getAlphaCharacterSet()));
-		Assertions.assertTrue(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getNumericCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpecialCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getCrlfCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getHyphenCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getPeriodCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpaceCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getApostropheCharacterSet()));
+		checkCharacterSet("N", validator, tag, fieldIdKey, subfieldIdKey);
 		
 		// Test Min Max Occurrence
 		log.info("Check min and max number of occurrences");
@@ -545,14 +493,7 @@ public class NistPackValidationTest {
 		log.info("Check CharacterSet");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getAlphaCharacterSet()));
-		Assertions.assertTrue(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getNumericCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpecialCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getCrlfCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getHyphenCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getPeriodCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpaceCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getApostropheCharacterSet()));
+		checkCharacterSet("AN", validator, tag, fieldIdKey, subfieldIdKey);
 		
 		// Test Min Max Occurrence
 		log.info("Check min and max number of occurrences");
@@ -604,14 +545,7 @@ public class NistPackValidationTest {
 		log.info("Check CharacterSet");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getAlphaCharacterSet()));
-		Assertions.assertTrue(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getNumericCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpecialCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getCrlfCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getHyphenCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getPeriodCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpaceCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getApostropheCharacterSet()));
+		checkCharacterSet("AN", validator, tag, fieldIdKey, subfieldIdKey);
 		
 		// Test Min Max Occurrence
 		log.info("Check min and max number of occurrences");
@@ -663,14 +597,7 @@ public class NistPackValidationTest {
 		log.info("Check CharacterSet");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getAlphaCharacterSet()));
-		Assertions.assertTrue(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getNumericCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpecialCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getCrlfCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getHyphenCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getPeriodCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpaceCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getApostropheCharacterSet()));
+		checkCharacterSet("N", validator, tag, fieldIdKey, subfieldIdKey);
 		
 		// Test Min Max Occurrence
 		log.info("Check min and max number of occurrences");
@@ -720,14 +647,7 @@ public class NistPackValidationTest {
 		log.info("Check CharacterSet");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getAlphaCharacterSet()));
-		Assertions.assertTrue(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getNumericCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpecialCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getCrlfCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getHyphenCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getPeriodCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpaceCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getApostropheCharacterSet()));
+		checkCharacterSet("N", validator, tag, fieldIdKey, subfieldIdKey);
 		
 		// Test Min Max Occurrence
 		log.info("Check min and max number of occurrences");
@@ -776,14 +696,7 @@ public class NistPackValidationTest {
 		log.info("Check CharacterSet");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getAlphaCharacterSet()));
-		Assertions.assertTrue(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getNumericCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpecialCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getCrlfCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getHyphenCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getPeriodCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpaceCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getApostropheCharacterSet()));
+		checkCharacterSet("NP", validator, tag, fieldIdKey, subfieldIdKey);
 		
 		// Test Min Max Occurrence
 		log.info("Check min and max number of occurrences");
@@ -834,14 +747,7 @@ public class NistPackValidationTest {
 		log.info("Check CharacterSet");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getAlphaCharacterSet()));
-		Assertions.assertTrue(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getNumericCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpecialCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getCrlfCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getHyphenCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getPeriodCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpaceCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getApostropheCharacterSet()));
+		checkCharacterSet("NP", validator, tag, fieldIdKey, subfieldIdKey);
 		
 		// Test Min Max Occurrence
 		log.info("Check min and max number of occurrences");
@@ -893,14 +799,7 @@ public class NistPackValidationTest {
 		log.info("Check CharacterSet");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getAlphaCharacterSet()));
-		Assertions.assertTrue(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getNumericCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpecialCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getCrlfCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getHyphenCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getPeriodCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpaceCharacterSet()));
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getApostropheCharacterSet()));
+		checkCharacterSet("AN", validator, tag, fieldIdKey, subfieldIdKey);
 		
 		// Test Min Max Occurrence
 		log.info("Check min and max number of occurrences");
@@ -941,49 +840,55 @@ public class NistPackValidationTest {
 		AnsiNistValidator validator = packet.getAnsiNistValidator();
 		
 		String tag="2.001";
+		int recordType = 2;
 		int fieldIdKey = 1;
-		int itemIdKey = 1;
-		
+		int subfieldIdKey = 1;
 		
 		// Test CharacterSet
 		log.info("Check CharacterSet");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, 1, itemIdKey, "TWO"));
-		Assertions.assertTrue(validator.validateCharacterSet(tag, fieldIdKey, 1, itemIdKey, "0123456789"));
+		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getAlphaCharacterSet()));
+		Assertions.assertTrue(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getNumericCharacterSet()));
+		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpecialCharacterSet()));
+		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getCrlfCharacterSet()));
+		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getHyphenCharacterSet()));
+		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getPeriodCharacterSet()));
+		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpaceCharacterSet()));
+		Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getApostropheCharacterSet()));
 		
 		// Test Min Max Occurrence
 		log.info("Check min and max number of occurrences");
 		
 		packet.deleteAll();
-		packet.createItem("300", 2, 1, fieldIdKey, 1, itemIdKey);
-		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, 1, itemIdKey, "9"));
-		packet.createItem("300", 2, 2, fieldIdKey, 1, itemIdKey);
-		Assertions.assertFalse(validator.validateOccurrence(packet, tag, 1, 1, itemIdKey, "9"));
+		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		
+		packet.deleteAll();
+		packet.createItem("", recordType, 1, fieldIdKey, subfieldIdKey, 1);
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
 		
 		// Condition Mandatory
 		log.info("Check field condition");
 		
 		packet.deleteAll();
-		packet.createItem("300", 2, 1, fieldIdKey, 1, itemIdKey);
-		Assertions.assertTrue(validator.validateCondition(packet, tag, 1, 1, itemIdKey, "9"));
-		packet.createItem("300", 2,2,fieldIdKey,1,1);
-		Assertions.assertTrue(validator.validateCondition(packet, tag, fieldIdKey, 1, itemIdKey, "9"));
+		Assertions.assertFalse(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
+		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateCondition(packet, tag, 1, 1, itemIdKey, "9"));
+		packet.createItem("", recordType, 2, fieldIdKey, subfieldIdKey, 1);
+		Assertions.assertTrue(validator.validateOccurrence(packet, tag, fieldIdKey, subfieldIdKey, 1, ""));
 		
 		// Test min and max length
 		log.info("Check min and max record length");
 		
 		packet.deleteAll();
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, 1, itemIdKey, "9"));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, 1, itemIdKey, "99"));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, 1, itemIdKey, "999"));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, 1, itemIdKey, "9999"));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, 1, itemIdKey, "99999"));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, 1, itemIdKey, "999999"));
-		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, 1, itemIdKey, "9999999"));
-		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, 1, itemIdKey, "99999999"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "9"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "99"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "999"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "9999"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "99999"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "999999"));
+		Assertions.assertTrue(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "9999999"));
+		Assertions.assertFalse(validator.validateFieldLength(tag, fieldIdKey, subfieldIdKey, 1, "99999999"));
 		
 	}
 	
@@ -2852,6 +2757,52 @@ public class NistPackValidationTest {
 		Assertions.assertTrue(validator.validateCondition( packet, tag, fieldIdKey,1,itemIdKey, "9"));
 		packet.deleteAll();
 		Assertions.assertTrue(validator.validateCondition( packet, tag, 1,1,itemIdKey, "9"));
+		
+	}
+	
+	
+	@Disabled
+	private void checkCharacterSet(String validSet, AnsiNistValidator validator, String tag, int fieldIdKey, int subfieldIdKey) {
+		
+		if (validSet.matches(".*A.*"))
+			Assertions.assertTrue(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getAlphaCharacterSet()));
+		else
+			Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getAlphaCharacterSet()));
+		
+		if (validSet.matches(".*N.*"))
+			Assertions.assertTrue(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getNumericCharacterSet()));
+		else
+			Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getNumericCharacterSet()));
+		
+		if (validSet.matches(".*S.*"))
+			Assertions.assertTrue(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpecialCharacterSet()));
+		else
+			Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpecialCharacterSet()));
+		
+		if (validSet.matches(".*C.*"))
+			Assertions.assertTrue(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getCrlfCharacterSet()));
+		else
+			Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getCrlfCharacterSet()));
+		
+		if (validSet.matches(".*H.*"))
+			Assertions.assertTrue(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getHyphenCharacterSet()));
+		else
+			Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getHyphenCharacterSet()));
+		
+		if (validSet.matches(".*P.*"))
+			Assertions.assertTrue(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getPeriodCharacterSet()));
+		else
+			Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getPeriodCharacterSet()));
+		
+		if (validSet.matches(".*B.*"))
+			Assertions.assertTrue(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpaceCharacterSet()));
+		else
+			Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getSpaceCharacterSet()));
+		
+		if (validSet.matches(".*T.*"))
+			Assertions.assertTrue(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getApostropheCharacterSet()));
+		else
+			Assertions.assertFalse(validator.validateCharacterSet(tag, fieldIdKey, subfieldIdKey, 1, validator.getApostropheCharacterSet()));
 		
 	}
 	

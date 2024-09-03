@@ -5,7 +5,7 @@
   "crlf_regx": "\r\n",
   "hyphen_regx": "-",
   "space_regx": " ",
-  "period_regx": ".",
+  "period_regx": "\\.",
   "apostrophe_regx": "’",
   "record_type": [
     {
