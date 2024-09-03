@@ -159,8 +159,9 @@ public class Validator177f extends AnsiNistValidator {
 			
 			if (keyDetail.get(0) == rectype
 					&& Objects.equals(keyDetail.get(2), fieldIdKey)
-//					&& Objects.equals(keyDetail.get(3), subfieldIdKey)
-					&& Objects.equals(keyDetail.get(4), itemIdKey)) {
+					&& Objects.equals(keyDetail.get(3), subfieldIdKey)
+//					&& Objects.equals(keyDetail.get(4), itemIdKey))
+			) {
 				
 				occurrenceCnt++;
 				
@@ -169,48 +170,6 @@ public class Validator177f extends AnsiNistValidator {
 		}
 		
 		return occurrenceCnt;
-	}
-	
-	private boolean validateCondition(List<List<Integer>> keyList, int rectype, Integer fieldIdKey,
-									  Integer subfieldIdKey, Integer itemIdKey, String condition) {
-		
-		int occurrenceCnt = 0;
-		
-		for (int i = 0; i < keyList.size(); i++) {
-			
-			List<Integer> keyDetail = keyList.get(i);
-			
-			if (keyDetail.get(0) == rectype
-					&& Objects.equals(keyDetail.get(2), fieldIdKey)
-					&& Objects.equals(keyDetail.get(3), subfieldIdKey)
-					&& Objects.equals(keyDetail.get(4), itemIdKey)) {
-				
-				occurrenceCnt++;
-				
-			}
-			
-		}
-		
-		boolean valid = false;
-		
-		// Check if field is mandatory
-		if (Objects.equals(condition, "M")) {
-			valid = occurrenceCnt >= 1;
-		}
-		
-		// Check if field is optional
-		if (Objects.equals(condition, "O") || Objects.equals(condition, "C")) {
-			valid = occurrenceCnt >= 0;
-		}
-		
-		if (valid) {
-			log.info(String.format("validateCondition  %s ", valid));
-		} else {
-			log.info(String.format("validateCondition  %s ", valid));
-		}
-		
-		return valid;
-		
 	}
 	
 	@Override
@@ -284,15 +243,45 @@ public class Validator177f extends AnsiNistValidator {
 		int rectype = Integer.parseInt(tag.split("\\.")[0]);
 		RecordTag recordTag = findTag(tag);
 		
+		int occurrenceCnt = countOccurence(keyList, rectype, fieldIdKey, subfieldIdKey, itemIdKey);
+		
+		boolean valid = false;
 		if (subfieldIdKey == 1 && itemIdKey == 1 && recordTag.getOccurrence().size() == 0) {
 			
-			return validateCondition(keyList, rectype, fieldIdKey, subfieldIdKey, itemIdKey , recordTag.getCondition() );
+			// Check if field is mandatory
+			if (Objects.equals(recordTag.condition, "M") && occurrenceCnt >= 1) {
+				
+				valid = true;
+				
+			} else if (Objects.equals(recordTag.condition, "O") && occurrenceCnt >= 0) {
+				
+				valid = true;
+				
+			}
 			
 		} else {
 			
-			return validateCondition(keyList, rectype, fieldIdKey, subfieldIdKey, itemIdKey , recordTag.getOccurrence().get(itemIdKey - 1).getCondition() );
+			Occurrence occurrence = recordTag.getOccurrence().get(subfieldIdKey - 1);
+			
+			// Check if field is mandatory
+			if ((recordTag.condition.equals("O") && occurrenceCnt == 0) ||
+					(Objects.equals(occurrence.condition, "M") && occurrenceCnt >= 1) ||
+					(Objects.equals(occurrence.condition, "O") && occurrenceCnt >= 0)
+			) {
+				
+				valid = true;
+				
+			}
 			
 		}
+		
+		if (valid) {
+			log.info(String.format("validateCondition  %s ", valid));
+		} else {
+			log.info(String.format("validateCondition  %s ", valid));
+		}
+		
+		return valid;
 		
 	}
 
@@ -351,7 +340,13 @@ public class Validator177f extends AnsiNistValidator {
 		
 		if (subfieldIdKey == 1 && itemIdKey == 1 && recordTag.getOccurrence().size() == 0) {
 			
-			String regexStr = buildRegex(recordTag.getCharacter_set());
+			String regexStr = null;
+			try {
+				regexStr = buildRegex(recordTag.getCharacter_set());
+			} catch (Exception e) {
+
+				log.error(e.getMessage());
+			}
 			
 			boolean valid = value.matches(regexStr) ? true : false;
 			
@@ -367,7 +362,12 @@ public class Validator177f extends AnsiNistValidator {
 			
 			Occurrence occurrence = recordTag.getOccurrence().get(itemIdKey - 1);
 			
-			String regexStr = buildRegex(occurrence.getCharacter_set());
+			String regexStr = null;
+			try {
+				regexStr = buildRegex(occurrence.getCharacter_set());
+			} catch (Exception e) {
+				log.error(e.getMessage());
+			}
 			
 			boolean valid = value.matches(regexStr) ? true : false;
 			
@@ -382,7 +382,7 @@ public class Validator177f extends AnsiNistValidator {
 		}
 	}
 	
-	private String buildRegex(List<String> characterSetList) {
+	private String buildRegex(List<String> characterSetList) throws Exception {
 		
 		StringBuilder regex = new StringBuilder();
 		
@@ -390,32 +390,40 @@ public class Validator177f extends AnsiNistValidator {
 			
 			if (characterSet.equals("numeric")) {
 				regex.append(numeric_regx).append(",");
+				break;
 			}
 			
 			if (characterSet.equals("alpha")) {
 				regex.append(alpha_regx).append(",");
+				break;
 			}
 			
 			if (characterSet.equals("crlf")) {
 				regex.append(crlf_regx).append(",");
+				break;
 			}
 			
 			if (characterSet.equals("period")) {
 				regex.append(period_regx).append(",");
+				break;
 			}
 			
 			if (characterSet.equals("special")) {
 				regex.append(special_regx).append(",");
+				break;
 			}
 			
 			if (characterSet.equals("space")) {
 				regex.append(space_regx).append(",");
+				break;
 			}
 			
 			if (characterSet.equals("apostrophe")) {
 				regex.append(apostrophe_regx).append(",");
+				break;
 			}
-			
+
+			throw new Exception("Invalid character set. ");
 		}
 		
 		regex = new StringBuilder(regex.substring(0, regex.length() - 1));
