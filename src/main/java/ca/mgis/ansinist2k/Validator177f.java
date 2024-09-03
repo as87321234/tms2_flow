@@ -160,7 +160,7 @@ public class Validator177f extends AnsiNistValidator {
 			if (keyDetail.get(0) == rectype
 					&& Objects.equals(keyDetail.get(2), fieldIdKey)
 					&& Objects.equals(keyDetail.get(3), subfieldIdKey)
-//					&& Objects.equals(keyDetail.get(4), itemIdKey))
+					&& Objects.equals(keyDetail.get(4), itemIdKey)
 			) {
 				
 				occurrenceCnt++;
@@ -311,7 +311,7 @@ public class Validator177f extends AnsiNistValidator {
 			
 		} else {
 			
-			Occurrence occurrence = recordTag.getOccurrence().get(itemIdKey - 1);
+			Occurrence occurrence = recordTag.getOccurrence().get(subfieldIdKey - 1);
 			
 			int fieldMinSize = occurrence.getField_min_size();
 			int fieldMaxSize = occurrence.getField_max_size();
@@ -360,7 +360,7 @@ public class Validator177f extends AnsiNistValidator {
 			
 		} else {
 			
-			Occurrence occurrence = recordTag.getOccurrence().get(itemIdKey - 1);
+			Occurrence occurrence = recordTag.getOccurrence().get(subfieldIdKey - 1);
 			
 			String regexStr = null;
 			try {
