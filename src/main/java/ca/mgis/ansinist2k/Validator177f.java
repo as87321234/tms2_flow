@@ -409,6 +409,8 @@ public class Validator177f extends AnsiNistValidator {
 				regex.append(special_regx).append(",");
 			} else if (characterSet.equals("space")) {
 				regex.append(space_regx).append(",");
+			} else if (characterSet.equals("hyphen")) {
+				regex.append(hyphen_regx).append(",");
 			} else if (characterSet.equals("apostrophe")) {
 				regex.append(apostrophe_regx).append(",");
 			} else

@@ -3,7 +3,7 @@
   "numeric_regx": "0-9",
   "special_regx": " #$&’()*\\,-.",
   "crlf_regx": "\r\n",
-  "hyphen_regx": "-",
+  "hyphen_regx": "\\-",
   "space_regx": " ",
   "period_regx": "\\.",
   "apostrophe_regx": "’",
