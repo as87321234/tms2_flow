@@ -115,8 +115,8 @@ public class Validator177f extends AnsiNistValidator {
 			int fieldOccMin = recordTag.getField_occ_min();
 			int fieldOccMax = recordTag.getField_occ_max();
 			
-			boolean valid = (recordTag.condition.equals("O") && occurrenceCnt == 0)
-					|| occurrenceCnt >= fieldOccMin && occurrenceCnt <= fieldOccMax;
+			boolean valid = ((recordTag.condition.equals("O") && occurrenceCnt >= 0) ||
+					(occurrenceCnt >= 1 && recordTag.condition.equals("M") ));
 			
 			if (valid) {
 				log.info(String.format("validateCondition key: %s - length: %s ", key, valid));
@@ -130,12 +130,13 @@ public class Validator177f extends AnsiNistValidator {
 			
 			int occurrenceCnt = countOccurrence(keyList, rectype, fieldIdKey, subfieldIdKey, itemIdKey);;
 			
-			int fieldOccMin = recordTag.occurrence.get(itemIdKey - 1).getField_occ_min();
-			int fieldOccMax = recordTag.occurrence.get(itemIdKey - 1).getField_occ_max();
+			Occurrence occurrence = recordTag.getOccurrence().get(subfieldIdKey - 1);
+			int fieldOccMin = occurrence.getField_occ_min();
+			int fieldOccMax = occurrence.getField_occ_max();
 			
-			boolean valid = (recordTag.condition.equals("O") && occurrenceCnt == 0)
-					|| occurrenceCnt >= fieldOccMin && occurrenceCnt <= fieldOccMax;
-			
+			boolean valid = ((recordTag.condition.equals("O") && occurrenceCnt == 0) ||
+					(occurrenceCnt >= 1 && occurrence.getCondition().equals("M") ||
+							(occurrenceCnt >= 0 && occurrence.getCondition().equals("O"))));
 			
 			if (valid) {
 				log.info(String.format("validateCondition key: %s - length: %s ", key, valid));
@@ -245,51 +246,51 @@ public class Validator177f extends AnsiNistValidator {
 	@Override
 	public boolean validateCondition(AnsiNistPacket packet, String tag, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKey, String value) {
 		
+		
 		String key = String.format("%s:%s.%s.%s", tag, fieldIdKey, subfieldIdKey, itemIdKey);
 		
-		List<List<Integer>> keyList = packet.getKeyList();
-		int rectype = Integer.parseInt(tag.split("\\.")[0]);
 		RecordTag recordTag = findTag(tag);
+		List<List<Integer>> keyList = packet.getKeyList();
 		
-		int occurrenceCnt = countOccurrence(keyList, rectype, fieldIdKey, subfieldIdKey, itemIdKey);
+		int rectype = Integer.parseInt(tag.split("\\.")[0]);
 		
-		boolean valid = false;
 		if (subfieldIdKey == 1 && itemIdKey == 1 && recordTag.getOccurrence().size() == 0) {
 			
-			// Check if field is mandatory
-			if (Objects.equals(recordTag.condition, "M") && occurrenceCnt >= 1) {
-				
-				valid = true;
-				
-			} else if (Objects.equals(recordTag.condition, "O") && occurrenceCnt >= 0) {
-				
-				valid = true;
-				
+			int occurrenceCnt = countOccurrence(keyList, rectype, fieldIdKey, subfieldIdKey, itemIdKey);
+			
+			int fieldOccMin = recordTag.getField_occ_min();
+			int fieldOccMax = recordTag.getField_occ_max();
+			
+			boolean valid = ((recordTag.condition.equals("O") && occurrenceCnt >= 0) ||
+					(occurrenceCnt >= 1 && recordTag.condition.equals("M") ));
+			
+			if (valid) {
+				log.info(String.format("validateCondition key: %s - length: %s ", key, valid));
+			} else {
+				log.error(String.format("validateCondition key: %s - length: %s ", key, valid));
 			}
 			
+			return valid;
+			
 		} else {
+			
+			int occurrenceCnt = countOccurrence(keyList, rectype, fieldIdKey, subfieldIdKey, itemIdKey);;
 			
 			Occurrence occurrence = recordTag.getOccurrence().get(subfieldIdKey - 1);
 			
-			// Check if field is mandatory
-			if ((recordTag.condition.equals("O") && occurrenceCnt == 0) ||
-					(Objects.equals(occurrence.condition, "M") && occurrenceCnt >= 1) ||
-					(Objects.equals(occurrence.condition, "O") && occurrenceCnt >= 0)
-			) {
-				
-				valid = true;
-				
+			boolean valid = ((recordTag.condition.equals("O") && occurrenceCnt >= 0) ||
+					(occurrenceCnt >= 1 && occurrence.getCondition().equals("M") ||
+							(occurrenceCnt >= 0 && occurrence.getCondition().equals("O"))));
+			
+			if (valid) {
+				log.info(String.format("validateCondition key: %s - length: %s ", key, valid));
+			} else {
+				log.error(String.format("validateCondition key: %s - length: %s ", key, valid));
 			}
 			
+			return valid;
+			
 		}
-		
-		if (valid) {
-			log.info(String.format("validateCondition  %s ", valid));
-		} else {
-			log.info(String.format("validateCondition  %s ", valid));
-		}
-		
-		return valid;
 		
 	}
 

@@ -307,7 +307,7 @@
         {
           "id": "2.067",
           "identifier": "IMA",
-          "condition": "C",
+          "condition": "O",
           "field_tag_name": "Image Capture Equipment",
           "character_set": [
           ],
