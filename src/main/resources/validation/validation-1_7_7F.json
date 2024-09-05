@@ -1,12 +1,12 @@
 {
-  "alpha_regx": "A-Z",
-  "numeric_regx": "0-9",
-  "special_regx": " #$&’()*\\,-.",
-  "crlf_regx": "\r\n",
-  "hyphen_regx": "\\-",
-  "space_regx": " ",
-  "period_regx": "\\.",
-  "apostrophe_regx": "’",
+  "alpha_regx": "[A-Z]",
+  "numeric_regx": "[0-9]",
+  "special_regx": "[ #$&’()*\\,\\-\\.]",
+  "crlf_regx": "[\r\n]",
+  "hyphen_regx": "[\\-]",
+  "space_regx": "[ ]",
+  "period_regx": "[\\.]",
+  "apostrophe_regx": "[’]",
   "record_type": [
     {
       "id": 1,
@@ -831,26 +831,452 @@
             },
             {
               "condition": "M",
-              "tag_name": "Body Location Code",
+              "tag_name": "Given name 1",
               "character_set": [
-                "numeric"
+                "alpha",
+                "space",
+                "hyphen",
+                "apostrophe",
+                "period"
               ],
-              "field_min_size": 3,
-              "field_max_size": 3,
+              "field_min_size": 1,
+              "field_max_size": 15,
+              "field_occ_min": 0,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Given name 1",
+              "character_set": [
+                "alpha",
+                "space",
+                "hyphen",
+                "apostrophe",
+                "period"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 15,
+              "field_occ_min": 0,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Given name 2",
+              "character_set": [
+                "alpha",
+                "space",
+                "hyphen",
+                "apostrophe",
+                "period"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 15,
+              "field_occ_min": 0,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Given name 3",
+              "character_set": [
+                "alpha",
+                "space",
+                "hyphen",
+                "apostrophe",
+                "period"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 15,
+              "field_occ_min": 0,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Given name 4",
+              "character_set": [
+                "alpha",
+                "space",
+                "hyphen",
+                "apostrophe",
+                "period"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 15,
+              "field_occ_min": 0,
+              "field_occ_max": 1
+            }
+          ]
+        },
+        {
+          "id": "2.827",
+          "identifier": "NMG",
+          "condition": "O",
+          "field_tag_name": "Narrative Message",
+          "character_set": [
+            "alpha",
+            "special",
+            "numeric"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 1000,
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "2.833",
+          "identifier": "LOR",
+          "condition": "C",
+          "field_tag_name": "Language of Result",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 1,
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "2.824",
+          "identifier": "OTN",
+          "condition": "O",
+          "field_tag_name": "Other Names/Alias",
+          "character_set": [
+          ],
+          "field_occ_min": 0,
+          "field_occ_max": 40,
+          "occurrence": [
+            {
+              "condition": "M",
+              "tag_name": "Surname",
+              "character_set": [
+                "alpha",
+                "space",
+                "hyphen",
+                "apostrophe",
+                "period"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 24,
               "field_occ_min": 1,
               "field_occ_max": 1
             },
             {
-              "condition": "O",
-              "tag_name": "Description",
+              "condition": "M",
+              "tag_name": "Given name 1",
               "character_set": [
-                "numeric", "alpha", "special"
+                "alpha",
+                "space",
+                "hyphen",
+                "apostrophe",
+                "period"
               ],
               "field_min_size": 1,
-              "field_max_size": 20,
+              "field_max_size": 15,
+              "field_occ_min": 0,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Given name 1",
+              "character_set": [
+                "alpha",
+                "space",
+                "hyphen",
+                "apostrophe",
+                "period"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 15,
+              "field_occ_min": 0,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Given name 2",
+              "character_set": [
+                "alpha",
+                "space",
+                "hyphen",
+                "apostrophe",
+                "period"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 15,
+              "field_occ_min": 0,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Given name 3",
+              "character_set": [
+                "alpha",
+                "space",
+                "hyphen",
+                "apostrophe",
+                "period"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 15,
+              "field_occ_min": 0,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Given name 4",
+              "character_set": [
+                "alpha",
+                "space",
+                "hyphen",
+                "apostrophe",
+                "period"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 15,
               "field_occ_min": 0,
               "field_occ_max": 1
             }
+          ]
+        },
+        {
+          "id": "2.838",
+          "identifier": "PYT",
+          "condition": "C",
+          "field_tag_name": "Payment Type",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 1,
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "2.848",
+          "identifier": "CCI",
+          "condition": "C",
+          "field_tag_name": "Credit Card Information",
+          "character_set": [
+          ],
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
+            {
+              "condition": "M",
+              "tag_name": "Credit Card Type",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 1,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Credit Card Number",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 13,
+              "field_max_size": 25,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Credit Card Expiry Date",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 4,
+              "field_max_size": 4,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Name on Credit Card",
+              "character_set": [
+                "alpha",
+                "special"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 50,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Payment Amount",
+              "character_set": [
+                "numeric",
+                "period"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 6,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            }
+          ]
+        },
+        {
+          "id": "2.849",
+          "identifier": "BBID",
+          "condition": "C",
+          "field_tag_name": " Bulk Billing Agency Identifier",
+          "character_set": [
+            "numeric",
+            "alpha"
+          ],
+          "field_min_size": 7,
+          "field_max_size": 7,
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "2.850",
+          "identifier": "ATS",
+          "condition": "C",
+          "field_tag_name": "Application Type Specify",
+          "character_set": [
+            "numeric",
+            "alpha",
+            "special"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 50,
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "2.869",
+          "identifier": "APT",
+          "condition": "M",
+          "field_tag_name": "Application Type",
+          "character_set": [
+          ],
+          "field_min_size": 1,
+          "field_max_size": 1,
+          "occurrence": [
+            {
+              "condition": "M",
+              "tag_name": "Application Type",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 2,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "C",
+              "tag_name": "Sub-Type",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 4,
+              "field_max_size": 4,
+              "field_occ_min": 0,
+              "field_occ_max": 1
+            }
+          ]
+        },
+        {
+          "id": "2.870",
+          "identifier": "VAO",
+          "condition": "C",
+          "field_tag_name": "Vulnerable Sector Consent Number One - Authentication Obtained Indicator",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 1,
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "2.871",
+          "identifier": "VCL",
+          "condition": "C",
+          "field_tag_name": "Volunteer Confirmation Letter Verified Indicator",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 1,
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "2.872",
+          "identifier": "TPW",
+          "condition": "C",
+          "field_tag_name": "Third Party Waiver Authentication Obtained Indicator",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 1,
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },        {
+          "id": "2.873",
+          "identifier": "DIS",
+          "condition": "C",
+          "field_tag_name": "Details of Information Sought",
+          "character_set": [
+            "numeric","alpha", "special"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 300,
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "2.874",
+          "identifier": "SFBI",
+          "condition": "O",
+          "field_tag_name": "FBI Search Request",
+          "character_set": [
+            "alpha"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 1,
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },        {
+          "id": "2.886",
+          "identifier": "RID",
+          "condition": "O",
+          "field_tag_name": "Refugee File Number",
+          "character_set": [
+            "alpha"
+          ],
+          "field_min_size": 12,
+          "field_max_size": 12,
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
           ]
         }
       ]

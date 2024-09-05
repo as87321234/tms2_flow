@@ -115,7 +115,7 @@ public class Validator177f extends AnsiNistValidator {
 			int fieldOccMin = recordTag.getField_occ_min();
 			int fieldOccMax = recordTag.getField_occ_max();
 			
-			boolean valid = ((recordTag.condition.equals("O") && occurrenceCnt >= 0) ||
+			boolean valid = ((recordTag.condition.matches("O|C") && occurrenceCnt >= 0) ||
 					(occurrenceCnt >= 1 && recordTag.condition.equals("M") ));
 			
 			if (valid) {
@@ -134,9 +134,10 @@ public class Validator177f extends AnsiNistValidator {
 			int fieldOccMin = occurrence.getField_occ_min();
 			int fieldOccMax = occurrence.getField_occ_max();
 			
-			boolean valid = ((recordTag.condition.equals("O") && occurrenceCnt == 0) ||
+			boolean valid = ((recordTag.condition.matches("O|C") && occurrenceCnt == 0) ||
+					((occurrenceCnt >= 0 && occurrence.condition.matches("C|O") )) ||
 					(occurrenceCnt >= 1 && occurrence.getCondition().equals("M") ||
-							(occurrenceCnt >= 0 && occurrence.getCondition().equals("O"))));
+							(occurrenceCnt >= 0 && occurrence.getCondition().equals("O|C"))));
 			
 			if (valid) {
 				log.info(String.format("validateCondition key: %s - length: %s ", key, valid));
@@ -261,7 +262,7 @@ public class Validator177f extends AnsiNistValidator {
 			int fieldOccMin = recordTag.getField_occ_min();
 			int fieldOccMax = recordTag.getField_occ_max();
 			
-			boolean valid = ((recordTag.condition.equals("O") && occurrenceCnt >= 0) ||
+			boolean valid = ((recordTag.condition.matches("O|C") && occurrenceCnt >= 0) ||
 					(occurrenceCnt >= 1 && recordTag.condition.equals("M") ));
 			
 			if (valid) {
@@ -278,9 +279,9 @@ public class Validator177f extends AnsiNistValidator {
 			
 			Occurrence occurrence = recordTag.getOccurrence().get(subfieldIdKey - 1);
 			
-			boolean valid = ((recordTag.condition.equals("O") && occurrenceCnt >= 0) ||
+			boolean valid = ((recordTag.condition.matches("O|C") && occurrenceCnt >= 0) ||
 					(occurrenceCnt >= 1 && occurrence.getCondition().equals("M") ||
-							(occurrenceCnt >= 0 && occurrence.getCondition().equals("O"))));
+							(occurrenceCnt >= 0 && occurrence.getCondition().matches("O|C"))));
 			
 			if (valid) {
 				log.info(String.format("validateCondition key: %s - length: %s ", key, valid));
