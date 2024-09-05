@@ -1264,7 +1264,8 @@
           "field_occ_max": 1,
           "occurrence": [
           ]
-        },        {
+        },
+        {
           "id": "2.886",
           "identifier": "RID",
           "condition": "O",
@@ -1277,6 +1278,101 @@
           "field_occ_min": 0,
           "field_occ_max": 1,
           "occurrence": [
+          ]
+        },
+        {
+          "id": "2.887",
+          "identifier": "CIC",
+          "condition": "O",
+          "field_tag_name": "CBSA/CIC Office Number",
+          "character_set": [
+            "alpha","numeric", "special"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 16,
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "2.888",
+          "identifier": "FOSS",
+          "condition": "O",
+          "field_tag_name": "Field Operational Support System Number",
+          "character_set": [
+            "alpha","numeric", "special"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 16,
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "2.889",
+          "identifier": "BCID",
+          "condition": "C",
+          "field_tag_name": "Biometric Consent Image Designator",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 2,
+          "field_max_size": 5,
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "2.891",
+          "identifier": "ISR",
+          "condition": "O",
+          "field_tag_name": "International Search Request",
+          "character_set": [
+            "alpha"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 1,
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "2.892",
+          "identifier": "IRP",
+          "condition": "C",
+          "field_tag_name": "International Countries to Search",
+          "character_set": [
+            "alpha"
+          ],
+          "field_occ_min": 0,
+          "field_occ_max": 5,
+          "occurrence": [
+            {
+              "condition": "M",
+              "tag_name": "Country Code",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 3,
+              "field_max_size": 3,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "O",
+              "tag_name": "File Number",
+              "character_set": [
+                "numeric","alpha","special"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 32,
+              "field_occ_min": 0,
+              "field_occ_max": 1
+            }
           ]
         }
       ]
