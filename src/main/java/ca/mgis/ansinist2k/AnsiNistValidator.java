@@ -16,6 +16,7 @@ public abstract class AnsiNistValidator {
 	static public String period_regx;
 	static public String space_regx;
 	static public String hyphen_regx;
+	static public String byte_regx;
 	
 	public static String validation_1_7_7f = "/Users/stlouisa/IdeaProjects/tms2_flow/src/main/resources/validation/validation-1_7_7F.json";
 	
@@ -47,6 +48,8 @@ public abstract class AnsiNistValidator {
 	public abstract String getSpaceCharacterSet();
 	
 	public abstract String getApostropheCharacterSet();
+	
+	public abstract String getByteCharacterSet();
 	
 	public abstract int getOccurrenceCount(AnsiNistPacket packet, int rectype, int fieldIdKey, int subfieldIdKey, int itemIdKey);
 	

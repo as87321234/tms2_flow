@@ -21,6 +21,7 @@ public class Validator{
 	public String hyphen_regx;
 	public String space_regx;
 	public String apostrophe_regx;
+	public String byte_regx;
 	
 	public ArrayList<RecordType> record_type;
 	

@@ -28,6 +28,7 @@ public class Validator177f extends AnsiNistValidator {
 	public String hyphen_regx;
 	public String space_regx;
 	public String apostrophe_regx;
+	public String byte_regx;
 	
 	
 	public ArrayList<RecordType> record_type;
@@ -236,6 +237,11 @@ public class Validator177f extends AnsiNistValidator {
 	}
 	
 	@Override
+	public String getByteCharacterSet() {
+		return ".";
+	}
+	
+	@Override
 	public int getOccurrenceCount(AnsiNistPacket packet, int rectype, int fieldIdKey, int subfieldIdKey, int itemIdKey) {
 		
 		List<List<Integer>> keyList = packet.getKeyList();
@@ -299,7 +305,7 @@ public class Validator177f extends AnsiNistValidator {
 	public boolean validateFieldLength(String tag, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKey, String value) {
 		
 		String key = String.format("%s:%s.%s.%s", tag, fieldIdKey, subfieldIdKey, itemIdKey);
-		
+
 		boolean valid;
 		
 		RecordTag recordTag = findTag(tag);
@@ -312,9 +318,17 @@ public class Validator177f extends AnsiNistValidator {
 			valid = value.length() >= fieldMinSize && value.length() <= fieldMaxSize;
 			
 			if (valid) {
-				log.info(String.format("validateFieldLength key: %s value: %s - length: %s ", key, value, valid));
+				if (!tag.matches(".*999.*")) {
+					log.info(String.format("validateFieldLength key: %s value: %s - length: %s ", key, value, valid));
+				} else {
+					log.info(String.format("validateFieldLength key: %s value: %s - length: %s ", key, "{Image}", valid));
+				}
 			} else {
-				log.error(String.format("validateFieldLength key: %s value: %s - length: %s ", key, value, valid));
+				if (!tag.matches(".*999.*")) {
+					log.error(String.format("validateFieldLength key: %s value: %s - length: %s ", key, value, valid));
+				} else {
+					log.info(String.format("validateFieldLength key: %s value: %s - length: %s ", key, "{Image}", valid));
+				}
 			}
 			
 			return valid;
@@ -414,6 +428,8 @@ public class Validator177f extends AnsiNistValidator {
 				regex.append(hyphen_regx).append(",");
 			} else if (characterSet.equals("apostrophe")) {
 				regex.append(apostrophe_regx).append(",");
+			} else if (characterSet.equals("byte")) {
+				regex.append(byte_regx).append(",");
 			} else
 				throw new Exception("Invalid character set. ");
 		}
