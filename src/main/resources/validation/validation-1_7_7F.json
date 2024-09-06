@@ -1374,6 +1374,264 @@
               "field_occ_max": 1
             }
           ]
+        },
+        {
+          "id": "2.893",
+          "identifier": "FQO",
+          "condition": "O",
+          "field_tag_name": "Fingerprint Quality Override",
+          "character_set": [
+          ],
+          "field_occ_min": 0,
+          "field_occ_max": 14,
+          "occurrence": [
+            {
+              "condition": "M",
+              "tag_name": "Finger Number",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 2,
+              "field_max_size": 2,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Reason Code",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 2,
+              "field_max_size": 2,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "C",
+              "tag_name": "Description",
+              "character_set": [
+                "alpha",
+                "numeric",
+                "special"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 500,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            }
+          ]
+        },
+        {
+          "id": "2.894",
+          "identifier": "FER",
+          "condition": "C",
+          "field_tag_name": "Foreign Search Reason",
+          "character_set": [
+            "alpha",
+            "numeric",
+            "special"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 500,
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "2.8005",
+          "identifier": "RET",
+          "condition": "M",
+          "field_tag_name": "Retention Code",
+          "character_set": [
+            "alpha"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 1,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "2.8022",
+          "identifier": "DOB",
+          "condition": "M",
+          "field_tag_name": "Date of Birth",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 8,
+          "field_max_size": 8,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "2.8038",
+          "identifier": "DPR",
+          "condition": "M",
+          "field_tag_name": "Date Fingerprinted",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 8,
+          "field_max_size": 8,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "2.8084",
+          "identifier": "MFR",
+          "condition": "C",
+          "field_tag_name": "Missing Fingerprint Reason",
+          "character_set": [
+          ],
+          "field_occ_min": 0,
+          "field_occ_max": 14,
+          "occurrence": [
+            {
+              "condition": "C",
+              "tag_name": "Finger Position Code",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 2,
+              "field_max_size": 2,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Missing Fingerprint Reason Code",
+              "character_set": [
+                "alpha"
+              ],
+              "field_min_size": 2,
+              "field_max_size": 2,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "O",
+              "tag_name": "Missing Fingerprint Date",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 8,
+              "field_max_size": 8,
+              "field_occ_min": 0,
+              "field_occ_max": 1
+            }
+          ]
+        },
+        {
+          "id": "2.8900",
+          "identifier": "SRS",
+          "condition": "M",
+          "field_tag_name": "Send Results",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 1,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "2.8903",
+          "identifier": "RTA",
+          "condition": "C",
+          "field_tag_name": "Return Mailing Address",
+          "character_set": [
+          ],
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
+            {
+              "condition": "M",
+              "tag_name": "Attention Name",
+              "character_set": [
+                "alpha","numeric", "special"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 40,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Address Line 1",
+              "character_set": [
+                "alpha","numeric", "special"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 50,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "O",
+              "tag_name": "Address Line 2",
+              "character_set": [
+                "alpha","numeric", "special"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 50,
+              "field_occ_min": 0,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "O",
+              "tag_name": "Address Line 3",
+              "character_set": [
+                "alpha","numeric", "special"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 50,
+              "field_occ_min": 0,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "City",
+              "character_set": [
+                "alpha","numeric", "special"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 35,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "C",
+              "tag_name": "Province / State Code",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 2,
+              "field_max_size": 2,
+              "field_occ_min": 0,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "C",
+              "tag_name": "Postal Code / Zip Code",
+              "character_set": [
+                "alpha", "numeric", "hyphen", "space"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 10,
+              "field_occ_min": 0,
+              "field_occ_max": 1
+            }
+          ]
         }
       ]
     }
