@@ -7,6 +7,7 @@
   "space_regx": "[ ]",
   "period_regx": "[\\.]",
   "apostrophe_regx": "[’]",
+  "byte_regx": "[.]",
   "record_type": [
     {
       "id": 1,
@@ -566,7 +567,8 @@
               "field_max_size": 15,
               "field_occ_min": 0,
               "field_occ_max": 1
-            },            {
+            },
+            {
               "condition": "O",
               "tag_name": "Given Name 5",
               "character_set": [
@@ -709,7 +711,8 @@
           "condition": "O",
           "field_tag_name": "Response to Agency Identifier",
           "character_set": [
-            "alpha", "numeric"
+            "alpha",
+            "numeric"
           ],
           "field_min_size": 6,
           "field_max_size": 9,
@@ -799,7 +802,9 @@
               "condition": "O",
               "tag_name": "Description",
               "character_set": [
-                "numeric", "alpha", "special"
+                "numeric",
+                "alpha",
+                "special"
               ],
               "field_min_size": 1,
               "field_max_size": 20,
@@ -822,7 +827,11 @@
               "condition": "M",
               "tag_name": "Surname",
               "character_set": [
-                "alpha", "space", "hyphen", "apostrophe", "period"
+                "alpha",
+                "space",
+                "hyphen",
+                "apostrophe",
+                "period"
               ],
               "field_min_size": 1,
               "field_max_size": 24,
@@ -1235,13 +1244,16 @@
           "field_occ_max": 1,
           "occurrence": [
           ]
-        },        {
+        },
+        {
           "id": "2.873",
           "identifier": "DIS",
           "condition": "C",
           "field_tag_name": "Details of Information Sought",
           "character_set": [
-            "numeric","alpha", "special"
+            "numeric",
+            "alpha",
+            "special"
           ],
           "field_min_size": 1,
           "field_max_size": 300,
@@ -1286,7 +1298,9 @@
           "condition": "O",
           "field_tag_name": "CBSA/CIC Office Number",
           "character_set": [
-            "alpha","numeric", "special"
+            "alpha",
+            "numeric",
+            "special"
           ],
           "field_min_size": 1,
           "field_max_size": 16,
@@ -1301,7 +1315,9 @@
           "condition": "O",
           "field_tag_name": "Field Operational Support System Number",
           "character_set": [
-            "alpha","numeric", "special"
+            "alpha",
+            "numeric",
+            "special"
           ],
           "field_min_size": 1,
           "field_max_size": 16,
@@ -1366,7 +1382,9 @@
               "condition": "O",
               "tag_name": "File Number",
               "character_set": [
-                "numeric","alpha","special"
+                "numeric",
+                "alpha",
+                "special"
               ],
               "field_min_size": 1,
               "field_max_size": 32,
@@ -1558,7 +1576,9 @@
               "condition": "M",
               "tag_name": "Attention Name",
               "character_set": [
-                "alpha","numeric", "special"
+                "alpha",
+                "numeric",
+                "special"
               ],
               "field_min_size": 1,
               "field_max_size": 40,
@@ -1569,7 +1589,9 @@
               "condition": "M",
               "tag_name": "Address Line 1",
               "character_set": [
-                "alpha","numeric", "special"
+                "alpha",
+                "numeric",
+                "special"
               ],
               "field_min_size": 1,
               "field_max_size": 50,
@@ -1580,7 +1602,9 @@
               "condition": "O",
               "tag_name": "Address Line 2",
               "character_set": [
-                "alpha","numeric", "special"
+                "alpha",
+                "numeric",
+                "special"
               ],
               "field_min_size": 1,
               "field_max_size": 50,
@@ -1591,7 +1615,9 @@
               "condition": "O",
               "tag_name": "Address Line 3",
               "character_set": [
-                "alpha","numeric", "special"
+                "alpha",
+                "numeric",
+                "special"
               ],
               "field_min_size": 1,
               "field_max_size": 50,
@@ -1602,7 +1628,9 @@
               "condition": "M",
               "tag_name": "City",
               "character_set": [
-                "alpha","numeric", "special"
+                "alpha",
+                "numeric",
+                "special"
               ],
               "field_min_size": 1,
               "field_max_size": 35,
@@ -1624,7 +1652,10 @@
               "condition": "C",
               "tag_name": "Postal Code / Zip Code",
               "character_set": [
-                "alpha", "numeric", "hyphen", "space"
+                "alpha",
+                "numeric",
+                "hyphen",
+                "space"
               ],
               "field_min_size": 1,
               "field_max_size": 10,
@@ -1826,7 +1857,9 @@
               "condition": "M",
               "tag_name": "Description of Position",
               "character_set": [
-                "alpha", "numeric", "special"
+                "alpha",
+                "numeric",
+                "special"
               ],
               "field_min_size": 1,
               "field_max_size": 100,
@@ -1837,7 +1870,9 @@
               "condition": "M",
               "tag_name": "Name of Person or Organization",
               "character_set": [
-                "alpha", "numeric", "special"
+                "alpha",
+                "numeric",
+                "special"
               ],
               "field_min_size": 1,
               "field_max_size": 100,
@@ -1848,13 +1883,281 @@
               "condition": "M",
               "tag_name": "Details Regarding Children or Vulnerable Person(s)",
               "character_set": [
-                "alpha", "numeric", "special"
+                "alpha",
+                "numeric",
+                "special"
               ],
               "field_min_size": 1,
               "field_max_size": 100,
               "field_occ_min": 1,
               "field_occ_max": 1
             }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "mnemonic": "FI",
+      "name": "FACIAL IMAGE",
+      "record_tag": [
+        {
+          "id": "10.001",
+          "identifier": "LEN",
+          "condition": "M",
+          "field_tag_name": "Logical Record Length",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 4,
+          "field_max_size": 8,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "10.002",
+          "identifier": "IDC",
+          "condition": "M",
+          "field_tag_name": "Image Designation Character",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 5,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "10.003",
+          "identifier": "IMT",
+          "condition": "M",
+          "field_tag_name": "Image Type",
+          "character_set": [
+            "alpha"
+          ],
+          "field_min_size": 4,
+          "field_max_size": 7,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "10.004",
+          "identifier": "SRC",
+          "condition": "M",
+          "field_tag_name": "Source Agency Identifier",
+          "character_set": [
+            "alpha",
+            "numeric"
+          ],
+          "field_min_size": 7,
+          "field_max_size": 7,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "10.005",
+          "identifier": "PHD",
+          "condition": "M",
+          "field_tag_name": "Photo Date",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 8,
+          "field_max_size": 8,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "10.006",
+          "identifier": "HLL",
+          "condition": "M",
+          "field_tag_name": "Horizontal Line Length",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 3,
+          "field_max_size": 5,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "10.007",
+          "identifier": "VLL",
+          "condition": "M",
+          "field_tag_name": "Vertical Line Length",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 3,
+          "field_max_size": 5,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "10.008",
+          "identifier": "SLC",
+          "condition": "M",
+          "field_tag_name": "Scale Units",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 1,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "10.009",
+          "identifier": "HPS",
+          "condition": "M",
+          "field_tag_name": "Horizontal Pixel Scale",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 5,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "10.010",
+          "identifier": "VPS",
+          "condition": "M",
+          "field_tag_name": "Vertical Pixel Scale",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 5,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "10.011",
+          "identifier": "CGA",
+          "condition": "M",
+          "field_tag_name": "Compression Algorithm",
+          "character_set": [
+            "alpha"
+          ],
+          "field_min_size": 3,
+          "field_max_size": 7,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "10.012",
+          "identifier": "CSP",
+          "condition": "M",
+          "field_tag_name": "Colour Space",
+          "character_set": [
+            "alpha"
+          ],
+          "field_min_size": 3,
+          "field_max_size": 5,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "10.020",
+          "identifier": "POS",
+          "condition": "O",
+          "field_tag_name": "Subject Pose",
+          "character_set": [
+            "alpha"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 1,
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "10.021",
+          "identifier": "POA",
+          "condition": "C",
+          "field_tag_name": "Pose Offset Angle",
+          "character_set": [
+            "hyphen",
+            "numeric"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 5,
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "10.022",
+          "identifier": "PXS",
+          "condition": "O",
+          "field_tag_name": "Photo Description",
+          "character_set": [
+            "alpha"
+          ],
+          "field_min_size": 4,
+          "field_max_size": 21,
+          "field_occ_min": 0,
+          "field_occ_max": 9,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "10.200",
+          "identifier": "COM",
+          "condition": "O",
+          "field_tag_name": "Comments",
+          "character_set": [
+            "alpha",
+            "numeric",
+            "special"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 500,
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "10.999",
+          "identifier": "DAT",
+          "condition": "M",
+          "field_tag_name": "Comments",
+          "character_set": [
+            "byte"
+          ],
+          "field_min_size": 2,
+          "field_max_size": 5000001,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
           ]
         }
       ]
