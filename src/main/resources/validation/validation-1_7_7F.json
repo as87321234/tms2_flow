@@ -1630,6 +1630,230 @@
               "field_max_size": 10,
               "field_occ_min": 0,
               "field_occ_max": 1
+            },
+            {
+              "condition": "C",
+              "tag_name": "Country",
+              "character_set": [
+                "alpha",
+                "special"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 35,
+              "field_occ_min": 0,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Country Code",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 3,
+              "field_max_size": 3,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            }
+          ]
+        },
+        {
+          "id": "2.8908",
+          "identifier": "CNON",
+          "condition": "O",
+          "field_tag_name": "Contributor Case/File Number",
+          "character_set": [
+            "numeric",
+            "alpha",
+            "special"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 32,
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "2.8910",
+          "identifier": "NVN",
+          "condition": "M",
+          "field_tag_name": "External ICD Version Number",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 3,
+          "field_max_size": 3,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "2.8911",
+          "identifier": "STV",
+          "condition": "M",
+          "field_tag_name": "System Table Version Number",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 3,
+          "field_max_size": 3,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "2.8931",
+          "identifier": "NFT",
+          "condition": "M",
+          "field_tag_name": "Name of Person Responsible for Transaction",
+          "character_set": [
+            "alpha",
+            "numeric",
+            "special"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 50,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "2.8934",
+          "identifier": "TEL",
+          "condition": "O",
+          "field_tag_name": "Telephone Number",
+          "character_set": [
+          ],
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
+            {
+              "condition": "O",
+              "tag_name": "Area Code",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 3,
+              "field_occ_min": 0,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Telephone Number",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 20,
+              "field_occ_min": 0,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "O",
+              "tag_name": "Telephone Extension",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 5,
+              "field_occ_min": 0,
+              "field_occ_max": 1
+            }
+          ]
+        },
+        {
+          "id": "2.8938",
+          "identifier": "NOTF",
+          "condition": "M",
+          "field_tag_name": "Name of Official taking fingerprints",
+          "character_set": [
+            "alpha",
+            "numeric",
+            "special"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 50,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "2.8939",
+          "identifier": "FPCL",
+          "condition": "M",
+          "field_tag_name": "Fingerprints Capture Location",
+          "character_set": [
+            "alpha",
+            "numeric",
+            "special"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 20,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "2.8943",
+          "identifier": "EVSI",
+          "condition": "O",
+          "field_tag_name": "Employment in Vulnerable Sector Indicator",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 1,
+          "field_occ_min": 0,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "2.8944",
+          "identifier": "VSD",
+          "condition": "C",
+          "field_tag_name": "Vulnerable Sector Details",
+          "field_min_size": 0,
+          "field_max_size": 1,
+          "occurrence": [
+            {
+              "condition": "M",
+              "tag_name": "Description of Position",
+              "character_set": [
+                "alpha", "numeric", "special"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 100,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Name of Person or Organization",
+              "character_set": [
+                "alpha", "numeric", "special"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 100,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Details Regarding Children or Vulnerable Person(s)",
+              "character_set": [
+                "alpha", "numeric", "special"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 100,
+              "field_occ_min": 1,
+              "field_occ_max": 1
             }
           ]
         }
