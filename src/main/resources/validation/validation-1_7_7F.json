@@ -10,7 +10,6 @@
   "byte_regx": "[.]",
   "transaction_type": [
     {
-
       "transactionType" : "MAP",
       "description" : "Miscellaneous Applicant Civil",
       "record_type": [
@@ -1288,7 +1287,7 @@
               "condition": "O",
               "field_tag_name": "Refugee File Number",
               "character_set": [
-                "alpha"
+                "numeric"
               ],
               "field_min_size": 12,
               "field_max_size": 12,
@@ -1439,7 +1438,7 @@
                     "special"
                   ],
                   "field_min_size": 1,
-                  "field_max_size": 500,
+                  "field_max_size": 50,
                   "field_occ_min": 1,
                   "field_occ_max": 1
                 }
@@ -2498,6 +2497,1611 @@
               "field_occ_min": 1,
               "field_occ_max": 1,
               "occurrence": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "transactionType": "SRE",
+      "description": "Miscellaneous Applicant Civil",
+      "record_type": [
+        {
+          "id": 1,
+          "mnemonic": "HI",
+          "name": "HEADER INFORMATION",
+          "record_tag": [
+            {
+              "id": "1.001",
+              "identifier": "LEN",
+              "condition": "M",
+              "field_tag_name": "Logical Record Length",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 2,
+              "field_max_size": 3,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.002",
+              "identifier": "VER",
+              "condition": "M",
+              "field_tag_name": "ANSI/NIST Version Number",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 4,
+              "field_max_size": 4,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.003",
+              "identifier": "CNT",
+              "field_tag_name": "File Content",
+              "condition": "M",
+              "character_set": [
+                "numeric"
+              ],
+              "field_occ_min": 2,
+              "field_occ_max": 50,
+              "occurrence": [
+                {
+                  "condition": "M",
+                  "tag_name": "Information Item 1",
+                  "character_set": [
+                    "numeric"
+                  ],
+                  "field_min_size": 1,
+                  "field_max_size": 2,
+                  "field_occ_min": 1,
+                  "field_occ_max": 1
+                },
+                {
+                  "condition": "M",
+                  "tag_name": "Information Item 2",
+                  "character_set": [
+                    "numeric"
+                  ],
+                  "field_min_size": 1,
+                  "field_max_size": 5,
+                  "field_occ_min": 1,
+                  "field_occ_max": 1
+                },
+                {
+                  "condition": "M",
+                  "tag_name": "Information Item 3",
+                  "character_set": [
+                    "numeric"
+                  ],
+                  "field_min_size": 1,
+                  "field_max_size": 5,
+                  "field_occ_min": 1,
+                  "field_occ_max": 1
+                },
+                {
+                  "condition": "M",
+                  "tag_name": "Information Item 4",
+                  "character_set": [
+                    "numeric"
+                  ],
+                  "field_min_size": 1,
+                  "field_max_size": 5,
+                  "field_occ_min": 1,
+                  "field_occ_max": 1
+                },
+                {
+                  "condition": "M",
+                  "tag_name": "Information Item 5",
+                  "character_set": [
+                    "numeric"
+                  ],
+                  "field_min_size": 1,
+                  "field_max_size": 5,
+                  "field_occ_min": 1,
+                  "field_occ_max": 1
+                }
+              ]
+            },
+            {
+              "id": "1.004",
+              "identifier": "TOT",
+              "condition": "M",
+              "field_tag_name": "Type of Transaction",
+              "character_set": [
+                "alpha"
+              ],
+              "field_min_size": 3,
+              "field_max_size": 5,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.005",
+              "identifier": "DAT",
+              "condition": "M",
+              "field_tag_name": "Date",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 8,
+              "field_max_size": 8,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.006",
+              "identifier": "PRY",
+              "condition": "M",
+              "field_tag_name": "Priority",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 1,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "regexPattern": "[1-9]",
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.007",
+              "identifier": "DAI",
+              "condition": "M",
+              "field_tag_name": "Destination Agency Identifier",
+              "character_set": [
+                "numeric",
+                "alpha"
+              ],
+              "field_min_size": 7,
+              "field_max_size": 7,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.008",
+              "identifier": "OAI",
+              "condition": "M",
+              "field_tag_name": "Originating Agency Identifier",
+              "character_set": [
+                "numeric",
+                "alpha"
+              ],
+              "field_min_size": 7,
+              "field_max_size": 7,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.009",
+              "identifier": "TCN",
+              "condition": "M",
+              "field_tag_name": "Transaction Control Number",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 13,
+              "field_max_size": 13,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.010",
+              "identifier": "TCR",
+              "condition": "O",
+              "field_tag_name": "Transaction Control Reference Number",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 13,
+              "field_max_size": 13,
+              "field_occ_min": 0,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.011",
+              "identifier": "NSR",
+              "condition": "M",
+              "field_tag_name": "Native Scanning Resolution",
+              "character_set": [
+                "numeric",
+                "period"
+              ],
+              "field_min_size": 5,
+              "field_max_size": 5,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.012",
+              "identifier": "NTR",
+              "condition": "M",
+              "field_tag_name": "Nominal Transmitting Resolution",
+              "character_set": [
+                "numeric",
+                "period"
+              ],
+              "field_min_size": 5,
+              "field_max_size": 5,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.014",
+              "identifier": "GMT",
+              "condition": "O",
+              "field_tag_name": "Greenwich Mean Time",
+              "character_set": [
+                "numeric",
+                "alpha"
+              ],
+              "field_min_size": 15,
+              "field_max_size": 15,
+              "field_occ_min": 0,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "mnemonic": "SRE",
+          "name": "Search Results",
+          "record_tag": [
+            {
+              "id": "2.001",
+              "identifier": "LEN",
+              "condition": "M",
+              "field_tag_name": "Logical Record Length",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 2,
+              "field_max_size": 7,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.002",
+              "identifier": "IDC",
+              "condition": "M",
+              "field_tag_name": "Image Designation Character",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 5,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.800",
+              "identifier": "DCN",
+              "condition": "M",
+              "field_tag_name": "Document Control Number",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 20,
+              "field_max_size": 20,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.801",
+              "identifier": "FPS",
+              "condition": "O",
+              "field_tag_name": "Fingerprint Section Number",
+              "character_set": [
+                "numeric",
+                "alpha"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 7,
+              "field_occ_min": 0,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.806",
+              "identifier": "NAME",
+              "condition": "M",
+              "field_tag_name": "Primary Name",
+              "character_set": [
+              ],
+              "field_occ_min": 0,
+              "field_occ_max": 2,
+              "occurrence": [
+                {
+                  "condition": "O",
+                  "tag_name": "Surname",
+                  "character_set": [
+                    "alpha",
+                    "space",
+                    "hyphen",
+                    "apostrophe",
+                    "period"
+                  ],
+                  "field_min_size": 1,
+                  "field_max_size": 24,
+                  "field_occ_min": 1,
+                  "field_occ_max": 1
+                },
+                {
+                  "condition": "O",
+                  "tag_name": "Given Name 1",
+                  "character_set": [
+                    "alpha",
+                    "space",
+                    "hyphen",
+                    "apostrophe",
+                    "period"
+                  ],
+                  "field_min_size": 1,
+                  "field_max_size": 15,
+                  "field_occ_min": 1,
+                  "field_occ_max": 1
+                },
+                {
+                  "condition": "O",
+                  "tag_name": "Given Name 2",
+                  "character_set": [
+                    "alpha",
+                    "space",
+                    "hyphen",
+                    "apostrophe",
+                    "period"
+                  ],
+                  "field_min_size": 1,
+                  "field_max_size": 15,
+                  "field_occ_min": 0,
+                  "field_occ_max": 1
+                },
+                {
+                  "condition": "O",
+                  "tag_name": "Given Name 3",
+                  "character_set": [
+                    "alpha",
+                    "space",
+                    "hyphen",
+                    "apostrophe",
+                    "period"
+                  ],
+                  "field_min_size": 1,
+                  "field_max_size": 15,
+                  "field_occ_min": 0,
+                  "field_occ_max": 1
+                },
+                {
+                  "condition": "O",
+                  "tag_name": "Given Name 4",
+                  "character_set": [
+                    "alpha",
+                    "space",
+                    "hyphen",
+                    "apostrophe",
+                    "period"
+                  ],
+                  "field_min_size": 1,
+                  "field_max_size": 15,
+                  "field_occ_min": 0,
+                  "field_occ_max": 1
+                }
+              ]
+            },
+            {
+              "id": "2.807",
+              "identifier": "SEX",
+              "condition": "O",
+              "field_tag_name": "Sex",
+              "character_set": [
+                "alpha"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 1,
+              "field_occ_min": 0,
+              "field_occ_max": 2,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.817",
+              "identifier": "CTR",
+              "condition": "O",
+              "field_tag_name": "Response to Agency Identifier",
+              "character_set": [
+                "alpha",
+                "numeric"
+              ],
+              "field_min_size": 6,
+              "field_max_size": 9,
+              "field_occ_min": 0,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.827",
+              "identifier": "NMG",
+              "condition": "O",
+              "field_tag_name": "Narrative Message",
+              "character_set": [
+                "alpha",
+                "special",
+                "numeric"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 1000,
+              "field_occ_min": 0,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.850",
+              "identifier": "ATS",
+              "condition": "O",
+              "field_tag_name": "Application Type Specify",
+              "character_set": [
+                "numeric",
+                "alpha",
+                "special"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 50,
+              "field_occ_min": 0,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.869",
+              "identifier": "APT",
+              "condition": "O",
+              "field_tag_name": "Application Type",
+              "character_set": [
+              ],
+              "field_occ_min": 0,
+              "field_occ_max": 1,
+              "occurrence": [
+                {
+                  "condition": "M",
+                  "tag_name": "Application Type",
+                  "character_set": [
+                    "numeric"
+                  ],
+                  "field_min_size": 1,
+                  "field_max_size": 2,
+                  "field_occ_min": 1,
+                  "field_occ_max": 1
+                },
+                {
+                  "condition": "C",
+                  "tag_name": "Sub-Type",
+                  "character_set": [
+                    "numeric"
+                  ],
+                  "field_min_size": 4,
+                  "field_max_size": 4,
+                  "field_occ_min": 0,
+                  "field_occ_max": 1
+                }
+              ]
+            },
+            {
+              "id": "2.875",
+              "identifier": "RRES",
+              "condition": "M",
+              "field_tag_name": "RCMP-NPS Results",
+              "character_set": [
+                "alpha"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 1,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.886",
+              "identifier": "RID",
+              "condition": "O",
+              "field_tag_name": "Refugee File Number",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 12,
+              "field_max_size": 12,
+              "field_occ_min": 0,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.887",
+              "identifier": "CIC",
+              "condition": "O",
+              "field_tag_name": "CBSA/CIC Office Number",
+              "character_set": [
+                "alpha",
+                "numeric",
+                "special"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 16,
+              "field_occ_min": 0,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.888",
+              "identifier": "FOSS",
+              "condition": "O",
+              "field_tag_name": "Field Operational Support System Number",
+              "character_set": [
+                "alpha",
+                "numeric",
+                "special"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 16,
+              "field_occ_min": 0,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.889",
+              "identifier": "BCID",
+              "condition": "C",
+              "field_tag_name": "Biometric Consent Image Designator",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 2,
+              "field_max_size": 5,
+              "field_occ_min": 0,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.891",
+              "identifier": "ISR",
+              "condition": "O",
+              "field_tag_name": "International Search Request",
+              "character_set": [
+                "alpha"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 1,
+              "field_occ_min": 0,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.892",
+              "identifier": "IRP",
+              "condition": "C",
+              "field_tag_name": "International Countries to Search",
+              "character_set": [
+              ],
+              "field_occ_min": 0,
+              "field_occ_max": 5,
+              "occurrence": [
+                {
+                  "condition": "M",
+                  "tag_name": "Country Code",
+                  "character_set": [
+                    "numeric"
+                  ],
+                  "field_min_size": 3,
+                  "field_max_size": 3,
+                  "field_occ_min": 1,
+                  "field_occ_max": 1
+                },
+                {
+                  "condition": "O",
+                  "tag_name": "File Number",
+                  "character_set": [
+                    "numeric",
+                    "alpha",
+                    "special"
+                  ],
+                  "field_min_size": 1,
+                  "field_max_size": 32,
+                  "field_occ_min": 0,
+                  "field_occ_max": 1
+                }
+              ]
+            },
+            {
+              "id": "2.893",
+              "identifier": "FQO",
+              "condition": "O",
+              "field_tag_name": "Fingerprint Quality Override",
+              "character_set": [
+              ],
+              "field_occ_min": 0,
+              "field_occ_max": 14,
+              "occurrence": [
+                {
+                  "condition": "M",
+                  "tag_name": "Finger Number",
+                  "character_set": [
+                    "numeric"
+                  ],
+                  "field_min_size": 2,
+                  "field_max_size": 2,
+                  "field_occ_min": 1,
+                  "field_occ_max": 1
+                },
+                {
+                  "condition": "M",
+                  "tag_name": "Reason Code",
+                  "character_set": [
+                    "numeric"
+                  ],
+                  "field_min_size": 2,
+                  "field_max_size": 2,
+                  "field_occ_min": 1,
+                  "field_occ_max": 1
+                },
+                {
+                  "condition": "C",
+                  "tag_name": "Description",
+                  "character_set": [
+                    "alpha",
+                    "numeric",
+                    "special"
+                  ],
+                  "field_min_size": 1,
+                  "field_max_size": 50,
+                  "field_occ_min": 1,
+                  "field_occ_max": 1
+                }
+              ]
+            },
+            {
+              "id": "2.894",
+              "identifier": "FER",
+              "condition": "C",
+              "field_tag_name": "Foreign Search Reason",
+              "character_set": [
+                "alpha",
+                "numeric",
+                "special"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 500,
+              "field_occ_min": 0,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.8005",
+              "identifier": "RET",
+              "condition": "M",
+              "field_tag_name": "Retention Code",
+              "character_set": [
+                "alpha"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 1,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.8022",
+              "identifier": "DOB",
+              "condition": "M",
+              "field_tag_name": "Date of Birth",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 8,
+              "field_max_size": 8,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.8044",
+              "identifier": "ESD",
+              "condition": "O",
+              "field_tag_name": "Effective Search Date",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 8,
+              "field_max_size": 8,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.8059",
+              "identifier": "SRF",
+              "condition": "O",
+              "field_tag_name": "Criminal Search Result Findings",
+              "character_set": [
+                "alpha"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 1,
+              "field_occ_min": 0,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.8071",
+              "identifier": "ACN",
+              "condition": "O",
+              "field_tag_name": "Action to be Taken",
+              "character_set": [
+                "alpha",
+                "special",
+                "crlf",
+                "numeric"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 300,
+              "field_occ_min": 0,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.8910",
+              "identifier": "NVN",
+              "condition": "M",
+              "field_tag_name": "External ICD Version Number",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 3,
+              "field_max_size": 3,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.8912",
+              "identifier": "ISRF",
+              "condition": "O",
+              "field_tag_name": "Refugee Search Result Findings",
+              "character_set": [
+                "alpha"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 1,
+              "field_occ_min": 0,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.8913",
+              "identifier": "CRS",
+              "condition": "O",
+              "field_tag_name": "Criminal Record",
+              "character_set": [
+              ],
+              "field_occ_min": 0,
+              "field_occ_max": 1,
+              "occurrence": [
+                {
+                  "condition": "O",
+                  "tag_name": "Country",
+                  "character_set": [
+                    "numeric"
+                  ],
+                  "field_min_size": 3,
+                  "field_max_size": 3,
+                  "field_occ_min": 0,
+                  "field_occ_max": 1
+                },
+                {
+                  "condition": "O",
+                  "tag_name": "Criminal Record Contents",
+                  "character_set": [
+                    "alpha",
+                    "numeric",
+                    "special",
+                    "crlf"
+                  ],
+                  "field_min_size": 1,
+                  "field_max_size": 200000,
+                  "field_occ_min": 0,
+                  "field_occ_max": 1
+                }
+              ]
+            },
+            {
+              "id": "2.8920",
+              "identifier": "CSI",
+              "condition": "O",
+              "field_tag_name": "Contributor Supplied Information",
+              "character_set": [
+              ],
+              "field_occ_min": 0,
+              "field_occ_max": 1,
+              "occurrence": [
+                {
+                  "condition": "O",
+                  "tag_name": "Individual Reference Number/FOSS#",
+                  "character_set": [
+                    "numeric",
+                    "alpha",
+                    "special"
+                  ],
+                  "field_min_size": 1,
+                  "field_max_size": 32,
+                  "field_occ_min": 0,
+                  "field_occ_max": 1
+                },
+                {
+                  "condition": "O",
+                  "tag_name": "Contributor File Number/CBSA/CIC Number",
+                  "character_set": [
+                    "alpha",
+                    "numeric",
+                    "special"
+                  ],
+                  "field_min_size": 1,
+                  "field_max_size": 32,
+                  "field_occ_min": 0,
+                  "field_occ_max": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "transactionType": "ACKT",
+      "description": "ACKNOWLEDGMENT TENPRINT",
+      "record_type": [
+        {
+          "id": 3,
+          "mnemonic": "ACKT",
+          "name": "ACKNOWLEDGMENT TENPRINT",
+          "record_tag": [
+            {
+              "id": "1.001",
+              "identifier": "LEN",
+              "condition": "M",
+              "field_tag_name": "Logical Record Length",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 2,
+              "field_max_size": 3,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.002",
+              "identifier": "VER",
+              "condition": "M",
+              "field_tag_name": "ANSI/NIST Version Number",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 4,
+              "field_max_size": 4,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.003",
+              "identifier": "CNT",
+              "field_tag_name": "File Content",
+              "condition": "M",
+              "character_set": [
+                "numeric"
+              ],
+              "field_occ_min": 2,
+              "field_occ_max": 50,
+              "occurrence": [
+                {
+                  "condition": "M",
+                  "tag_name": "Information Item 1",
+                  "character_set": [
+                    "numeric"
+                  ],
+                  "field_min_size": 1,
+                  "field_max_size": 2,
+                  "field_occ_min": 1,
+                  "field_occ_max": 1
+                },
+                {
+                  "condition": "M",
+                  "tag_name": "Information Item 2",
+                  "character_set": [
+                    "numeric"
+                  ],
+                  "field_min_size": 1,
+                  "field_max_size": 5,
+                  "field_occ_min": 1,
+                  "field_occ_max": 1
+                },
+                {
+                  "condition": "M",
+                  "tag_name": "Information Item 3",
+                  "character_set": [
+                    "numeric"
+                  ],
+                  "field_min_size": 1,
+                  "field_max_size": 5,
+                  "field_occ_min": 1,
+                  "field_occ_max": 1
+                },
+                {
+                  "condition": "M",
+                  "tag_name": "Information Item 4",
+                  "character_set": [
+                    "numeric"
+                  ],
+                  "field_min_size": 1,
+                  "field_max_size": 5,
+                  "field_occ_min": 1,
+                  "field_occ_max": 1
+                },
+                {
+                  "condition": "M",
+                  "tag_name": "Information Item 5",
+                  "character_set": [
+                    "numeric"
+                  ],
+                  "field_min_size": 1,
+                  "field_max_size": 5,
+                  "field_occ_min": 1,
+                  "field_occ_max": 1
+                }
+              ]
+            },
+            {
+              "id": "1.004",
+              "identifier": "TOT",
+              "condition": "M",
+              "field_tag_name": "Type of Transaction",
+              "character_set": [
+                "alpha"
+              ],
+              "field_min_size": 3,
+              "field_max_size": 5,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.005",
+              "identifier": "DAT",
+              "condition": "M",
+              "field_tag_name": "Date",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 8,
+              "field_max_size": 8,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.006",
+              "identifier": "PRY",
+              "condition": "M",
+              "field_tag_name": "Priority",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 1,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "regexPattern": "[1-9]",
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.007",
+              "identifier": "DAI",
+              "condition": "M",
+              "field_tag_name": "Destination Agency Identifier",
+              "character_set": [
+                "numeric",
+                "alpha"
+              ],
+              "field_min_size": 7,
+              "field_max_size": 7,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.008",
+              "identifier": "OAI",
+              "condition": "M",
+              "field_tag_name": "Originating Agency Identifier",
+              "character_set": [
+                "numeric",
+                "alpha"
+              ],
+              "field_min_size": 7,
+              "field_max_size": 7,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.009",
+              "identifier": "TCN",
+              "condition": "M",
+              "field_tag_name": "Transaction Control Number",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 13,
+              "field_max_size": 13,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.010",
+              "identifier": "TCR",
+              "condition": "O",
+              "field_tag_name": "Transaction Control Reference Number",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 13,
+              "field_max_size": 13,
+              "field_occ_min": 0,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.011",
+              "identifier": "NSR",
+              "condition": "M",
+              "field_tag_name": "Native Scanning Resolution",
+              "character_set": [
+                "numeric",
+                "period"
+              ],
+              "field_min_size": 5,
+              "field_max_size": 5,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.012",
+              "identifier": "NTR",
+              "condition": "M",
+              "field_tag_name": "Nominal Transmitting Resolution",
+              "character_set": [
+                "numeric",
+                "period"
+              ],
+              "field_min_size": 5,
+              "field_max_size": 5,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.014",
+              "identifier": "GMT",
+              "condition": "O",
+              "field_tag_name": "Greenwich Mean Time",
+              "character_set": [
+                "numeric",
+                "alpha"
+              ],
+              "field_min_size": 15,
+              "field_max_size": 15,
+              "field_occ_min": 0,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.001",
+              "identifier": "LEN",
+              "condition": "M",
+              "field_tag_name": "Logical Record Length",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 2,
+              "field_max_size": 7,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.002",
+              "identifier": "IDC",
+              "condition": "M",
+              "field_tag_name": "Image Designation Character",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 5,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.800",
+              "identifier": "DCN",
+              "condition": "M",
+              "field_tag_name": "Document Control Number",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 20,
+              "field_max_size": 20,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.8910",
+              "identifier": "NVN",
+              "condition": "M",
+              "field_tag_name": "External ICD Version Number",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 3,
+              "field_max_size": 3,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "transactionType": "ERRT",
+      "description": "TENPRINT SUBMISSION ERROR",
+      "record_type": [
+        {
+          "id": 4,
+          "mnemonic": "ERRT",
+          "name": "TENPRINT SUBMISSION ERROR",
+          "record_tag": [
+            {
+              "id": "1.001",
+              "identifier": "LEN",
+              "condition": "M",
+              "field_tag_name": "Logical Record Length",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 2,
+              "field_max_size": 3,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.002",
+              "identifier": "VER",
+              "condition": "M",
+              "field_tag_name": "ANSI/NIST Version Number",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 4,
+              "field_max_size": 4,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.003",
+              "identifier": "CNT",
+              "field_tag_name": "File Content",
+              "condition": "M",
+              "character_set": [
+                "numeric"
+              ],
+              "field_occ_min": 2,
+              "field_occ_max": 50,
+              "occurrence": [
+                {
+                  "condition": "M",
+                  "tag_name": "Information Item 1",
+                  "character_set": [
+                    "numeric"
+                  ],
+                  "field_min_size": 1,
+                  "field_max_size": 2,
+                  "field_occ_min": 1,
+                  "field_occ_max": 1
+                },
+                {
+                  "condition": "M",
+                  "tag_name": "Information Item 2",
+                  "character_set": [
+                    "numeric"
+                  ],
+                  "field_min_size": 1,
+                  "field_max_size": 5,
+                  "field_occ_min": 1,
+                  "field_occ_max": 1
+                },
+                {
+                  "condition": "M",
+                  "tag_name": "Information Item 3",
+                  "character_set": [
+                    "numeric"
+                  ],
+                  "field_min_size": 1,
+                  "field_max_size": 5,
+                  "field_occ_min": 1,
+                  "field_occ_max": 1
+                },
+                {
+                  "condition": "M",
+                  "tag_name": "Information Item 4",
+                  "character_set": [
+                    "numeric"
+                  ],
+                  "field_min_size": 1,
+                  "field_max_size": 5,
+                  "field_occ_min": 1,
+                  "field_occ_max": 1
+                },
+                {
+                  "condition": "M",
+                  "tag_name": "Information Item 5",
+                  "character_set": [
+                    "numeric"
+                  ],
+                  "field_min_size": 1,
+                  "field_max_size": 5,
+                  "field_occ_min": 1,
+                  "field_occ_max": 1
+                }
+              ]
+            },
+            {
+              "id": "1.004",
+              "identifier": "TOT",
+              "condition": "M",
+              "field_tag_name": "Type of Transaction",
+              "character_set": [
+                "alpha"
+              ],
+              "field_min_size": 3,
+              "field_max_size": 5,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.005",
+              "identifier": "DAT",
+              "condition": "M",
+              "field_tag_name": "Date",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 8,
+              "field_max_size": 8,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.006",
+              "identifier": "PRY",
+              "condition": "M",
+              "field_tag_name": "Priority",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 1,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "regexPattern": "[1-9]",
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.007",
+              "identifier": "DAI",
+              "condition": "M",
+              "field_tag_name": "Destination Agency Identifier",
+              "character_set": [
+                "numeric",
+                "alpha"
+              ],
+              "field_min_size": 7,
+              "field_max_size": 7,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.008",
+              "identifier": "OAI",
+              "condition": "M",
+              "field_tag_name": "Originating Agency Identifier",
+              "character_set": [
+                "numeric",
+                "alpha"
+              ],
+              "field_min_size": 7,
+              "field_max_size": 7,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.009",
+              "identifier": "TCN",
+              "condition": "M",
+              "field_tag_name": "Transaction Control Number",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 13,
+              "field_max_size": 13,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.010",
+              "identifier": "TCR",
+              "condition": "O",
+              "field_tag_name": "Transaction Control Reference Number",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 13,
+              "field_max_size": 13,
+              "field_occ_min": 0,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.011",
+              "identifier": "NSR",
+              "condition": "M",
+              "field_tag_name": "Native Scanning Resolution",
+              "character_set": [
+                "numeric",
+                "period"
+              ],
+              "field_min_size": 5,
+              "field_max_size": 5,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.012",
+              "identifier": "NTR",
+              "condition": "M",
+              "field_tag_name": "Nominal Transmitting Resolution",
+              "character_set": [
+                "numeric",
+                "period"
+              ],
+              "field_min_size": 5,
+              "field_max_size": 5,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "1.014",
+              "identifier": "GMT",
+              "condition": "O",
+              "field_tag_name": "Greenwich Mean Time",
+              "character_set": [
+                "numeric",
+                "alpha"
+              ],
+              "field_min_size": 15,
+              "field_max_size": 15,
+              "field_occ_min": 0,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.001",
+              "identifier": "LEN",
+              "condition": "M",
+              "field_tag_name": "Logical Record Length",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 2,
+              "field_max_size": 7,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.002",
+              "identifier": "IDC",
+              "condition": "M",
+              "field_tag_name": "Image Designation Character",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 5,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.800",
+              "identifier": "DCN",
+              "condition": "M",
+              "field_tag_name": "Document Control Number",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 20,
+              "field_max_size": 20,
+              "field_occ_min": 1,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.827",
+              "identifier": "NMG",
+              "condition": "O",
+              "field_tag_name": "Narrative Message",
+              "character_set": [
+                "numeric",
+                "alpha",
+                "special",
+                "crlf"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 1000,
+              "field_occ_min": 0,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.875",
+              "identifier": "RRES",
+              "condition": "O",
+              "field_tag_name": "RCMP-NPS Results",
+              "character_set": [
+                "alpha"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 1,
+              "field_occ_min": 0,
+              "field_occ_max": 1,
+              "occurrence": [
+              ]
+            },
+            {
+              "id": "2.8060",
+              "identifier": "EMSG",
+              "field_tag_name": "Error",
+              "condition": "M",
+              "character_set": [
+                "numeric"
+              ],
+              "field_occ_min": 1,
+              "field_occ_max": 50,
+              "occurrence": [
+                {
+                  "condition": "M",
+                  "tag_name": "Error Code",
+                  "character_set": [
+                    "numeric"
+                  ],
+                  "field_min_size": 1,
+                  "field_max_size": 5,
+                  "field_occ_min": 1,
+                  "field_occ_max": 1
+                },
+                {
+                  "condition": "M",
+                  "tag_name": "Error Message",
+                  "character_set": [
+                    "alpha", "numeric", "special"
+                  ],
+                  "field_min_size": 1,
+                  "field_max_size": 300,
+                  "field_occ_min": 1,
+                  "field_occ_max": 1
+                }
               ]
             }
           ]
