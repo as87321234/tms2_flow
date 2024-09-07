@@ -1470,7 +1470,6 @@ public class NistPackValidationMAPTest {
 		
 	}
 	
-	
 	@Test
 	public void tag_2_806_1() throws Exception {
 		
@@ -2184,7 +2183,6 @@ public class NistPackValidationMAPTest {
 		Assertions.assertFalse(validator.validateFieldLength(transactionType, tag, fieldIdKey, subfieldIdKey, itemIdKey, "12"));
 		
 	}
-	
 	
 	@Test
 	public void tag_2_817() throws Exception {
