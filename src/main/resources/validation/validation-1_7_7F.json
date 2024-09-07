@@ -2161,6 +2161,341 @@
           ]
         }
       ]
+    },
+    {
+      "id": 14,
+      "mnemonic": "PI",
+      "name": "PLAIN IMPRESSION",
+      "record_tag": [
+        {
+          "id": "14.001",
+          "identifier": "LEN",
+          "condition": "M",
+          "field_tag_name": "Logical Record Length",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 4,
+          "field_max_size": 8,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "14.002",
+          "identifier": "IDC",
+          "condition": "M",
+          "field_tag_name": "Image Designation Character",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 5,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "14.003",
+          "identifier": "IMP",
+          "condition": "M",
+          "field_tag_name": "Impression Type",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 2,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "14.004",
+          "identifier": "SRC",
+          "condition": "M",
+          "field_tag_name": "Impression Type",
+          "character_set": [
+            "numeric",
+            "alpha"
+          ],
+          "field_min_size": 7,
+          "field_max_size": 7,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "14.005",
+          "identifier": "TCD",
+          "condition": "M",
+          "field_tag_name": "Capture Date",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 8,
+          "field_max_size": 8,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "14.006",
+          "identifier": "HLL",
+          "condition": "M",
+          "field_tag_name": "Horizontal Line Length",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 3,
+          "field_max_size": 5,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "14.007",
+          "identifier": "VLL",
+          "condition": "M",
+          "field_tag_name": "Vertical Line Length",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 3,
+          "field_max_size": 5,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "14.008",
+          "identifier": "SLC",
+          "condition": "M",
+          "field_tag_name": "Scale Units",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 1,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "14.009",
+          "identifier": "HPS",
+          "condition": "M",
+          "field_tag_name": "Horizontal Pixel Scale",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 5,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "14.010",
+          "identifier": "VPS",
+          "condition": "M",
+          "field_tag_name": "Vertical Pixel Scale",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 5,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "14.011",
+          "identifier": "CGA",
+          "condition": "M",
+          "field_tag_name": "Compression Algorithm",
+          "character_set": [
+            "numeric",
+            "alpha"
+          ],
+          "field_min_size": 3,
+          "field_max_size": 7,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "14.012",
+          "identifier": "BPX",
+          "condition": "M",
+          "field_tag_name": "Bits Per Pixel",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 3,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "14.013",
+          "identifier": "FGP",
+          "condition": "M",
+          "field_tag_name": "Finger Number Code",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 2,
+          "field_max_size": 2,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "14.021",
+          "identifier": "SEG",
+          "condition": "M",
+          "field_tag_name": "Segment Position",
+          "character_set": [
+          ],
+          "field_occ_min": 0,
+          "field_occ_max": 4,
+          "occurrence": [
+            {
+              "condition": "M",
+              "tag_name": "Finger Number",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 2,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Left",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 4,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Right",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 4,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Top",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 4,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Bottom",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 4,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            }
+          ]
+        },
+        {
+          "id": "14.022",
+          "identifier": "IQM",
+          "condition": "M",
+          "field_tag_name": "Image Quality Metric",
+          "character_set": [
+          ],
+          "field_occ_min": 1,
+          "field_occ_max": 4,
+          "occurrence": [
+            {
+              "condition": "M",
+              "tag_name": "Finger Number",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 2,
+              "field_max_size": 2,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            },
+            {
+              "condition": "M",
+              "tag_name": "Quality Score",
+              "character_set": [
+                "numeric"
+              ],
+              "field_min_size": 1,
+              "field_max_size": 2,
+              "field_occ_min": 1,
+              "field_occ_max": 1
+            }
+          ]
+        },
+        {
+          "id": "14.200",
+          "identifier": "IMTC",
+          "condition": "M",
+          "field_tag_name": "Image Type Contained",
+          "character_set": [
+            "numeric"
+          ],
+          "field_min_size": 1,
+          "field_max_size": 1,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        },
+        {
+          "id": "14.999",
+          "identifier": "DAT",
+          "condition": "M",
+          "field_tag_name": "Image Data",
+          "character_set": [
+            "byte"
+          ],
+          "field_min_size": 2,
+          "field_max_size": 2000000000,
+          "field_occ_min": 1,
+          "field_occ_max": 1,
+          "occurrence": [
+          ]
+        }
+      ]
     }
   ]
 }
