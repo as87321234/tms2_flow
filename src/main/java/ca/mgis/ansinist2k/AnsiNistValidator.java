@@ -20,17 +20,17 @@ public abstract class AnsiNistValidator {
 	
 	public static String validation_1_7_7f = "/Users/stlouisa/IdeaProjects/tms2_flow/src/main/resources/validation/validation-1_7_7F.json";
 	
-	public abstract boolean validate(String tag, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKEy, String value);
+	public abstract boolean validate(String transactionType, String tag, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKey, String value);
+
+	public abstract boolean validateCharacterSet(String transactionType, String tag, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKEy, String value);
 	
-	public abstract boolean validateCharacterSet(String tag, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKEy, String value);
+	public abstract boolean validateFieldLength(String transactionType,String tag, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKey, String value);
 	
-	public abstract boolean validateFieldLength(String tag, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKey, String value);
+	public abstract boolean validateCondition(String transactionType, AnsiNistPacket packet, String tag, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKey, String value);
 	
-	public abstract boolean validateCondition(AnsiNistPacket packet, String tag, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKey, String value);
+	public abstract boolean validateOccurrence(String transactionType, AnsiNistPacket packet, String tag, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKey, String value);
 	
-	public abstract boolean validateOccurrence(AnsiNistPacket packet, String tag, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKey, String value);
-	
-	public abstract boolean validateRegexPattern(String tag, Integer fieldIdKey,
+	public abstract boolean validateRegexPattern(String transactionType, String tag, Integer fieldIdKey,
 												 Integer subfieldIdKey, Integer itemIdKey, String value);
 	
 	public abstract String getAlphaCharacterSet();
@@ -53,6 +53,6 @@ public abstract class AnsiNistValidator {
 	
 	public abstract int getOccurrenceCount(AnsiNistPacket packet, int rectype, int fieldIdKey, int subfieldIdKey, int itemIdKey);
 	
-	public abstract RecordTag findTag(String tag);
+	public abstract RecordTag findTag(String transactionType, String tag);
 	
 }

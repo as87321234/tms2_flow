@@ -3,6 +3,7 @@ package ca.mgis.ansinist2k;
 import ca.mgis.ansinist2k.validation.Occurrence;
 import ca.mgis.ansinist2k.validation.RecordTag;
 import ca.mgis.ansinist2k.validation.RecordType;
+import ca.mgis.ansinist2k.validation.TransactionType;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -31,47 +32,64 @@ public class Validator177f extends AnsiNistValidator {
 	public String byte_regx;
 	
 	
-	public ArrayList<RecordType> record_type;
+	public ArrayList<TransactionType> transaction_type;
 	
 	public void dumpValidator() {
 		
 		log.info(String.format("ALPHA REGX: %s, NUMERIC REGX: %s, SPECIAL REGX %s, PERIOD REGX %s, CRLF REGX %s"));
 		
-		for (RecordType recordType : record_type) {
+		for (TransactionType transactionType : transaction_type) {
 			
-			for (RecordTag recordTag : recordType.getRecord_tag()) {
+			for (RecordType recordType : transactionType.getRecord_type()) {
 				
-				for (Occurrence occurrence : recordTag.getOccurrence()) {
+				for (RecordTag recordTag : recordType.getRecord_tag()) {
 					
-					log.info(String.format("Record Type %s, Record Tag: %s: %s %s [%s,%s] %s, %s, %s, %s, %s , %s, %s ",
-							recordType.getId(),
-							recordTag.getId(),
-							recordTag.getIdentifier(),
-							recordTag.getTag_name(),
-							recordTag.getField_occ_min(),
-							recordTag.getField_occ_max(),
-							occurrence.getTag_name(),
-							occurrence.getCharacter_set(),
-							occurrence.getCondition(),
-							occurrence.getField_min_size(),
-							occurrence.getField_max_size(),
-							occurrence.getField_occ_min(),
-							occurrence.getField_occ_max()
-					));
-					
-					if (!recordTag.getNote().contentEquals(""))
-						log.info(String.format("Note: %s", recordTag.getNote()));
-					
+					for (Occurrence occurrence : recordTag.getOccurrence()) {
+						
+						log.info(String.format("Transaction Type: %s Record Type: %s, Record Tag: %s: %s %s [%s,%s] %s, %s, %s, %s, %s , %s, %s ",
+								transactionType.getTransactionType(),
+								recordType.getId(),
+								recordTag.getId(),
+								recordTag.getIdentifier(),
+								recordTag.getTag_name(),
+								recordTag.getField_occ_min(),
+								recordTag.getField_occ_max(),
+								occurrence.getTag_name(),
+								occurrence.getCharacter_set(),
+								occurrence.getCondition(),
+								occurrence.getField_min_size(),
+								occurrence.getField_max_size(),
+								occurrence.getField_occ_min(),
+								occurrence.getField_occ_max()
+						));
+						
+						if (!recordTag.getNote().contentEquals(""))
+							log.info(String.format("Note: %s", recordTag.getNote()));
+						
+					}
 				}
 			}
 		}
+	}
+	
+	public ArrayList<RecordType> findRecordTypeFrom(String transactionTypeId) {
+		
+		for (TransactionType transactionType : transaction_type) {
+		
+			if (transactionType.getTransactionType().equals(transactionTypeId)) {
+				
+				return transactionType.getRecord_type();
+			}
+			
+		}
+		
+		return null;
 		
 	}
 	
-	
-	public RecordTag findTag(String tag) {
+	public RecordTag findTag(String transactionType, String tag) {
 		
-		for (RecordType recordType : record_type) {
+		for (RecordType recordType : findRecordTypeFrom(transactionType)) {
 			
 			for (RecordTag recordTag : recordType.getRecord_tag()) {
 				
@@ -87,24 +105,24 @@ public class Validator177f extends AnsiNistValidator {
 	}
 	
 	@Override
-	public boolean validate(String tag, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKey, String value) {
-		RecordTag recordTag = findTag(tag);
+	public boolean validate(String transactionType, String tag, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKey, String value) {
+		RecordTag recordTag = findTag(transactionType, tag);
 		
 		log.debug(String.format("recordTag: %s ", recordTag));
 		
-		boolean valid = validateCharacterSet(tag, fieldIdKey, subfieldIdKey, itemIdKey, value);
-		boolean lengthValid = validateFieldLength(tag, fieldIdKey, subfieldIdKey, itemIdKey, value);
+		boolean valid = validateCharacterSet(transactionType, tag, fieldIdKey, subfieldIdKey, itemIdKey, value);
+		boolean lengthValid = validateFieldLength(transactionType, tag, fieldIdKey, subfieldIdKey, itemIdKey, value);
 		
 		log.warn("Not fully implemented validation ...");
 		return valid && lengthValid;
 	}
 	
 	@Override
-	public boolean validateOccurrence(AnsiNistPacket packet, String tag, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKey, String value) {
+	public boolean validateOccurrence(String transactionType, AnsiNistPacket packet, String tag, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKey, String value) {
 		
 		String key = String.format("%s:%s.%s.%s", tag, fieldIdKey, subfieldIdKey, itemIdKey);
 		
-		RecordTag recordTag = findTag(tag);
+		RecordTag recordTag = findTag(transactionType, tag);
 		List<List<Integer>> keyList = packet.getKeyList();
 		
 		int rectype = Integer.parseInt(tag.split("\\.")[0]);
@@ -175,12 +193,12 @@ public class Validator177f extends AnsiNistValidator {
 	}
 	
 	@Override
-	public boolean validateRegexPattern(String tag, Integer fieldIdKey,
+	public boolean validateRegexPattern(String transactionType, String tag, Integer fieldIdKey,
 									  Integer subfieldIdKey, Integer itemIdKey, String value) {
 		
 		String key = String.format("%s:%s.%s.%s", tag, fieldIdKey, subfieldIdKey, itemIdKey);
 		
-		RecordTag recordTag = findTag(tag);
+		RecordTag recordTag = findTag(transactionType, tag);
 		
 		String regexPattern =	recordTag.getRegexPattern();
 		
@@ -251,12 +269,12 @@ public class Validator177f extends AnsiNistValidator {
 	}
 	
 	@Override
-	public boolean validateCondition(AnsiNistPacket packet, String tag, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKey, String value) {
+	public boolean validateCondition(String transactionType, AnsiNistPacket packet, String tag, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKey, String value) {
 		
 		
 		String key = String.format("%s:%s.%s.%s", tag, fieldIdKey, subfieldIdKey, itemIdKey);
 		
-		RecordTag recordTag = findTag(tag);
+		RecordTag recordTag = findTag(transactionType, tag);
 		List<List<Integer>> keyList = packet.getKeyList();
 		
 		int rectype = Integer.parseInt(tag.split("\\.")[0]);
@@ -302,13 +320,13 @@ public class Validator177f extends AnsiNistValidator {
 	}
 
 	@Override
-	public boolean validateFieldLength(String tag, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKey, String value) {
+	public boolean validateFieldLength(String transactionType, String tag, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKey, String value) {
 		
 		String key = String.format("%s:%s.%s.%s", tag, fieldIdKey, subfieldIdKey, itemIdKey);
 
 		boolean valid;
 		
-		RecordTag recordTag = findTag(tag);
+		RecordTag recordTag = findTag(transactionType, tag);
 		
 		if (subfieldIdKey == 1 && itemIdKey == 1 && recordTag.getOccurrence().size() == 0) {
 			
@@ -355,11 +373,11 @@ public class Validator177f extends AnsiNistValidator {
 	}
 	
 	@Override
-	public boolean validateCharacterSet(String tag, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKey, String value) {
+	public boolean validateCharacterSet(String transactionType, String tag, Integer fieldIdKey, Integer subfieldIdKey, Integer itemIdKey, String value) {
 		
 		String key = String.format("%s:%s.%s.%s", tag, fieldIdKey, subfieldIdKey, itemIdKey);
 		
-		RecordTag recordTag = findTag(tag);
+		RecordTag recordTag = findTag(transactionType, tag);
 		StringBuilder regex = new StringBuilder();
 		
 		if (subfieldIdKey == 1 && itemIdKey == 1 && recordTag.getOccurrence().size() == 0) {
