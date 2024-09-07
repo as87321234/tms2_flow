@@ -13,10 +13,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.*;
 
-@SpringBootTest(classes = ca.mgis.junit.NistPackValidationTest.class)
-public class NistPackValidationTest {
+@SpringBootTest(classes = NistPackValidationMAPTest.class)
+public class NistPackValidationMAPTest {
 	
-	Logger log = LoggerFactory.getLogger(NistPackValidationTest.class);
+	Logger log = LoggerFactory.getLogger(NistPackValidationMAPTest.class);
 	
 	private String transactionType = "MAP";
 	
