@@ -12,9 +12,5 @@ import java.util.ArrayList;
 
 public class RecordType{
 	public int id;
-	public String mnemonic;
-	public String name;
-	public String note;
-
 	public ArrayList<RecordTag> record_tag;
 }
